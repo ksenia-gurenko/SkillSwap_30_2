@@ -27,6 +27,27 @@ SkillSwap — это SPA-приложение, позволяющее польз
     npm run build
     ```
 
+
+## Deploy приложения
+1. Deploy приложения в prod (из ветки main):
+    ```bash
+    npm run deploy:prod
+    ```
+
+2. Deploy приложения в staging (из ветки deploy):
+    ```bash
+    npm run deploy:staging
+    ```
+
+3. При требовании входа в систему Netlify
+   login: skill.swap@yandex.by
+   password: KcejWUxrxAbDcDSXXvnDaizxrCSLpJEhWo
+
+### Ссылки на сайты
+
+1. prod - https://skill-swap-prod.netlify.app/
+2. staging - https://skill-swap-staging.netlify.app/
+
 ## 🧑‍💻 Работа с ветками
 Основные ветки:
 - main — для стабильной сборки (прод)
