@@ -9,7 +9,9 @@
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier ./src --write",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy:prod": "netlify deploy --prod --site a860ce80-218e-406b-a468-c4472aef326c --dir=dist",
+    "deploy:staging": "netlify deploy --prod --site 13a1a1c3-2f62-4913-8b00-30706c634538 --dir=dist"
   },
   "dependencies": {
     "react": "^19.1.0",
@@ -37,6 +39,7 @@
     "globals": "^16.2.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.5.2",
+    "netlify-cli": "^22.1.3",
     "prettier": "^3.5.3",
     "stylelint": "^16.20.0",
     "stylelint-config-recommended": "^16.0.0",
