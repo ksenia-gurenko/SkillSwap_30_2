@@ -39,7 +39,7 @@ SkillSwap — это SPA-приложение, позволяющее польз
     ```
 
 3. При требовании входа в систему Netlify
-   login: skill.swap@yandex.by
+   email: skill.swap@yandex.by
    password: KcejWUxrxAbDcDSXXvnDaizxrCSLpJEhWo
 
 ### Ссылки на сайты
