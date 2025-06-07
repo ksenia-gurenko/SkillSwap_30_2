@@ -27,7 +27,6 @@ SkillSwap — это SPA-приложение, позволяющее польз
     npm run build
     ```
 
-
 ## Deploy приложения
 1. Deploy приложения в prod (из ветки main):
     ```bash
