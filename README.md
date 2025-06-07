@@ -43,7 +43,6 @@ SkillSwap — это SPA-приложение, позволяющее польз
    password: KcejWUxrxAbDcDSXXvnDaizxrCSLpJEhWo
 
 ### Ссылки на сайты
-
 1. prod - https://skill-swap-prod.netlify.app/
 2. staging - https://skill-swap-staging.netlify.app/
 
