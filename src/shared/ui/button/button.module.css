@@ -1,0 +1,66 @@
+/**
+ * Базовые стили для кнопки
+ */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  border: 1px solid #abd27a;
+  border-radius: 12px;
+  background: transparent;
+  color: #0c0c0c;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/**
+ * Стили для заполненной кнопки
+ */
+.button--filled {
+  background-color: #abd27a;
+  color: #0c0c0c;
+}
+
+/**
+ * Состояние hover для незаполненной кнопки
+ */
+.button:hover:not(.button--filled):not(:disabled) {
+  background-color: rgba(171, 210, 122, 0.1);
+}
+
+/**
+ * Состояние hover для заполненной кнопки
+ */
+.button--filled:hover:not(:disabled) {
+  background-color: #9bc268;
+}
+
+/**
+ * Состояние активной кнопки (нажатой)
+ */
+.button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+/**
+ * Состояние отключенной кнопки
+ */
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/**
+ * Фокус кнопки для доступности
+ */
+.button:focus-visible {
+  outline: 2px solid #abd27a;
+  outline-offset: 2px;
+} 
