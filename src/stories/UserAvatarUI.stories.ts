@@ -16,21 +16,21 @@ type Story = StoryObj<typeof meta>;
 
 export const SmallUserAvatar: Story = {
   args: {
-    src: './assets/avatar.jpg',
+    src: 'src/stories/assets/avatar.png',
     size: USER_AVATAR_SIZE.SMALL
   }
 };
 
 export const MediumUserAvatar: Story = {
   args: {
-    src: './assets/avatar.jpg',
+    src: 'src/stories/assets/avatar.png',
     size: USER_AVATAR_SIZE.MEDIUM
   }
 };
 
 export const LargeUserAvatar: Story = {
   args: {
-    src: './assets/avatar.jpg',
+    src: 'src/stories/assets/avatar.png',
     size: USER_AVATAR_SIZE.LARGE
   }
 };
