@@ -13,16 +13,16 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const ActiveLike: Story = {
+export const InactiveLike: Story = {
   args: {
-    isActive: true,
+    isActive: false,
     onClick: () => {}
   }
 };
 
-export const InactiveLike: Story = {
+export const ActiveLike: Story = {
   args: {
-    isActive: false,
+    isActive: true,
     onClick: () => {}
   }
 };
