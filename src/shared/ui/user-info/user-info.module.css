@@ -16,7 +16,6 @@
 
 .name {
   font-family: 'Open Sans', sans-serif;
-  font-weight: 600;
   font-size: 20px;
   line-height: 24px;
   letter-spacing: -0.011em;
@@ -25,7 +24,6 @@
 
 .description {
   font-family: 'Roboto', sans-serif;
-  font-weight: 400;
   font-size: 12px;
   line-height: 16px;
   letter-spacing: 2%;
