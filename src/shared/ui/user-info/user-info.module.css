@@ -15,17 +15,15 @@
 }
 
 .name {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Open sans', 'Helvetica Neue', 'Arial', sans-serif;
   font-size: 20px;
   line-height: 24px;
-  letter-spacing: -0.011em;
   color: #253017;
 }
 
 .description {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
   font-size: 12px;
   line-height: 16px;
-  letter-spacing: 2%;
   color: #253017;
 }

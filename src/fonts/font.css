@@ -5,15 +5,15 @@
 }
 
 @font-face {
-  font-family: 'Open Sans';
-  src: url('./font-files/Open_Sans/OpenSans-VariableFont_wdth\,wght.ttf')
+  font-family: 'Open sans';
+  src: url('./font-files/Open_Sans/OpenSans-VariableFont_wght.ttf')
     format('truetype');
   font-weight: 600;
 }
 
 @font-face {
   font-family: 'Roboto';
-  src: url('./font-files/Roboto/Roboto-VariableFont_wdth\,wght.ttf')
+  src: url('./font-files/Roboto/Roboto-VariableFont_wght.ttf')
     format('truetype');
   font-weight: 400;
 }

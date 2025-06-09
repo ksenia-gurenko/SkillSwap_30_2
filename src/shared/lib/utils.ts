@@ -1,4 +1,8 @@
 export const formatYears = (number: number) => {
+  if (number <= 0) {
+    return '';
+  }
+
   const lastDigit = number % 10;
   const lastTwoDigits = number % 100;
 

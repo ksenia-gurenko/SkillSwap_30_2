@@ -6,6 +6,10 @@ import { USER_AVATAR_SIZE } from '../../lib/constants';
 import { formatYears } from '../../lib/utils';
 
 export const UserInfoUI: FC<TUserInfoUIProps> = ({ src, name, city, age }) => {
+  const formattedYears = formatYears(age);
+  const description =
+    city + (formattedYears === '' ? '' : `, ${formattedYears}`);
+
   return (
     <div className={styles.container}>
       <div className={styles.avatar}>
@@ -13,9 +17,7 @@ export const UserInfoUI: FC<TUserInfoUIProps> = ({ src, name, city, age }) => {
       </div>
       <div className={styles.textInfo}>
         <div className={styles.name}>{name}</div>
-        <div className={styles.description}>
-          {city}, {formatYears(age)}
-        </div>
+        <div className={styles.description}>{description}</div>
       </div>
     </div>
   );
