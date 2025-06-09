@@ -5,7 +5,7 @@ import { Tag } from '../shared/ui/Tag';
  * Мета-конфигурация для интерактивной истории компонента Tag
  */
 const meta: Meta<typeof Tag> = {
-  title: 'UI/Tag/Playground',
+  title: 'UI/Tag/SkillSwap',
   component: Tag,
   parameters: {
     layout: 'centered',
@@ -36,15 +36,6 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 /**
- * Интерактивная история для экспериментов
- */
-export const Playground: Story = {
-  args: {
-    text: 'Английский',
-  },
-};
-
-/**
  * Примеры навыков из разных категорий
  */
 export const LanguageSkill: Story = {
@@ -68,18 +59,5 @@ export const CreativeSkill: Story = {
 export const HealthSkill: Story = {
   args: {
     text: 'Йога и медитация',
-  },
-};
-
-export const UnknownSkill: Story = {
-  args: {
-    text: 'Неизвестный навык',
-  },
-};
-
-export const CustomColorOverride: Story = {
-  args: {
-    text: 'Английский',
-    backgroundColor: '#FF6B6B',
   },
 }; 

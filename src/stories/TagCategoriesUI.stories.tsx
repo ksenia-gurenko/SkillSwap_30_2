@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import React from 'react';
-import { Tag, SKILLS_BY_CATEGORY, SKILL_CATEGORIES } from '../shared/ui/Tag';
+import { Tag, SKILL_CATEGORIES } from '../shared/ui/Tag';
 
 /**
  * Мета-конфигурация для отображения всех категорий тегов
@@ -25,33 +24,27 @@ type Story = StoryObj<typeof meta>;
 /**
  * Компонент для отображения всех навыков по категориям
  */
-const AllSkillsDemo = () => {
-  return (
-    <div style={{ maxWidth: '800px' }}>
-      {Object.entries(SKILLS_BY_CATEGORY).map(([category, skills]) => (
-        <div key={category} style={{ marginBottom: '24px' }}>
-          <h3 style={{ 
-            margin: '0 0 12px 0', 
-            fontSize: '16px', 
-            fontWeight: '600',
-            color: '#253017'
-          }}>
-            {category}
-          </h3>
-          <div style={{ 
-            display: 'flex', 
-            gap: '8px', 
-            flexWrap: 'wrap' 
-          }}>
-            {skills.map((skill) => (
-              <Tag key={skill} text={skill} />
-            ))}
-          </div>
+const AllSkillsDemo = () => (
+  <div style={{ maxWidth: '800px' }}>
+    {Object.entries(SKILL_CATEGORIES).map(([category, { skills }]) => (
+      <div key={category} style={{ marginBottom: '24px' }}>
+        <h3 style={{ 
+          margin: '0 0 12px 0', 
+          fontSize: '16px', 
+          fontWeight: '600',
+          color: '#253017'
+        }}>
+          {category}
+        </h3>
+        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+          {skills.map((skill: string) => (
+            <Tag key={skill} text={skill} />
+          ))}
         </div>
-      ))}
-    </div>
-  );
-};
+      </div>
+    ))}
+  </div>
+);
 
 /**
  * История показывающая все навыки по категориям
@@ -66,7 +59,7 @@ export const AllSkillsByCategories: Story = {
 export const ForeignLanguages: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-      {SKILLS_BY_CATEGORY[SKILL_CATEGORIES.FOREIGN_LANGUAGES].map((skill) => (
+      {SKILL_CATEGORIES['Иностранные языки'].skills.map((skill: string) => (
         <Tag key={skill} text={skill} />
       ))}
     </div>
@@ -76,7 +69,7 @@ export const ForeignLanguages: Story = {
 export const BusinessCareer: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-      {SKILLS_BY_CATEGORY[SKILL_CATEGORIES.BUSINESS_CAREER].map((skill) => (
+      {SKILL_CATEGORIES['Бизнес и карьера'].skills.map((skill: string) => (
         <Tag key={skill} text={skill} />
       ))}
     </div>
@@ -86,7 +79,37 @@ export const BusinessCareer: Story = {
 export const CreativeArt: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-      {SKILLS_BY_CATEGORY[SKILL_CATEGORIES.CREATIVE_ART].map((skill) => (
+      {SKILL_CATEGORIES['Творчество и искусство'].skills.map((skill: string) => (
+        <Tag key={skill} text={skill} />
+      ))}
+    </div>
+  ),
+};
+
+export const EducationDevelopment: Story = {
+  render: () => (
+    <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+      {SKILL_CATEGORIES['Образование и развитие'].skills.map((skill: string) => (
+        <Tag key={skill} text={skill} />
+      ))}
+    </div>
+  ),
+};
+
+export const HomeComfort: Story = {
+  render: () => (
+    <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+      {SKILL_CATEGORIES['Дом и уют'].skills.map((skill: string) => (
+        <Tag key={skill} text={skill} />
+      ))}
+    </div>
+  ),
+};
+
+export const HealthLifestyle: Story = {
+  render: () => (
+    <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+      {SKILL_CATEGORIES['Здоровье и лайфстайл'].skills.map((skill: string) => (
         <Tag key={skill} text={skill} />
       ))}
     </div>
