@@ -1,0 +1,86 @@
+/**
+ * Базовые стили для кнопки
+ */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  border: 1px solid #abd27a;
+  border-radius: 12px;
+  background: transparent;
+  color: #0c0c0c;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/**
+ * Стили для заполненной кнопки (Primary)
+ */
+.button--filled {
+  background-color: #abd27a;
+  color: #0c0c0c;
+}
+
+/**
+ * Состояние hover для незаполненной кнопки (Secondary Hover)
+ */
+.button:hover:not(.button--filled):not(:disabled) {
+  border-color: #deebc5;
+  color: #69735d;
+}
+
+/**
+ * Состояние hover для заполненной кнопки (Primary Hover)
+ */
+.button--filled:hover:not(:disabled) {
+  background-color: #deebc5;
+}
+
+/**
+ * Состояние pressed для незаполненной кнопки (Secondary Pressed)
+ */
+.button:active:not(.button--filled):not(:disabled) {
+  border-color: #508826;
+  transform: translateY(1px);
+}
+
+/**
+ * Состояние pressed для заполненной кнопки (Primary Pressed)
+ */
+.button--filled:active:not(:disabled) {
+  background-color: #508826;
+  transform: translateY(1px);
+}
+
+/**
+ * Состояние отключенной незаполненной кнопки (Secondary Disabled)
+ */
+.button:disabled:not(.button--filled) {
+  border-color: #e4e8df;
+  color: #9ca197;
+  cursor: not-allowed;
+}
+
+/**
+ * Состояние отключенной заполненной кнопки (Primary Disabled)
+ */
+.button--filled:disabled {
+  background-color: #e4e8df;
+  color: #69735d;
+  cursor: not-allowed;
+}
+
+/**
+ * Фокус кнопки для доступности
+ */
+.button:focus-visible {
+  outline: 2px solid #abd27a;
+  outline-offset: 2px;
+}
