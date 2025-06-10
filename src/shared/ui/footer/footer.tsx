@@ -23,8 +23,16 @@ export const FooterUI: FC = () => {
         <div className={styles.block}>
           <div className={styles.linkListCenter}>
             <ul className={styles.linkList}>
-              <li><a href="#" className={styles.link}>О проекте</a></li>
-              <li><a href="#" className={styles.link}>Все навыки</a></li>
+              <li>
+                <a href='#' className={styles.link}>
+                  О проекте
+                </a>
+              </li>
+              <li>
+                <a href='#' className={styles.link}>
+                  Все навыки
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -33,8 +41,16 @@ export const FooterUI: FC = () => {
         <div className={styles.block}>
           <div className={styles.linkListCenter}>
             <ul className={styles.linkList}>
-              <li><a href="#" className={styles.link}>Контакты</a></li>
-              <li><a href="#" className={styles.link}>Блог</a></li>
+              <li>
+                <a href='#' className={styles.link}>
+                  Контакты
+                </a>
+              </li>
+              <li>
+                <a href='#' className={styles.link}>
+                  Блог
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -43,12 +59,20 @@ export const FooterUI: FC = () => {
         <div className={styles.block}>
           <div className={styles.linkListCenter}>
             <ul className={styles.linkList}>
-              <li><a href="#" className={styles.link}>Политика конфиденциальности</a></li>
-              <li><a href="#" className={styles.link}>Пользовательское соглашение</a></li>
+              <li>
+                <a href='#' className={styles.link}>
+                  Политика конфиденциальности
+                </a>
+              </li>
+              <li>
+                <a href='#' className={styles.link}>
+                  Пользовательское соглашение
+                </a>
+              </li>
             </ul>
           </div>
         </div>
       </div>
     </footer>
   );
-}; 
+};
