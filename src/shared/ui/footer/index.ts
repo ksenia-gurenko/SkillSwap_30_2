@@ -1,2 +1,1 @@
-export { LogoUI } from './logo';
 export { FooterUI } from './footer';
