@@ -50,6 +50,16 @@
 }
 
 /**
+ * Стили для кнопки ожидания
+ */
+.button--pending {
+  background: transparent;
+  border-color: #abd27a;
+  color: #253017;
+  gap: 8px;
+}
+
+/**
  * Иконка крестика в кнопке закрытия
  */
 .button__cross-icon {
@@ -68,9 +78,18 @@
 }
 
 /**
+ * Иконка часов в кнопке ожидания
+ */
+.button__watch-icon {
+  width: 25px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/**
  * Состояние hover для незаполненной кнопки (Secondary Hover)
  */
-.button:hover:not(.button--filled):not(.button--close):not(.button--edit):not(:disabled) {
+.button:hover:not(.button--filled):not(.button--close):not(.button--edit):not(.button--pending):not(:disabled) {
   border-color: #deebc5;
   color: #69735d;
 }
@@ -99,9 +118,17 @@
 }
 
 /**
+ * Состояние hover для кнопки ожидания (обычно отключена)
+ */
+.button--pending:hover:not(:disabled) {
+  background-color: #f8faf6;
+  border-color: #deebc5;
+}
+
+/**
  * Состояние pressed для незаполненной кнопки (Secondary Pressed)
  */
-.button:active:not(.button--filled):not(.button--close):not(.button--edit):not(:disabled) {
+.button:active:not(.button--filled):not(.button--close):not(.button--edit):not(.button--pending):not(:disabled) {
   border-color: #508826;
   transform: translateY(1px);
 }
@@ -112,6 +139,7 @@
 .button--filled:active:not(:disabled) {
   background-color: #508826;
   border-color: #508826;
+  color: #FFFFFF;
   transform: translateY(1px);
 }
 
@@ -119,7 +147,7 @@
  * Состояние pressed для кнопки закрытия
  */
 .button--close:active:not(:disabled) {
-  background-color: #e8e8e8;
+  background-color: #DEEBC5;
   transform: translateY(1px);
 }
 
@@ -133,9 +161,18 @@
 }
 
 /**
+ * Состояние pressed для кнопки ожидания
+ */
+.button--pending:active:not(:disabled) {
+  background-color: #f0f4ec;
+  border-color: #508826;
+  transform: translateY(1px);
+}
+
+/**
  * Состояние отключенной незаполненной кнопки (Secondary Disabled)
  */
-.button:disabled:not(.button--filled):not(.button--close):not(.button--edit) {
+.button:disabled:not(.button--filled):not(.button--close):not(.button--edit):not(.button--pending) {
   border-color: #e4e8df;
   color: #9ca197;
   cursor: not-allowed;
@@ -165,6 +202,16 @@
  */
 .button--edit:disabled {
   background-color: #f5f5f5;
+  border-color: #e4e8df;
+  color: #9ca197;
+  cursor: not-allowed;
+}
+
+/**
+ * Состояние отключенной кнопки ожидания
+ */
+.button--pending:disabled {
+  background-color: transparent;
   border-color: #e4e8df;
   color: #9ca197;
   cursor: not-allowed;

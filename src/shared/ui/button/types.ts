@@ -26,5 +26,5 @@ export interface ButtonProps {
   disabled?: boolean;
 
   /** Вариант кнопки */
-  variant?: 'default' | 'close' | 'edit';
+  variant?: 'default' | 'close' | 'edit' | 'pending';
 }

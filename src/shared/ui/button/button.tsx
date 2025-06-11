@@ -3,6 +3,7 @@ import { type ButtonProps } from './types';
 import styles from './button.module.css';
 import crossSvg from './cross.svg';
 import editIconSvg from './Icon_right.svg';
+import watchIconSvg from './watch.svg';
 
 /**
  * Универсальный компонент кнопки
@@ -20,6 +21,9 @@ import editIconSvg from './Icon_right.svg';
  * 
  * // Кнопка редактирования с иконкой справа
  * <Button variant="edit" onClick={handleEdit}>Редактировать</Button>
+ * 
+ * // Кнопка ожидания с иконкой часов слева
+ * <Button variant="pending" disabled>Обмен предложен</Button>
  */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
@@ -42,6 +46,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       fill && styles['button--filled'],
       variant === 'close' && styles['button--close'],
       variant === 'edit' && styles['button--edit'],
+      variant === 'pending' && styles['button--pending'],
       className
     ]
       .filter(Boolean)
@@ -77,6 +82,15 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               alt="Редактировать" 
               className={styles['button__edit-icon']} 
             />
+          </>
+        ) : variant === 'pending' ? (
+          <>
+            <img 
+              src={watchIconSvg} 
+              alt="Ожидание" 
+              className={styles['button__watch-icon']} 
+            />
+            {children}
           </>
         ) : (
           children
