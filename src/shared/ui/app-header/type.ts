@@ -3,4 +3,5 @@ export type TAppHeaderUIProps = {
   userName?: string;
   userAvatarUrl?: string;
   isCompact?: boolean;
+  bgColor?: string;
 };

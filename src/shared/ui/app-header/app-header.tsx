@@ -11,18 +11,23 @@ import {
   SearchIconUI,
   MoonIconUI,
   NotificationIconUI,
-  CrossIconUI
+  CrossIconUI,
+  ChevronDownIconUI
 } from '../icons';
 
 export const AppHeaderUI: FC<TAppHeaderUIProps> = ({
   isAuth,
   userName,
   userAvatarUrl,
-  isCompact = false
+  isCompact = false,
+  bgColor
 }) => {
   if (isCompact) {
     return (
-      <header className={styles.header}>
+      <header
+        className={styles.header}
+        style={{ backgroundColor: bgColor ? bgColor : undefined }}
+      >
         <div className={styles.left}>
           <LogoUI />
         </div>
@@ -39,7 +44,10 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({
   }
 
   return (
-    <header className={styles.header}>
+    <header
+      className={styles.header}
+      style={{ backgroundColor: bgColor ? bgColor : undefined }}
+    >
       <div className={styles.left}>
         <LogoUI />
         <nav className={styles.nav}>
@@ -47,8 +55,10 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({
             О проекте
           </NavLink>
           <div className={styles.dropdown}>
-            <span>Все навыки</span>
-            <span className={styles.arrowDown}>▼</span>
+            <span className={styles.navLink}>Все навыки</span>
+            <span className={styles.arrowDown}>
+              <ChevronDownIconUI />
+            </span>
           </div>
         </nav>
       </div>

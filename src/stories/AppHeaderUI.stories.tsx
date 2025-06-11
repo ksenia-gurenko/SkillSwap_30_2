@@ -23,8 +23,9 @@ type Story = StoryObj<typeof meta>;
 
 export const CompactHeader: Story = {
   args: {
-    isAuth: true,
-    isCompact: true
+    isAuth: false,
+    isCompact: true,
+    bgColor: '#F9FAF7'
   }
 };
 
@@ -33,13 +34,15 @@ export const FullHeader: Story = {
     isAuth: true,
     userName: 'Мария',
     userAvatarUrl: 'src/stories/assets/avatar_maria.png',
-    isCompact: false
+    isCompact: false,
+    bgColor: '#F9FAF7'
   }
 };
 
 export const UnauthorizedHeader: Story = {
   args: {
     isAuth: false,
-    isCompact: false
+    isCompact: false,
+    bgColor: '#F9FAF7'
   }
 };

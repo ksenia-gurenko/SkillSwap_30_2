@@ -9,20 +9,31 @@
 }
 
 .left,
-.center,
 .right {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
+}
+
+.center {
+  margin: 0 32px;
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: center;
 }
 
 .nav {
-  margin-left: 24px;
+  margin-left: 32px;
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   gap: 16px;
 }
 
 .navLink {
-  color: #333;
+  color: #253017;
   text-decoration: none;
 }
 
@@ -39,7 +50,8 @@
 .searchBar {
   display: flex;
   align-items: center;
-  background-color: #f8f8f8;
+  width: 100%;
+  background-color: #fff;
   padding: 8px 12px;
   border-radius: 8px;
 }
@@ -49,10 +61,12 @@
   margin-left: 8px;
   outline: none;
   background: transparent;
+  width: 100%;
 }
 
 .userName {
   margin: 0 8px;
+  cursor: pointer;
 }
 
 .icon {
@@ -80,6 +94,7 @@
   justify-content: center;
   align-items: center;
   gap: 8px;
+  cursor: pointer;
 }
 
 .rightButtons {
