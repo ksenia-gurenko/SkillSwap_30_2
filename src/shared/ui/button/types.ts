@@ -24,4 +24,7 @@ export interface ButtonProps {
 
   /** Отключена ли кнопка */
   disabled?: boolean;
+
+  /** Вариант кнопки */
+  variant?: 'default' | 'close' | 'edit';
 }

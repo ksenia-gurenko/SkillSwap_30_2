@@ -25,13 +25,52 @@
  */
 .button--filled {
   background-color: #abd27a;
+  border-color: #abd27a;
   color: #0c0c0c;
+}
+
+/**
+ * Стили для кнопки закрытия
+ */
+.button--close {
+  border: none;
+  background: #ffffff;
+  color: #253017;
+  gap: 8px;
+}
+
+/**
+ * Стили для кнопки редактирования
+ */
+.button--edit {
+  background: #ffffff;
+  border-color: #abd27a;
+  color: #253017;
+  gap: 8px;
+}
+
+/**
+ * Иконка крестика в кнопке закрытия
+ */
+.button__cross-icon {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+/**
+ * Иконка редактирования в кнопке редактирования
+ */
+.button__edit-icon {
+  width: 25px;
+  height: 24px;
+  flex-shrink: 0;
 }
 
 /**
  * Состояние hover для незаполненной кнопки (Secondary Hover)
  */
-.button:hover:not(.button--filled):not(:disabled) {
+.button:hover:not(.button--filled):not(.button--close):not(.button--edit):not(:disabled) {
   border-color: #deebc5;
   color: #69735d;
 }
@@ -41,12 +80,28 @@
  */
 .button--filled:hover:not(:disabled) {
   background-color: #deebc5;
+  border-color: #deebc5;
+}
+
+/**
+ * Состояние hover для кнопки закрытия
+ */
+.button--close:hover:not(:disabled) {
+  background-color: #f5f5f5;
+}
+
+/**
+ * Состояние hover для кнопки редактирования
+ */
+.button--edit:hover:not(:disabled) {
+  background-color: #f8faf6;
+  border-color: #deebc5;
 }
 
 /**
  * Состояние pressed для незаполненной кнопки (Secondary Pressed)
  */
-.button:active:not(.button--filled):not(:disabled) {
+.button:active:not(.button--filled):not(.button--close):not(.button--edit):not(:disabled) {
   border-color: #508826;
   transform: translateY(1px);
 }
@@ -56,13 +111,31 @@
  */
 .button--filled:active:not(:disabled) {
   background-color: #508826;
+  border-color: #508826;
+  transform: translateY(1px);
+}
+
+/**
+ * Состояние pressed для кнопки закрытия
+ */
+.button--close:active:not(:disabled) {
+  background-color: #e8e8e8;
+  transform: translateY(1px);
+}
+
+/**
+ * Состояние pressed для кнопки редактирования
+ */
+.button--edit:active:not(:disabled) {
+  background-color: #f0f4ec;
+  border-color: #508826;
   transform: translateY(1px);
 }
 
 /**
  * Состояние отключенной незаполненной кнопки (Secondary Disabled)
  */
-.button:disabled:not(.button--filled) {
+.button:disabled:not(.button--filled):not(.button--close):not(.button--edit) {
   border-color: #e4e8df;
   color: #9ca197;
   cursor: not-allowed;
@@ -73,7 +146,27 @@
  */
 .button--filled:disabled {
   background-color: #e4e8df;
+  border-color: #e4e8df;
   color: #69735d;
+  cursor: not-allowed;
+}
+
+/**
+ * Состояние отключенной кнопки закрытия
+ */
+.button--close:disabled {
+  background-color: #f5f5f5;
+  color: #9ca197;
+  cursor: not-allowed;
+}
+
+/**
+ * Состояние отключенной кнопки редактирования
+ */
+.button--edit:disabled {
+  background-color: #f5f5f5;
+  border-color: #e4e8df;
+  color: #9ca197;
   cursor: not-allowed;
 }
 

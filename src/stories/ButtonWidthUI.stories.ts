@@ -55,12 +55,12 @@ export const Small: Story = {
 };
 
 /**
- * 147px - кнопка "Закрыть"
+ * 147px - кнопка "Закрыть" с крестиком
  */
 export const Medium: Story = {
   args: {
     children: 'Закрыть',
-    fill: false,
+    variant: 'close',
     width: WIDTHS.MEDIUM
   }
 };

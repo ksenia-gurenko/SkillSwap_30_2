@@ -77,6 +77,16 @@ export const FormSubmit: Story = {
 };
 
 /**
+ * Редактирование профиля - кнопка "Редактировать"
+ */
+export const EditProfile: Story = {
+  args: {
+    children: 'Редактировать',
+    variant: 'edit'
+  }
+};
+
+/**
  * Состояние после обмена - кнопка отключена
  */
 export const ExchangeProposed: Story = {

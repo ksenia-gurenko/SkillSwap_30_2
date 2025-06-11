@@ -1,6 +1,8 @@
 import { forwardRef } from 'react';
 import { type ButtonProps } from './types';
 import styles from './button.module.css';
+import crossSvg from './cross.svg';
+import editIconSvg from './Icon_right.svg';
 
 /**
  * Универсальный компонент кнопки
@@ -12,6 +14,12 @@ import styles from './button.module.css';
  *
  * // Незаполненная кнопка с кастомной шириной
  * <Button width={200} onClick={handleClick}>Войти</Button>
+ * 
+ * // Кнопка закрытия с крестиком
+ * <Button variant="close" onClick={handleClose}>Закрыть</Button>
+ * 
+ * // Кнопка редактирования с иконкой справа
+ * <Button variant="edit" onClick={handleEdit}>Редактировать</Button>
  */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
@@ -23,6 +31,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       className = '',
       type = 'button',
       disabled = false,
+      variant = 'default',
       ...props
     },
     ref
@@ -31,6 +40,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const buttonClasses = [
       styles.button,
       fill && styles['button--filled'],
+      variant === 'close' && styles['button--close'],
+      variant === 'edit' && styles['button--edit'],
       className
     ]
       .filter(Boolean)
@@ -49,7 +60,27 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={disabled}
         {...props}
       >
-        {children}
+        {variant === 'close' ? (
+          <>
+            {children}
+            <img 
+              src={crossSvg} 
+              alt="Закрыть" 
+              className={styles['button__cross-icon']} 
+            />
+          </>
+        ) : variant === 'edit' ? (
+          <>
+            {children}
+            <img 
+              src={editIconSvg} 
+              alt="Редактировать" 
+              className={styles['button__edit-icon']} 
+            />
+          </>
+        ) : (
+          children
+        )}
       </button>
     );
   }
