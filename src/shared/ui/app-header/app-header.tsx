@@ -92,7 +92,7 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({
           </>
         ) : (
           <>
-            <div className={styles.moon}>
+            <div className={styles.moonIcon}>
               <MoonIconUI />
             </div>
             <div className={styles.rightButtons}>
