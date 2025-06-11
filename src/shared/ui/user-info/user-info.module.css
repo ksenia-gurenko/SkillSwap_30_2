@@ -1,0 +1,29 @@
+.container {
+  width: 260px;
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  margin-right: 12px;
+}
+
+.textInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.name {
+  font-family: 'Open sans', 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  color: #253017;
+}
+
+.description {
+  font-family: 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 12px;
+  line-height: 16px;
+  color: #253017;
+}
