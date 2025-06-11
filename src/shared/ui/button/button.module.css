@@ -40,9 +40,15 @@
 /**
  * Различные горизонтальные паддинги
  */
-.button--padding-55 { padding-inline: 55px; }
-.button--padding-80 { padding-inline: 80px; }
-.button--padding-192 { padding-inline: 192px; }
+.button--padding-55 {
+  padding-inline: 55px;
+}
+.button--padding-80 {
+  padding-inline: 80px;
+}
+.button--padding-192 {
+  padding-inline: 192px;
+}
 
 /**
  * Общие стили для иконок
@@ -114,7 +120,12 @@
   transform: none;
 }
 
-.button:hover:not(.button--filled, .button--close, .button--pending, .button--view-all):not(:disabled),
+.button:hover:not(
+    .button--filled,
+    .button--close,
+    .button--pending,
+    .button--view-all
+  ):not(:disabled),
 .button--edit:hover:not(:disabled) {
   border-color: var(--btn-primary-hover);
   color: var(--btn-hover-color);
@@ -140,7 +151,12 @@
   transform: translateY(1px);
 }
 
-.button:active:not(.button--filled, .button--close, .button--pending, .button--view-all):not(:disabled),
+.button:active:not(
+    .button--filled,
+    .button--close,
+    .button--pending,
+    .button--view-all
+  ):not(:disabled),
 .button--edit:active:not(:disabled) {
   border-color: var(--btn-primary-active);
   color: var(--btn-secondary-color);
@@ -169,7 +185,13 @@
   color: var(--btn-disabled-color);
 }
 
-.button:disabled:not(.button--filled, .button--close, .button--edit, .button--pending, .button--view-all) {
+.button:disabled:not(
+    .button--filled,
+    .button--close,
+    .button--edit,
+    .button--pending,
+    .button--view-all
+  ) {
   border-color: var(--btn-disabled-bg);
 }
 
@@ -202,9 +224,11 @@
 
 /* Фильтры для иконок */
 .button--edit:hover:not(:disabled) .button__edit-icon {
-  filter: brightness(0) saturate(100%) invert(36%) sepia(12%) saturate(392%) hue-rotate(68deg) brightness(96%) contrast(88%);
+  filter: brightness(0) saturate(100%) invert(36%) sepia(12%) saturate(392%)
+    hue-rotate(68deg) brightness(96%) contrast(88%);
 }
 
 .button--edit:active:not(:disabled) .button__edit-icon {
-  filter: brightness(0) saturate(100%) invert(14%) sepia(16%) saturate(1102%) hue-rotate(68deg) brightness(97%) contrast(89%);
+  filter: brightness(0) saturate(100%) invert(14%) sepia(16%) saturate(1102%)
+    hue-rotate(68deg) brightness(97%) contrast(89%);
 }

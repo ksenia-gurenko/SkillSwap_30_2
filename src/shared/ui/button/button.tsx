@@ -8,10 +8,30 @@ import vectorSvg from './vector.svg';
 
 // Конфигурация иконок
 const ICON_CONFIG = {
-  close: { src: crossSvg, alt: 'Закрыть', className: 'button__cross-icon', position: 'right' },
-  edit: { src: editIconSvg, alt: 'Редактировать', className: 'button__edit-icon', position: 'right' },
-  pending: { src: watchIconSvg, alt: 'Ожидание', className: 'button__watch-icon', position: 'left' },
-  'view-all': { src: vectorSvg, alt: 'Смотреть все', className: 'button__vector-icon', position: 'right' }
+  close: {
+    src: crossSvg,
+    alt: 'Закрыть',
+    className: 'button__cross-icon',
+    position: 'right'
+  },
+  edit: {
+    src: editIconSvg,
+    alt: 'Редактировать',
+    className: 'button__edit-icon',
+    position: 'right'
+  },
+  pending: {
+    src: watchIconSvg,
+    alt: 'Ожидание',
+    className: 'button__watch-icon',
+    position: 'left'
+  },
+  'view-all': {
+    src: vectorSvg,
+    alt: 'Смотреть все',
+    className: 'button__vector-icon',
+    position: 'right'
+  }
 } as const;
 
 /**
@@ -24,19 +44,19 @@ const ICON_CONFIG = {
  *
  * // Незаполненная кнопка с кастомной шириной
  * <Button width={200} onClick={handleClick}>Войти</Button>
- * 
+ *
  * // Кнопка с горизонтальным паддингом
  * <Button paddingX={80} onClick={handleClick}>Назад</Button>
- * 
+ *
  * // Кнопка закрытия с крестиком
  * <Button variant="close" onClick={handleClose}>Закрыть</Button>
- * 
+ *
  * // Кнопка редактирования с иконкой справа
  * <Button variant="edit" onClick={handleEdit}>Редактировать</Button>
- * 
+ *
  * // Кнопка ожидания с иконкой часов слева
  * <Button variant="pending" disabled>Обмен предложен</Button>
- * 
+ *
  * // Кнопка "Смотреть все" с иконкой стрелки справа
  * <Button variant="view-all" onClick={handleViewAll}>Смотреть все</Button>
  */
@@ -77,10 +97,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const renderIcon = () => {
       if (!iconConfig) return null;
       return (
-        <img 
-          src={iconConfig.src} 
-          alt={iconConfig.alt} 
-          className={styles[iconConfig.className]} 
+        <img
+          src={iconConfig.src}
+          alt={iconConfig.alt}
+          className={styles[iconConfig.className]}
         />
       );
     };
