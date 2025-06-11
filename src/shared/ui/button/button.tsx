@@ -87,11 +87,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       .filter(Boolean)
       .join(' ');
 
-    const buttonStyle = Object.assign(
-      {},
-      width ? { width: `${width}px` } : null,
-      color ? { backgroundColor: color } : null
-    );
+    // Формируем inline стили для ширины
+    const buttonStyle = width ? { width: `${width}px` } : undefined;
 
     // Получаем конфигурацию иконки
     const iconConfig = variant ? ICON_CONFIG[variant] : null;

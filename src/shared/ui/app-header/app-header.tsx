@@ -11,7 +11,6 @@ import {
   SearchIconUI,
   MoonIconUI,
   NotificationIconUI,
-  CrossIconUI,
   ChevronDownIconUI
 } from '../icons';
 
@@ -32,11 +31,8 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({
           <LogoUI />
         </div>
         <div className={styles.right}>
-          <Button width={147} color='#fff' withoutBorder>
-            Закрыть{' '}
-            <span>
-              <CrossIconUI />
-            </span>
+          <Button width={147} variant='close'>
+            Закрыть
           </Button>
         </div>
       </header>
@@ -80,7 +76,7 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({
             <div className={styles.icons}>
               <MoonIconUI />
               <NotificationIconUI />
-              <LikeButtonUI isActive={false} onClick={() => {}} />
+              <LikeButtonUI isActive={false} onClick={() => { }} />
             </div>
             <div className={styles.userInfo}>
               <span className={styles.userName}>{userName}</span>
