@@ -11,7 +11,8 @@ const meta: Meta<typeof Button> = {
     layout: 'centered',
     docs: {
       description: {
-        component: 'Демонстрация основного пропса fill: заполненные (fill=true) и незаполненные (fill=false) кнопки.'
+        component:
+          'Демонстрация основного пропса fill: заполненные (fill=true) и незаполненные (fill=false) кнопки.'
       }
     }
   },
@@ -39,4 +40,4 @@ export const Filled: Story = {
     children: 'Зарегистрироваться',
     fill: true
   }
-}; 
+};

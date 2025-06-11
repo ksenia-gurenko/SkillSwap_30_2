@@ -11,7 +11,8 @@ const meta: Meta<typeof Button> = {
     layout: 'centered',
     docs: {
       description: {
-        component: 'Демонстрация пропса disabled: активные (disabled=false) и отключенные (disabled=true) кнопки.'
+        component:
+          'Демонстрация пропса disabled: активные (disabled=false) и отключенные (disabled=true) кнопки.'
       }
     }
   },
@@ -55,7 +56,7 @@ export const DisabledUnfilled: Story = {
 };
 
 /**
- * Отключенная заполненная кнопка  
+ * Отключенная заполненная кнопка
  */
 export const DisabledFilled: Story = {
   args: {
@@ -63,4 +64,4 @@ export const DisabledFilled: Story = {
     fill: true,
     disabled: true
   }
-}; 
+};

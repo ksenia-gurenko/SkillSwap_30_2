@@ -20,6 +20,10 @@
   white-space: nowrap;
 }
 
+.button-without-border {
+  border-color: #fff;
+}
+
 /**
  * Стили для заполненной кнопки (Primary)
  */

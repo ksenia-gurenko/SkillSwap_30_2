@@ -23,6 +23,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       className = '',
       type = 'button',
       disabled = false,
+      withoutBorder = false,
+      color,
       ...props
     },
     ref
@@ -31,13 +33,17 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const buttonClasses = [
       styles.button,
       fill && styles['button--filled'],
+      withoutBorder && styles['button-without-border'],
       className
     ]
       .filter(Boolean)
       .join(' ');
 
-    // Формируем inline стили для ширины
-    const buttonStyle = width ? { width: `${width}px` } : undefined;
+    const buttonStyle = Object.assign(
+      {},
+      width ? { width: `${width}px` } : null,
+      color ? { backgroundColor: color } : null
+    );
 
     return (
       <button

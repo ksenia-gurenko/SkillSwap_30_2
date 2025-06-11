@@ -1,0 +1,64 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    background-color: #fff;
+}
+
+.left,
+.center,
+.right {
+    display: flex;
+    align-items: center;
+}
+
+.nav {
+    margin-left: 24px;
+    display: flex;
+    gap: 16px;
+}
+
+.navLink {
+    color: #333;
+    text-decoration: none;
+}
+
+.dropdown {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.arrowDown {
+    margin-left: 4px;
+}
+
+.searchBar {
+    display: flex;
+    align-items: center;
+    background-color: #f8f8f8;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+.searchInput {
+    border: none;
+    margin-left: 8px;
+    outline: none;
+    background: transparent;
+}
+
+.userName {
+    margin: 0 8px;
+}
+
+.icon {
+    margin: 0 4px;
+    cursor: pointer;
+}
+
+.themeIcon {
+    margin-right: 12px;
+    cursor: pointer;
+}

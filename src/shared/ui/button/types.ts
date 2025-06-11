@@ -24,4 +24,6 @@ export interface ButtonProps {
 
   /** Отключена ли кнопка */
   disabled?: boolean;
+  withoutBorder?: boolean;
+  color?: string;
 }

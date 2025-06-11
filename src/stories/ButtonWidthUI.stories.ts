@@ -11,7 +11,8 @@ const meta: Meta<typeof Button> = {
     layout: 'centered',
     docs: {
       description: {
-        component: 'Демонстрация пропса width с точными размерами из макетов Figma.'
+        component:
+          'Демонстрация пропса width с точными размерами из макетов Figma.'
       }
     }
   },
@@ -24,12 +25,12 @@ type Story = StoryObj<typeof meta>;
 // Размеры из макета Figma
 const WIDTHS = {
   AUTO: undefined,
-  SMALL: 92,      // "Войти"
-  MEDIUM: 147,    // "Закрыть" 
-  LARGE: 208,     // "Зарегистрироваться", "Продолжить"
-  XLARGE: 284,    // "Подробнее" в карточках
-  XXLARGE: 399,   // "Предложить обмен"
-  FORM: 436       // Кнопки в формах
+  SMALL: 92, // "Войти"
+  MEDIUM: 147, // "Закрыть"
+  LARGE: 208, // "Зарегистрироваться", "Продолжить"
+  XLARGE: 284, // "Подробнее" в карточках
+  XXLARGE: 399, // "Предложить обмен"
+  FORM: 436 // Кнопки в формах
 };
 
 /**
@@ -107,4 +108,4 @@ export const Form: Story = {
     fill: true,
     width: WIDTHS.FORM
   }
-}; 
+};

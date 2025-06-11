@@ -11,7 +11,8 @@ const meta: Meta<typeof Button> = {
     layout: 'centered',
     docs: {
       description: {
-        component: 'Примеры кнопок в том виде, как они используются в макете SkillSwap.'
+        component:
+          'Примеры кнопок в том виде, как они используются в макете SkillSwap.'
       }
     }
   },
@@ -85,4 +86,4 @@ export const ExchangeProposed: Story = {
     fill: false,
     disabled: true
   }
-}; 
+};
