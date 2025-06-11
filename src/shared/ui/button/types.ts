@@ -16,6 +16,9 @@ export interface ButtonProps {
   /** Ширина кнопки в пикселях */
   width?: number;
 
+  /** Горизонтальный паддинг кнопки */
+  paddingX?: 55 | 80 | 192;
+
   /** Дополнительные CSS-классы */
   className?: string;
 
@@ -26,5 +29,5 @@ export interface ButtonProps {
   disabled?: boolean;
 
   /** Вариант кнопки */
-  variant?: 'default' | 'close' | 'edit' | 'pending';
+  variant?: 'default' | 'close' | 'edit' | 'pending' | 'view-all';
 }

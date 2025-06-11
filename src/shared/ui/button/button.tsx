@@ -4,6 +4,7 @@ import styles from './button.module.css';
 import crossSvg from './cross.svg';
 import editIconSvg from './Icon_right.svg';
 import watchIconSvg from './watch.svg';
+import vectorSvg from './vector.svg';
 
 /**
  * Универсальный компонент кнопки
@@ -16,6 +17,9 @@ import watchIconSvg from './watch.svg';
  * // Незаполненная кнопка с кастомной шириной
  * <Button width={200} onClick={handleClick}>Войти</Button>
  * 
+ * // Кнопка с горизонтальным паддингом
+ * <Button paddingX={80} onClick={handleClick}>Назад</Button>
+ * 
  * // Кнопка закрытия с крестиком
  * <Button variant="close" onClick={handleClose}>Закрыть</Button>
  * 
@@ -24,6 +28,9 @@ import watchIconSvg from './watch.svg';
  * 
  * // Кнопка ожидания с иконкой часов слева
  * <Button variant="pending" disabled>Обмен предложен</Button>
+ * 
+ * // Кнопка "Смотреть все" с иконкой стрелки справа
+ * <Button variant="view-all" onClick={handleViewAll}>Смотреть все</Button>
  */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
@@ -32,6 +39,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       onClick,
       fill = false,
       width,
+      paddingX,
       className = '',
       type = 'button',
       disabled = false,
@@ -47,6 +55,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       variant === 'close' && styles['button--close'],
       variant === 'edit' && styles['button--edit'],
       variant === 'pending' && styles['button--pending'],
+      variant === 'view-all' && styles['button--view-all'],
+      paddingX && styles[`button--padding-${paddingX}`],
       className
     ]
       .filter(Boolean)
@@ -91,6 +101,15 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               className={styles['button__watch-icon']} 
             />
             {children}
+          </>
+        ) : variant === 'view-all' ? (
+          <>
+            {children}
+            <img 
+              src={vectorSvg} 
+              alt="Смотреть все" 
+              className={styles['button__vector-icon']} 
+            />
           </>
         ) : (
           children

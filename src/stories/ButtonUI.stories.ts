@@ -122,12 +122,67 @@ export const ProposeExchange: Story = {
 };
 
 /**
- * Кнопка "Готово" для форм (436px)
+ * Кнопка "Готово" для форм (с паддингом 12px 55px)
  */
 export const FormButton: Story = {
   args: {
     children: 'Готово',
     fill: true,
-    width: 436
+    paddingX: 55
+  }
+};
+
+// ==================== НОВЫЕ КНОПКИ ====================
+
+/**
+ * Кнопка "Далее" (с паддингом 12px 192px)
+ */
+export const Next: Story = {
+  args: {
+    children: 'Далее',
+    fill: true,
+    paddingX: 192
+  }
+};
+
+/**
+ * Кнопка "Назад" (с паддингом 12px 80px)
+ */
+export const Back: Story = {
+  args: {
+    children: 'Назад',
+    fill: false,
+    paddingX: 80
+  }
+};
+
+/**
+ * Кнопка "Продолжить" (с паддингом 12px 55px)
+ */
+export const Continue: Story = {
+  args: {
+    children: 'Продолжить',
+    fill: true,
+    paddingX: 55
+  }
+};
+
+/**
+ * Кнопка "Смотреть все" (с паддингом 12px 24px и иконкой vector.svg)
+ */
+export const ViewAll: Story = {
+  args: {
+    children: 'Смотреть все',
+    variant: 'view-all'
+  }
+};
+
+/**
+ * Кнопка "Перейти" (с паддингом 12px 24px)
+ */
+export const Navigate: Story = {
+  args: {
+    children: 'Перейти',
+    fill: true
   }
 }; 
