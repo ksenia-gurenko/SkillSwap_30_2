@@ -173,7 +173,8 @@ export const Continue: Story = {
 export const ViewAll: Story = {
   args: {
     children: 'Смотреть все',
-    variant: 'view-all'
+    variant: 'view-all',
+    width: 187
   }
 };
 

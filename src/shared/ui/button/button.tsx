@@ -6,6 +6,14 @@ import editIconSvg from './Icon_right.svg';
 import watchIconSvg from './watch.svg';
 import vectorSvg from './vector.svg';
 
+// Конфигурация иконок
+const ICON_CONFIG = {
+  close: { src: crossSvg, alt: 'Закрыть', className: 'button__cross-icon', position: 'right' },
+  edit: { src: editIconSvg, alt: 'Редактировать', className: 'button__edit-icon', position: 'right' },
+  pending: { src: watchIconSvg, alt: 'Ожидание', className: 'button__watch-icon', position: 'left' },
+  'view-all': { src: vectorSvg, alt: 'Смотреть все', className: 'button__vector-icon', position: 'right' }
+} as const;
+
 /**
  * Универсальный компонент кнопки
  * Поддерживает различные варианты оформления согласно дизайну
@@ -43,7 +51,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       className = '',
       type = 'button',
       disabled = false,
-      variant = 'default',
+      variant,
       ...props
     },
     ref
@@ -52,10 +60,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const buttonClasses = [
       styles.button,
       fill && styles['button--filled'],
-      variant === 'close' && styles['button--close'],
-      variant === 'edit' && styles['button--edit'],
-      variant === 'pending' && styles['button--pending'],
-      variant === 'view-all' && styles['button--view-all'],
+      variant && styles[`button--${variant}`],
       paddingX && styles[`button--padding-${paddingX}`],
       className
     ]
@@ -64,6 +69,21 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     // Формируем inline стили для ширины
     const buttonStyle = width ? { width: `${width}px` } : undefined;
+
+    // Получаем конфигурацию иконки
+    const iconConfig = variant ? ICON_CONFIG[variant] : null;
+
+    // Рендерим иконку
+    const renderIcon = () => {
+      if (!iconConfig) return null;
+      return (
+        <img 
+          src={iconConfig.src} 
+          alt={iconConfig.alt} 
+          className={styles[iconConfig.className]} 
+        />
+      );
+    };
 
     return (
       <button
@@ -75,45 +95,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={disabled}
         {...props}
       >
-        {variant === 'close' ? (
-          <>
-            {children}
-            <img 
-              src={crossSvg} 
-              alt="Закрыть" 
-              className={styles['button__cross-icon']} 
-            />
-          </>
-        ) : variant === 'edit' ? (
-          <>
-            {children}
-            <img 
-              src={editIconSvg} 
-              alt="Редактировать" 
-              className={styles['button__edit-icon']} 
-            />
-          </>
-        ) : variant === 'pending' ? (
-          <>
-            <img 
-              src={watchIconSvg} 
-              alt="Ожидание" 
-              className={styles['button__watch-icon']} 
-            />
-            {children}
-          </>
-        ) : variant === 'view-all' ? (
-          <>
-            {children}
-            <img 
-              src={vectorSvg} 
-              alt="Смотреть все" 
-              className={styles['button__vector-icon']} 
-            />
-          </>
-        ) : (
-          children
-        )}
+        {iconConfig?.position === 'left' && renderIcon()}
+        {children}
+        {iconConfig?.position === 'right' && renderIcon()}
       </button>
     );
   }

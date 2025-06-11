@@ -11,6 +11,8 @@
   --btn-light-bg: #f5f5f5;
   --btn-edit-hover: #f8faf6;
   --btn-edit-active: #f0f4ec;
+  --btn-white: #ffffff;
+  --btn-hover-color: #69735d;
 }
 
 /**
@@ -24,7 +26,7 @@
   border: 1px solid var(--btn-primary);
   border-radius: 12px;
   background: transparent;
-  color: #0c0c0c;
+  color: var(--btn-secondary-color);
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   font-weight: 400;
@@ -38,20 +40,9 @@
 /**
  * Различные горизонтальные паддинги
  */
-.button--padding-55 {
-  padding-left: 55px;
-  padding-right: 55px;
-}
-
-.button--padding-80 {
-  padding-left: 80px;
-  padding-right: 80px;
-}
-
-.button--padding-192 {
-  padding-left: 192px;
-  padding-right: 192px;
-}
+.button--padding-55 { padding-inline: 55px; }
+.button--padding-80 { padding-inline: 80px; }
+.button--padding-192 { padding-inline: 192px; }
 
 /**
  * Общие стили для иконок
@@ -81,7 +72,7 @@
 }
 
 /**
- * Кнопки с иконками - общий gap
+ * Кнопки с иконками
  */
 .button--close,
 .button--edit,
@@ -92,161 +83,102 @@
 }
 
 /**
- * Стили для заполненной кнопки
+ * Варианты кнопок
  */
 .button--filled {
   background-color: var(--btn-primary);
   border-color: var(--btn-primary);
-  color: #0c0c0c;
+  color: var(--btn-secondary-color);
 }
 
-/**
- * Стили для кнопок с белым фоном
- */
 .button--close,
 .button--view-all {
   border: none;
-  background: #ffffff;
+  background: var(--btn-white);
 }
 
-/**
- * Стили для кнопки редактирования
- */
 .button--edit {
-  background: #ffffff;
+  background: var(--btn-white);
   border-color: var(--btn-primary);
 }
 
-/**
- * Стили для кнопки ожидания
- */
 .button--pending {
   background: transparent;
   border-color: var(--btn-primary);
 }
 
-/* ==================== HOVER СОСТОЯНИЯ ==================== */
+/* ==================== ИНТЕРАКТИВНЫЕ СОСТОЯНИЯ ==================== */
 
-/**
- * Hover для незаполненной кнопки и кнопки редактирования
- */
+/* Hover */
+.button:hover:not(:disabled) {
+  transform: none;
+}
+
 .button:hover:not(.button--filled, .button--close, .button--pending, .button--view-all):not(:disabled),
 .button--edit:hover:not(:disabled) {
   border-color: var(--btn-primary-hover);
-  color: #69735d;
+  color: var(--btn-hover-color);
 }
 
-/**
- * Hover для SVG иконки в кнопке редактирования
- */
-.button--edit:hover:not(:disabled) .button__edit-icon {
-  filter: brightness(0) saturate(100%) invert(36%) sepia(12%) saturate(392%) hue-rotate(68deg) brightness(96%) contrast(88%);
-}
-
-/**
- * Hover для заполненной кнопки
- */
 .button--filled:hover:not(:disabled) {
   background-color: var(--btn-primary-hover);
   border-color: var(--btn-primary-hover);
 }
 
-/**
- * Hover для кнопок с белым фоном
- */
 .button--close:hover:not(:disabled),
 .button--view-all:hover:not(:disabled) {
   background-color: var(--btn-light-bg);
 }
 
-/**
- * Hover для кнопки ожидания
- */
 .button--pending:hover:not(:disabled) {
   background-color: var(--btn-edit-hover);
   border-color: var(--btn-primary-hover);
 }
 
-/* ==================== ACTIVE СОСТОЯНИЯ ==================== */
-
-/**
- * Общий эффект нажатия
- */
+/* Active */
 .button:active:not(:disabled) {
   transform: translateY(1px);
 }
 
-/**
- * Active для незаполненной кнопки и кнопки редактирования
- */
 .button:active:not(.button--filled, .button--close, .button--pending, .button--view-all):not(:disabled),
 .button--edit:active:not(:disabled) {
   border-color: var(--btn-primary-active);
   color: var(--btn-secondary-color);
 }
 
-/**
- * Active для SVG иконки в кнопке редактирования
- */
-.button--edit:active:not(:disabled) .button__edit-icon {
-  filter: brightness(0) saturate(100%) invert(14%) sepia(16%) saturate(1102%) hue-rotate(68deg) brightness(97%) contrast(89%);
-}
-
-/**
- * Active для заполненной кнопки
- */
 .button--filled:active:not(:disabled) {
   background-color: var(--btn-primary-active);
   border-color: var(--btn-primary-active);
-  color: #ffffff;
+  color: var(--btn-white);
 }
 
-/**
- * Active для кнопок с белым фоном
- */
 .button--close:active:not(:disabled),
 .button--view-all:active:not(:disabled) {
   background-color: var(--btn-primary-hover);
 }
 
-/**
- * Active для кнопки ожидания
- */
 .button--pending:active:not(:disabled) {
   background-color: var(--btn-edit-active);
   border-color: var(--btn-primary-active);
   color: var(--btn-secondary-color);
 }
 
-/* ==================== DISABLED СОСТОЯНИЯ ==================== */
-
-/**
- * Общие стили для отключенных кнопок
- */
+/* Disabled */
 .button:disabled {
   cursor: not-allowed;
   color: var(--btn-disabled-color);
 }
 
-/**
- * Disabled для незаполненной кнопки
- */
 .button:disabled:not(.button--filled, .button--close, .button--edit, .button--pending, .button--view-all) {
   border-color: var(--btn-disabled-bg);
 }
 
-/**
- * Disabled для заполненной кнопки
- */
 .button--filled:disabled {
   background-color: var(--btn-disabled-bg);
   border-color: var(--btn-disabled-bg);
-  color: #69735d;
+  color: var(--btn-hover-color);
 }
 
-/**
- * Disabled для кнопок с белым фоном
- */
 .button--close:disabled,
 .button--edit:disabled,
 .button--view-all:disabled {
@@ -257,18 +189,22 @@
   border-color: var(--btn-disabled-bg);
 }
 
-/**
- * Disabled для кнопки ожидания
- */
 .button--pending:disabled {
   background-color: transparent;
   border-color: var(--btn-disabled-bg);
 }
 
-/**
- * Фокус кнопки для доступности
- */
+/* Focus */
 .button:focus-visible {
   outline: 2px solid var(--btn-primary);
   outline-offset: 2px;
+}
+
+/* Фильтры для иконок */
+.button--edit:hover:not(:disabled) .button__edit-icon {
+  filter: brightness(0) saturate(100%) invert(36%) sepia(12%) saturate(392%) hue-rotate(68deg) brightness(96%) contrast(88%);
+}
+
+.button--edit:active:not(:disabled) .button__edit-icon {
+  filter: brightness(0) saturate(100%) invert(14%) sepia(16%) saturate(1102%) hue-rotate(68deg) brightness(97%) contrast(89%);
 }
