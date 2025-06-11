@@ -1,6 +1,38 @@
 import { forwardRef } from 'react';
 import { type ButtonProps } from './types';
 import styles from './button.module.css';
+import crossSvg from './cross.svg';
+import editIconSvg from './Icon_right.svg';
+import watchIconSvg from './watch.svg';
+import vectorSvg from './vector.svg';
+
+// Конфигурация иконок
+const ICON_CONFIG = {
+  close: {
+    src: crossSvg,
+    alt: 'Закрыть',
+    className: 'button__cross-icon',
+    position: 'right'
+  },
+  edit: {
+    src: editIconSvg,
+    alt: 'Редактировать',
+    className: 'button__edit-icon',
+    position: 'right'
+  },
+  pending: {
+    src: watchIconSvg,
+    alt: 'Ожидание',
+    className: 'button__watch-icon',
+    position: 'left'
+  },
+  'view-all': {
+    src: vectorSvg,
+    alt: 'Смотреть все',
+    className: 'button__vector-icon',
+    position: 'right'
+  }
+} as const;
 
 /**
  * Универсальный компонент кнопки
@@ -12,6 +44,21 @@ import styles from './button.module.css';
  *
  * // Незаполненная кнопка с кастомной шириной
  * <Button width={200} onClick={handleClick}>Войти</Button>
+ *
+ * // Кнопка с горизонтальным паддингом
+ * <Button paddingX={80} onClick={handleClick}>Назад</Button>
+ *
+ * // Кнопка закрытия с крестиком
+ * <Button variant="close" onClick={handleClose}>Закрыть</Button>
+ *
+ * // Кнопка редактирования с иконкой справа
+ * <Button variant="edit" onClick={handleEdit}>Редактировать</Button>
+ *
+ * // Кнопка ожидания с иконкой часов слева
+ * <Button variant="pending" disabled>Обмен предложен</Button>
+ *
+ * // Кнопка "Смотреть все" с иконкой стрелки справа
+ * <Button variant="view-all" onClick={handleViewAll}>Смотреть все</Button>
  */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
@@ -20,11 +67,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       onClick,
       fill = false,
       width,
+      paddingX,
       className = '',
       type = 'button',
       disabled = false,
-      withoutBorder = false,
-      color,
+      variant,
       ...props
     },
     ref
@@ -33,7 +80,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const buttonClasses = [
       styles.button,
       fill && styles['button--filled'],
-      withoutBorder && styles['button-without-border'],
+      variant && styles[`button--${variant}`],
+      paddingX && styles[`button--padding-${paddingX}`],
       className
     ]
       .filter(Boolean)
@@ -45,6 +93,21 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       color ? { backgroundColor: color } : null
     );
 
+    // Получаем конфигурацию иконки
+    const iconConfig = variant ? ICON_CONFIG[variant] : null;
+
+    // Рендерим иконку
+    const renderIcon = () => {
+      if (!iconConfig) return null;
+      return (
+        <img
+          src={iconConfig.src}
+          alt={iconConfig.alt}
+          className={styles[iconConfig.className]}
+        />
+      );
+    };
+
     return (
       <button
         ref={ref}
@@ -55,7 +118,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={disabled}
         {...props}
       >
+        {iconConfig?.position === 'left' && renderIcon()}
         {children}
+        {iconConfig?.position === 'right' && renderIcon()}
       </button>
     );
   }

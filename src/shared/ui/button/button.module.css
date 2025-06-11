@@ -1,4 +1,21 @@
 /**
+ * CSS переменные для цветов
+ */
+:root {
+  --btn-primary: #abd27a;
+  --btn-primary-hover: #deebc5;
+  --btn-primary-active: #508826;
+  --btn-secondary-color: #253017;
+  --btn-disabled-bg: #e4e8df;
+  --btn-disabled-color: #9ca197;
+  --btn-light-bg: #f5f5f5;
+  --btn-edit-hover: #f8faf6;
+  --btn-edit-active: #f0f4ec;
+  --btn-white: #ffffff;
+  --btn-hover-color: #69735d;
+}
+
+/**
  * Базовые стили для кнопки
  */
 .button {
@@ -6,10 +23,10 @@
   align-items: center;
   justify-content: center;
   padding: 12px 24px;
-  border: 1px solid #abd27a;
+  border: 1px solid var(--btn-primary);
   border-radius: 12px;
   background: transparent;
-  color: #0c0c0c;
+  color: var(--btn-secondary-color);
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   font-weight: 400;
@@ -25,66 +42,197 @@
 }
 
 /**
- * Стили для заполненной кнопки (Primary)
+ * Различные горизонтальные паддинги
+ */
+.button--padding-55 {
+  padding-inline: 55px;
+}
+.button--padding-80 {
+  padding-inline: 80px;
+}
+.button--padding-192 {
+  padding-inline: 192px;
+}
+
+/**
+ * Общие стили для иконок
+ */
+.button__cross-icon,
+.button__edit-icon,
+.button__watch-icon,
+.button__vector-icon {
+  flex-shrink: 0;
+  transition: filter 0.2s ease;
+}
+
+.button__cross-icon {
+  width: 12px;
+  height: 12px;
+}
+
+.button__edit-icon,
+.button__watch-icon {
+  width: 25px;
+  height: 24px;
+}
+
+.button__vector-icon {
+  width: 8px;
+  height: 16px;
+}
+
+/**
+ * Кнопки с иконками
+ */
+.button--close,
+.button--edit,
+.button--pending,
+.button--view-all {
+  gap: 8px;
+  color: var(--btn-secondary-color);
+}
+
+/**
+ * Варианты кнопок
  */
 .button--filled {
-  background-color: #abd27a;
-  color: #0c0c0c;
+  background-color: var(--btn-primary);
+  border-color: var(--btn-primary);
+  color: var(--btn-secondary-color);
 }
 
-/**
- * Состояние hover для незаполненной кнопки (Secondary Hover)
- */
-.button:hover:not(.button--filled):not(:disabled) {
-  border-color: #deebc5;
-  color: #69735d;
+.button--close,
+.button--view-all {
+  border: none;
+  background: var(--btn-white);
 }
 
-/**
- * Состояние hover для заполненной кнопки (Primary Hover)
- */
+.button--edit {
+  background: var(--btn-white);
+  border-color: var(--btn-primary);
+}
+
+.button--pending {
+  background: transparent;
+  border-color: var(--btn-primary);
+}
+
+/* ==================== ИНТЕРАКТИВНЫЕ СОСТОЯНИЯ ==================== */
+
+/* Hover */
+.button:hover:not(:disabled) {
+  transform: none;
+}
+
+.button:hover:not(
+    .button--filled,
+    .button--close,
+    .button--pending,
+    .button--view-all
+  ):not(:disabled),
+.button--edit:hover:not(:disabled) {
+  border-color: var(--btn-primary-hover);
+  color: var(--btn-hover-color);
+}
+
 .button--filled:hover:not(:disabled) {
-  background-color: #deebc5;
+  background-color: var(--btn-primary-hover);
+  border-color: var(--btn-primary-hover);
 }
 
-/**
- * Состояние pressed для незаполненной кнопки (Secondary Pressed)
- */
-.button:active:not(.button--filled):not(:disabled) {
-  border-color: #508826;
+.button--close:hover:not(:disabled),
+.button--view-all:hover:not(:disabled) {
+  background-color: var(--btn-light-bg);
+}
+
+.button--pending:hover:not(:disabled) {
+  background-color: var(--btn-edit-hover);
+  border-color: var(--btn-primary-hover);
+}
+
+/* Active */
+.button:active:not(:disabled) {
   transform: translateY(1px);
 }
 
-/**
- * Состояние pressed для заполненной кнопки (Primary Pressed)
- */
+.button:active:not(
+    .button--filled,
+    .button--close,
+    .button--pending,
+    .button--view-all
+  ):not(:disabled),
+.button--edit:active:not(:disabled) {
+  border-color: var(--btn-primary-active);
+  color: var(--btn-secondary-color);
+}
+
 .button--filled:active:not(:disabled) {
-  background-color: #508826;
-  transform: translateY(1px);
+  background-color: var(--btn-primary-active);
+  border-color: var(--btn-primary-active);
+  color: var(--btn-white);
 }
 
-/**
- * Состояние отключенной незаполненной кнопки (Secondary Disabled)
- */
-.button:disabled:not(.button--filled) {
-  border-color: #e4e8df;
-  color: #9ca197;
+.button--close:active:not(:disabled),
+.button--view-all:active:not(:disabled) {
+  background-color: var(--btn-primary-hover);
+}
+
+.button--pending:active:not(:disabled) {
+  background-color: var(--btn-edit-active);
+  border-color: var(--btn-primary-active);
+  color: var(--btn-secondary-color);
+}
+
+/* Disabled */
+.button:disabled {
   cursor: not-allowed;
+  color: var(--btn-disabled-color);
 }
 
-/**
- * Состояние отключенной заполненной кнопки (Primary Disabled)
- */
+.button:disabled:not(
+    .button--filled,
+    .button--close,
+    .button--edit,
+    .button--pending,
+    .button--view-all
+  ) {
+  border-color: var(--btn-disabled-bg);
+}
+
 .button--filled:disabled {
-  background-color: #e4e8df;
-  color: #69735d;
-  cursor: not-allowed;
+  background-color: var(--btn-disabled-bg);
+  border-color: var(--btn-disabled-bg);
+  color: var(--btn-hover-color);
 }
 
-/**
- * Фокус кнопки для доступности
- */
+.button--close:disabled,
+.button--edit:disabled,
+.button--view-all:disabled {
+  background-color: var(--btn-light-bg);
+}
+
+.button--edit:disabled {
+  border-color: var(--btn-disabled-bg);
+}
+
+.button--pending:disabled {
+  background-color: transparent;
+  border-color: var(--btn-disabled-bg);
+}
+
+/* Focus */
 .button:focus-visible {
-  outline: 2px solid #abd27a;
+  outline: 2px solid var(--btn-primary);
   outline-offset: 2px;
+}
+
+/* Фильтры для иконок */
+.button--edit:hover:not(:disabled) .button__edit-icon {
+  filter: brightness(0) saturate(100%) invert(36%) sepia(12%) saturate(392%)
+    hue-rotate(68deg) brightness(96%) contrast(88%);
+}
+
+.button--edit:active:not(:disabled) .button__edit-icon {
+  filter: brightness(0) saturate(100%) invert(14%) sepia(16%) saturate(1102%)
+    hue-rotate(68deg) brightness(97%) contrast(89%);
 }

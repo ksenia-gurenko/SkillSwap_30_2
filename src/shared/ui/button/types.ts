@@ -13,8 +13,11 @@ export interface ButtonProps {
   /** Заполнена ли кнопка (true - зеленый фон, false - прозрачный фон) */
   fill?: boolean;
 
-  /** Ширина кнопки в пикселях */
+  /** Ширина кнопки в пикселях (опционально, для особых случаев) */
   width?: number;
+
+  /** Горизонтальный паддинг кнопки (55px - кнопки "Готово/Продолжить", 80px - "Назад", 192px - "Далее") */
+  paddingX?: 55 | 80 | 192;
 
   /** Дополнительные CSS-классы */
   className?: string;
@@ -24,6 +27,7 @@ export interface ButtonProps {
 
   /** Отключена ли кнопка */
   disabled?: boolean;
-  withoutBorder?: boolean;
-  color?: string;
+
+  /** Вариант кнопки с иконкой */
+  variant?: 'close' | 'edit' | 'pending' | 'view-all';
 }
