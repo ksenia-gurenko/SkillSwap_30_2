@@ -6,11 +6,9 @@ import styles from './user-avatar.module.css';
 export const UserAvatarUI: FC<TUserAvatarUIProps> = ({
   src,
   size = USER_AVATAR_SIZE.MEDIUM
-}) => {
-  return (
-    <div
-      className={`${styles.avatar} ${styles[size]}`}
-      style={{ backgroundImage: `url(${src})` }}
-    />
-  );
-};
+}) => (
+  <div
+    className={`${styles.avatar} ${styles[size]}`}
+    style={{ backgroundImage: `url(${src})` }}
+  />
+);
