@@ -7,4 +7,4 @@ export const useLocalList = <T>(key: string, initial: T[]) => {
   });
   useEffect(() => localStorage.setItem(key, JSON.stringify(list)), [list]);
   return [list, set] as const;
-}; 
+};

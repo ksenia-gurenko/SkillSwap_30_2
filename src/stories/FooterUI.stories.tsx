@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FooterUI } from '../ui/footer/footer';
+import { FooterUI } from '../shared/ui';
 
 const meta: Meta<typeof FooterUI> = {
-  title: 'Shared/UI/FooterUI',
+  title: 'UI/FooterUI',
   component: FooterUI,
   parameters: {
     layout: 'fullscreen',
