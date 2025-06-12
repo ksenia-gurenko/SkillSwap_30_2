@@ -24,11 +24,13 @@ export const FooterUI: FC = () => {
           <div className={styles.linkListCenter}>
             <ul className={styles.linkList}>
               <li>
+                {/* TODO: Заменить на реальные ссылки */}
                 <a href='#' className={styles.link}>
                   О проекте
                 </a>
               </li>
               <li>
+                {/* TODO: Заменить на реальные ссылки */}
                 <a href='#' className={styles.link}>
                   Все навыки
                 </a>
@@ -42,11 +44,13 @@ export const FooterUI: FC = () => {
           <div className={styles.linkListCenter}>
             <ul className={styles.linkList}>
               <li>
+                {/* TODO: Заменить на реальные ссылки */}
                 <a href='#' className={styles.link}>
                   Контакты
                 </a>
               </li>
               <li>
+                {/* TODO: Заменить на реальные ссылки */}
                 <a href='#' className={styles.link}>
                   Блог
                 </a>
@@ -60,11 +64,13 @@ export const FooterUI: FC = () => {
           <div className={styles.linkListCenter}>
             <ul className={styles.linkList}>
               <li>
+                {/* TODO: Заменить на реальные ссылки */}
                 <a href='#' className={styles.link}>
                   Политика конфиденциальности
                 </a>
               </li>
               <li>
+                {/* TODO: Заменить на реальные ссылки */}
                 <a href='#' className={styles.link}>
                   Пользовательское соглашение
                 </a>
