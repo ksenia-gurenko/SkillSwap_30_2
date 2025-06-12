@@ -1,7 +1,7 @@
 .container {
-  width: 260px;
   display: flex;
   align-items: center;
+  width: 260px;
 }
 
 .avatar {
@@ -15,15 +15,15 @@
 }
 
 .name {
-  font-family: 'Open sans', 'Helvetica Neue', 'Arial', sans-serif;
-  font-size: 20px;
-  line-height: 24px;
   color: #253017;
+  font-size: 20px;
+  font-family: 'Open sans', 'Helvetica Neue', 'Arial', sans-serif;
+  line-height: 24px;
 }
 
 .description {
-  font-family: 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
-  font-size: 12px;
-  line-height: 16px;
   color: #253017;
+  font-size: 12px;
+  font-family: 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+  line-height: 16px;
 }
