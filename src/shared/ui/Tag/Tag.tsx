@@ -1,5 +1,5 @@
 import React from 'react';
-import './Tag.css';
+import styles from './tag.module.css';
 import { getSkillColor } from './constants';
 
 /**
@@ -19,7 +19,7 @@ interface TagProps {
  */
 export const Tag: React.FC<TagProps> = ({ text, backgroundColor, className = '' }) => (
   <span
-    className={`tag ${className}`}
+    className={`${styles.tag} ${className}`}
     style={{ backgroundColor: backgroundColor || getSkillColor(text) }}
   >
     {text}

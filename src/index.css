@@ -1,4 +1,4 @@
-@import './fonts/font.css';
+@import url('./fonts/font.css');
 
 :root {
   color: rgb(255 255 255 / 87%);

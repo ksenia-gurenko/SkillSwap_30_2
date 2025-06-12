@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Tag, SKILL_CATEGORIES } from '../shared/ui/Tag';
+import { Tag, SKILL_CATEGORIES } from '../shared/ui/tag';
 
 /**
  * Мета-конфигурация для отображения всех категорий тегов

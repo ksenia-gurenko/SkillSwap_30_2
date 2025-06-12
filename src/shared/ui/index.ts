@@ -1,4 +1,4 @@
-export { Tag } from './Tag';
+export { Tag } from './tag';
 export * from './like-button';
 export * from './stepper';
 export * from './user-avatar';
