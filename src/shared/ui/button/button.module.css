@@ -1,6 +1,7 @@
 /**
  * CSS переменные для цветов
  */
+
 :root {
   --btn-primary: #abd27a;
   --btn-primary-hover: #deebc5;
@@ -18,34 +19,38 @@
 /**
  * Базовые стили для кнопки
  */
+
 .button {
   display: inline-flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   padding: 12px 24px;
+  color: var(--btn-secondary-color);
+  font-weight: 400;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  line-height: 24px;
+  white-space: nowrap;
+  text-decoration: none;
+  background: transparent;
   border: 1px solid var(--btn-primary);
   border-radius: 12px;
-  background: transparent;
-  color: var(--btn-secondary-color);
-  font-family: 'Roboto', sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
   cursor: pointer;
   transition: all 0.2s ease;
-  text-decoration: none;
-  white-space: nowrap;
 }
 
 /**
  * Различные горизонтальные паддинги
  */
+
 .button--padding-55 {
   padding-inline: 55px;
 }
+
 .button--padding-80 {
   padding-inline: 80px;
 }
+
 .button--padding-192 {
   padding-inline: 192px;
 }
@@ -53,6 +58,7 @@
 /**
  * Общие стили для иконок
  */
+
 .button__cross-icon,
 .button__edit-icon,
 .button__watch-icon,
@@ -80,6 +86,7 @@
 /**
  * Кнопки с иконками
  */
+
 .button--close,
 .button--edit,
 .button--pending,
@@ -91,16 +98,17 @@
 /**
  * Варианты кнопок
  */
+
 .button--filled {
+  color: var(--btn-secondary-color);
   background-color: var(--btn-primary);
   border-color: var(--btn-primary);
-  color: var(--btn-secondary-color);
 }
 
 .button--close,
 .button--view-all {
-  border: none;
   background: var(--btn-white);
+  border: none;
 }
 
 .button--edit {
@@ -116,19 +124,15 @@
 /* ==================== ИНТЕРАКТИВНЫЕ СОСТОЯНИЯ ==================== */
 
 /* Hover */
+
 .button:hover:not(:disabled) {
   transform: none;
 }
 
-.button:hover:not(
-    .button--filled,
-    .button--close,
-    .button--pending,
-    .button--view-all
-  ):not(:disabled),
+.button:hover:not(.button--filled, .button--close, .button--pending, .button--view-all, :disabled),
 .button--edit:hover:not(:disabled) {
-  border-color: var(--btn-primary-hover);
   color: var(--btn-hover-color);
+  border-color: var(--btn-primary-hover);
 }
 
 .button--filled:hover:not(:disabled) {
@@ -147,25 +151,21 @@
 }
 
 /* Active */
+
 .button:active:not(:disabled) {
   transform: translateY(1px);
 }
 
-.button:active:not(
-    .button--filled,
-    .button--close,
-    .button--pending,
-    .button--view-all
-  ):not(:disabled),
+.button:active:not(.button--filled, .button--close, .button--pending, .button--view-all, :disabled),
 .button--edit:active:not(:disabled) {
-  border-color: var(--btn-primary-active);
   color: var(--btn-secondary-color);
+  border-color: var(--btn-primary-active);
 }
 
 .button--filled:active:not(:disabled) {
+  color: var(--btn-white);
   background-color: var(--btn-primary-active);
   border-color: var(--btn-primary-active);
-  color: var(--btn-white);
 }
 
 .button--close:active:not(:disabled),
@@ -174,15 +174,16 @@
 }
 
 .button--pending:active:not(:disabled) {
+  color: var(--btn-secondary-color);
   background-color: var(--btn-edit-active);
   border-color: var(--btn-primary-active);
-  color: var(--btn-secondary-color);
 }
 
 /* Disabled */
+
 .button:disabled {
-  cursor: not-allowed;
   color: var(--btn-disabled-color);
+  cursor: not-allowed;
 }
 
 .button:disabled:not(
@@ -196,9 +197,9 @@
 }
 
 .button--filled:disabled {
+  color: var(--btn-hover-color);
   background-color: var(--btn-disabled-bg);
   border-color: var(--btn-disabled-bg);
-  color: var(--btn-hover-color);
 }
 
 .button--close:disabled,
@@ -217,12 +218,14 @@
 }
 
 /* Focus */
+
 .button:focus-visible {
   outline: 2px solid var(--btn-primary);
   outline-offset: 2px;
 }
 
 /* Фильтры для иконок */
+
 .button--edit:hover:not(:disabled) .button__edit-icon {
   filter: brightness(0) saturate(100%) invert(36%) sepia(12%) saturate(392%)
     hue-rotate(68deg) brightness(96%) contrast(88%);
