@@ -1,0 +1,128 @@
+/* Основной контейнер футера */
+
+.footer {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 32px 36px;
+}
+
+/* Контейнер для всех блоков */
+
+.blocksContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 24px;
+  width: 100%;
+}
+
+/* Каждый блок */
+
+.block {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 324px;
+}
+
+/* Сдвигаем блоки 2, 3, 4 вниз на 60px */
+
+.block:nth-child(2),
+.block:nth-child(3),
+.block:nth-child(4) {
+  margin-top: 60px;
+}
+
+/* Логотип в первом блоке (вверху) */
+
+.logoSection {
+  margin-bottom: 112px;
+}
+
+/* Центрирование списка во втором, третьем и четвертом блоках */
+
+.linkListCenter {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+}
+
+/* Список ссылок */
+
+.linkList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.linkList li {
+  position: relative;
+  padding-left: 0;
+}
+
+/* Стили ссылок */
+
+.link {
+  color: #253017;
+  font-size: 16px;
+  font-family: 'Roboto', 'Arial', sans-serif;
+  line-height: 1.5;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+/* Копирайт в первом блоке (внизу) */
+
+.copyrightSection {
+  margin-top: auto;
+}
+
+.copyright {
+  color: #69735d;
+  font-size: 12px;
+  font-family: 'Roboto', 'Arial', sans-serif;
+  line-height: 1.2;
+}
+
+/* Адаптивность для мобильных устройств */
+
+@media (width <= 1440px) {
+  .blocksContainer {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .block {
+    width: calc(50% - 12px);
+    min-width: 280px;
+  }
+}
+
+@media (width <= 768px) {
+  .blocksContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .block {
+    width: 100%;
+    max-width: 324px;
+  }
+
+  .block:nth-child(2),
+  .block:nth-child(3),
+  .block:nth-child(4) {
+    margin-top: 0;
+  }
+
+  .footer {
+    padding: 24px 20px;
+  }
+}

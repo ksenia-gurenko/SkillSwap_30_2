@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: fit-content;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  color: #253017;
+  font-size: 24px;
+  font-family: 'Jost', 'Futura', 'Arial', sans-serif;
+  line-height: 32px;
+  letter-spacing: -0.011em;
+  text-align: center;
+}
