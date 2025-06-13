@@ -1,36 +1,48 @@
 .card {
-    background-color: #fff;
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  background-color: #f9faf7;
+  border-radius: 12px;
+  width: 324px;
+  height: 368px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
 }
 
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.skills {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .section {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .sectionTitle {
-    font-weight: 600;
-    color: #253017;
+  font-family: 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #253017;
 }
 
 .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .buttonWrapper {
-    margin-top: 8px;
+  margin-top: 8px;
 }

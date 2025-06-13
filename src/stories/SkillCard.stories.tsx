@@ -22,10 +22,15 @@ export const SkillCardVictoria: Story = {
       age: 30
     },
     canTeach: ['Игра на барабанах'],
-    wantsToLearn: ['Тайм менеджмент', 'Медитация', 'Французский язык', 'Немецкий язык'],
-    onLikeToggle: () => { },
+    wantsToLearn: [
+      'Тайм менеджмент',
+      'Медитация',
+      'Французский язык',
+      'Немецкий язык'
+    ],
+    onLikeToggle: () => {},
     isLiked: false,
-    onDetailsClick: () => { }
+    onDetailsClick: () => {}
   }
 };
 
@@ -39,8 +44,8 @@ export const SkillCardSofia: Story = {
     },
     canTeach: ['Медитация'],
     wantsToLearn: ['Французский язык', 'Немецкий язык', 'Тайм менеджмент'],
-    onLikeToggle: () => { },
+    onLikeToggle: () => {},
     isLiked: false,
-    onDetailsClick: () => { }
+    onDetailsClick: () => {}
   }
 };
