@@ -13,8 +13,6 @@ export const FooterUI: FC = () => (
         <div className={styles.logoSection}>
           <LogoUI />
         </div>
-<<<<<<< HEAD
-
         {/* Второй блок - О проекте, Все навыки */}
         <div className={styles.block}>
           <div className={styles.linkListCenter}>
@@ -73,10 +71,6 @@ export const FooterUI: FC = () => (
               </li>
             </ul>
           </div>
-=======
-        <div className={styles.copyrightSection}>
-          <span className={styles.copyright}>SkillSwap — 2025</span>
->>>>>>> 7156a58dafce6f3a5f761f9cc11449c40e94a673
         </div>
       </div>
 
