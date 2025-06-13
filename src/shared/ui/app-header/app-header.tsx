@@ -71,7 +71,6 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({
               <IconButtonUI type={ICON_TYPE.MOON} />
               <IconButtonUI type={ICON_TYPE.NOTIFICATION} />
               <IconButtonUI type={ICON_TYPE.LIKE} />
-
             </div>
             <div className={styles.userInfo}>
               <span className={styles.userName}>{userName}</span>
@@ -85,7 +84,6 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({
           <>
             <div className={styles.moonIcon}>
               <IconButtonUI type={ICON_TYPE.MOON} />
-
             </div>
             <div className={styles.rightButtons}>
               <Button width={92}>Войти</Button>

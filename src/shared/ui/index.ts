@@ -6,4 +6,4 @@ export * from './logo';
 export * from './button';
 export * from './app-header';
 export * from './footer';
-export * from "./icon";
+export * from './icon';
