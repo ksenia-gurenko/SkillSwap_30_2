@@ -3,7 +3,7 @@ import { UserAvatarUI } from '../shared/ui';
 import { USER_AVATAR_SIZE } from '../shared/lib/constants';
 
 const meta = {
-  title: 'UserAvatarUI',
+  title: 'UI/UserAvatarUI',
   component: UserAvatarUI,
   tags: ['autodocs'],
   parameters: {

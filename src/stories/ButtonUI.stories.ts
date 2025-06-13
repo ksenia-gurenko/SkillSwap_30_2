@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from '../shared/ui/button';
+import { Button } from '../shared/ui';
 
 /**
  * Универсальный компонент кнопки для проекта SkillSwap

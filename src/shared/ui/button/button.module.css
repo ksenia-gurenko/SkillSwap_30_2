@@ -129,7 +129,13 @@
   transform: none;
 }
 
-.button:hover:not(.button--filled, .button--close, .button--pending, .button--view-all, :disabled),
+.button:hover:not(
+    .button--filled,
+    .button--close,
+    .button--pending,
+    .button--view-all,
+    :disabled
+  ),
 .button--edit:hover:not(:disabled) {
   color: var(--btn-hover-color);
   border-color: var(--btn-primary-hover);
@@ -156,7 +162,13 @@
   transform: translateY(1px);
 }
 
-.button:active:not(.button--filled, .button--close, .button--pending, .button--view-all, :disabled),
+.button:active:not(
+    .button--filled,
+    .button--close,
+    .button--pending,
+    .button--view-all,
+    :disabled
+  ),
 .button--edit:active:not(:disabled) {
   color: var(--btn-secondary-color);
   border-color: var(--btn-primary-active);

@@ -1,2 +1,2 @@
-export { default } from './badge';
+export { Badge } from './badge';
 export type { BadgeProps } from './types';
