@@ -9,7 +9,7 @@ const Badge: React.FC<BadgeProps> = ({ count, onClick, className = '' }) => {
   const badgeClass = [
     styles.badge,
     onClick ? styles.badgeClickable : '',
-    className  // Добавляем переданные извне классы
+    className // Добавляем переданные извне классы
   ]
     .filter(Boolean)
     .join(' ');

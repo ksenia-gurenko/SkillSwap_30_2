@@ -4,15 +4,9 @@ import { NavLink } from 'react-router-dom';
 import styles from './app-header.module.css';
 import { LogoUI } from '../logo';
 import { Button } from '../button';
-import { LikeButtonUI } from '../like-button';
 import { UserAvatarUI } from '../user-avatar';
-import { USER_AVATAR_SIZE } from '../../lib/constants';
-import {
-  SearchIconUI,
-  MoonIconUI,
-  NotificationIconUI,
-  ChevronDownIconUI
-} from '../icons';
+import { ICON_TYPE, USER_AVATAR_SIZE } from '../../lib/constants';
+import { IconButtonUI } from '../icon';
 
 export const AppHeaderUI: FC<TAppHeaderUIProps> = ({
   isAuth,
@@ -53,7 +47,7 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({
           <div className={styles.dropdown}>
             <span className={styles.navLink}>Все навыки</span>
             <span className={styles.arrowDown}>
-              <ChevronDownIconUI />
+              <IconButtonUI type={ICON_TYPE.CHEVRON_DOWN} />
             </span>
           </div>
         </nav>
@@ -61,7 +55,7 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({
 
       <div className={styles.center}>
         <div className={styles.searchBar}>
-          <SearchIconUI />
+          <IconButtonUI type={ICON_TYPE.SEARCH} />
           <input
             type='text'
             placeholder='Искать навык'
@@ -74,9 +68,10 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({
         {isAuth ? (
           <>
             <div className={styles.icons}>
-              <MoonIconUI />
-              <NotificationIconUI />
-              <LikeButtonUI isActive={false} onClick={() => { }} />
+              <IconButtonUI type={ICON_TYPE.MOON} />
+              <IconButtonUI type={ICON_TYPE.NOTIFICATION} />
+              <IconButtonUI type={ICON_TYPE.LIKE} />
+
             </div>
             <div className={styles.userInfo}>
               <span className={styles.userName}>{userName}</span>
@@ -89,7 +84,8 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({
         ) : (
           <>
             <div className={styles.moonIcon}>
-              <MoonIconUI />
+              <IconButtonUI type={ICON_TYPE.MOON} />
+
             </div>
             <div className={styles.rightButtons}>
               <Button width={92}>Войти</Button>

@@ -5,21 +5,21 @@
 .tag {
   /* Основные стили тега */
   display: inline-block;
-  
+
   /* Убираем лишние отступы */
   margin: 0;
   padding: 8px 12px;
-  
+
   /* Цвет текста - темно-серый для лучшей читаемости */
   color: #253017;
   font-weight: 400;
   font-size: 12px;
-  
+
   /* Типографика */
   font-family: 'Roboto', sans-serif;
   line-height: 1.2;
   border-radius: 20px;
-  
+
   /* Запрещаем выделение текста */
   user-select: none;
 }

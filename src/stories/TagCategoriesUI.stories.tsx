@@ -11,11 +11,12 @@ const meta: Meta<typeof Tag> = {
     layout: 'padded',
     docs: {
       description: {
-        component: 'Все навыки сгруппированы по категориям с автоматическим определением цветов.',
-      },
-    },
+        component:
+          'Все навыки сгруппированы по категориям с автоматическим определением цветов.'
+      }
+    }
   },
-  tags: ['autodocs'],
+  tags: ['autodocs']
 };
 
 export default meta;
@@ -28,12 +29,14 @@ const AllSkillsDemo = () => (
   <div style={{ maxWidth: '800px' }}>
     {Object.entries(SKILL_CATEGORIES).map(([category, { skills }]) => (
       <div key={category} style={{ marginBottom: '24px' }}>
-        <h3 style={{ 
-          margin: '0 0 12px 0', 
-          fontSize: '16px', 
-          fontWeight: '600',
-          color: '#253017'
-        }}>
+        <h3
+          style={{
+            margin: '0 0 12px 0',
+            fontSize: '16px',
+            fontWeight: '600',
+            color: '#253017'
+          }}
+        >
           {category}
         </h3>
         <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
@@ -50,7 +53,7 @@ const AllSkillsDemo = () => (
  * История показывающая все навыки по категориям
  */
 export const AllSkillsByCategories: Story = {
-  render: () => <AllSkillsDemo />,
+  render: () => <AllSkillsDemo />
 };
 
 /**
@@ -63,7 +66,7 @@ export const ForeignLanguages: Story = {
         <Tag key={skill} text={skill} />
       ))}
     </div>
-  ),
+  )
 };
 
 export const BusinessCareer: Story = {
@@ -73,27 +76,31 @@ export const BusinessCareer: Story = {
         <Tag key={skill} text={skill} />
       ))}
     </div>
-  ),
+  )
 };
 
 export const CreativeArt: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-      {SKILL_CATEGORIES['Творчество и искусство'].skills.map((skill: string) => (
-        <Tag key={skill} text={skill} />
-      ))}
+      {SKILL_CATEGORIES['Творчество и искусство'].skills.map(
+        (skill: string) => (
+          <Tag key={skill} text={skill} />
+        )
+      )}
     </div>
-  ),
+  )
 };
 
 export const EducationDevelopment: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-      {SKILL_CATEGORIES['Образование и развитие'].skills.map((skill: string) => (
-        <Tag key={skill} text={skill} />
-      ))}
+      {SKILL_CATEGORIES['Образование и развитие'].skills.map(
+        (skill: string) => (
+          <Tag key={skill} text={skill} />
+        )
+      )}
     </div>
-  ),
+  )
 };
 
 export const HomeComfort: Story = {
@@ -103,7 +110,7 @@ export const HomeComfort: Story = {
         <Tag key={skill} text={skill} />
       ))}
     </div>
-  ),
+  )
 };
 
 export const HealthLifestyle: Story = {
@@ -113,5 +120,5 @@ export const HealthLifestyle: Story = {
         <Tag key={skill} text={skill} />
       ))}
     </div>
-  ),
-}; 
+  )
+};

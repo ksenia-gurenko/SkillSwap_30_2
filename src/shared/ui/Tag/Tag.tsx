@@ -17,11 +17,15 @@ interface TagProps {
 /**
  * Тег навыка с автоматическим определением цвета
  */
-export const Tag: React.FC<TagProps> = ({ text, backgroundColor, className = '' }) => (
+export const Tag: React.FC<TagProps> = ({
+  text,
+  backgroundColor,
+  className = ''
+}) => (
   <span
     className={`${styles.tag} ${className}`}
     style={{ backgroundColor: backgroundColor || getSkillColor(text) }}
   >
     {text}
   </span>
-); 
+);
