@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { StepperUI } from '../shared/ui';
 
 const meta = {
-  title: 'StepperUI',
+  title: 'UI/StepperUI',
   component: StepperUI,
   tags: ['autodocs'],
   parameters: {

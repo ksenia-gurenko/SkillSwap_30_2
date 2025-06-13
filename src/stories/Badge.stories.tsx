@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Badge from '../shared/ui/badge';
+import { Badge } from '../shared/ui';
 
 const meta: Meta<typeof Badge> = {
-  title: 'Shared UI/Badge',
+  title: 'UI/Badge',
   component: Badge,
   tags: ['autodocs'],
   argTypes: {
@@ -14,7 +14,7 @@ const meta: Meta<typeof Badge> = {
       action: 'clicked',
       description: 'Обработчик клика на бейдж'
     }
-  },
+  }
 };
 
 export default meta;
@@ -23,28 +23,28 @@ type Story = StoryObj<typeof Badge>;
 // Базовая история
 export const Primary: Story = {
   args: {
-    count: 5,
-  },
+    count: 5
+  }
 };
 
 // Бейдж с кликом
 export const Clickable: Story = {
   args: {
     count: 10,
-    onClick: () => console.log('Badge clicked!'),
-  },
+    onClick: () => console.log('Badge clicked!')
+  }
 };
 
 // Бейдж с нулевым значением
 export const ZeroCount: Story = {
   args: {
-    count: 0,
-  },
+    count: 0
+  }
 };
 
 // Бейдж с большим числом
 export const LargeNumber: Story = {
   args: {
-    count: 99,
-  },
+    count: 99
+  }
 };
