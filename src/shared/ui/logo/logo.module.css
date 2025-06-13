@@ -3,15 +3,24 @@
   align-items: center;
   gap: 12px;
   width: fit-content;
+  cursor: pointer;
 }
 
 .icon {
   display: flex;
+  align-items: center;
+  justify-content: center;
   justify-content: center;
   align-items: center;
 }
 
 .text {
+  color: #253017;
+  font-family: 'Jost', 'Futura', 'Arial', sans-serif;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: -0.011em;
+  text-align: center;
   color: #253017;
   font-size: 24px;
   font-family: 'Jost', 'Futura', 'Arial', sans-serif;

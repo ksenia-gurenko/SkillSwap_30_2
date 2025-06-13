@@ -13,7 +13,6 @@ export const FooterUI: FC = () => (
         <div className={styles.logoSection}>
           <LogoUI />
         </div>
-
         {/* Второй блок - О проекте, Все навыки */}
         <div className={styles.block}>
           <div className={styles.linkListCenter}>

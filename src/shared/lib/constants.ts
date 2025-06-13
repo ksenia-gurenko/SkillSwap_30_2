@@ -3,3 +3,11 @@ export enum USER_AVATAR_SIZE {
   MEDIUM = 'medium',
   LARGE = 'large'
 }
+
+export enum ICON_TYPE {
+  MOON,
+  NOTIFICATION,
+  LIKE,
+  CHEVRON_DOWN,
+  SEARCH
+}
