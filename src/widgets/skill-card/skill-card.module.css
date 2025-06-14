@@ -18,16 +18,17 @@
   align-items: flex-start;
 }
 
-.skills {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
 .section {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  width: 284px;
+}
+
+.skills {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .sectionTitle {
@@ -39,8 +40,10 @@
 
 .tags {
   display: flex;
-  flex-wrap: wrap;
   gap: 8px;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 100%; 
 }
 
 .buttonWrapper {

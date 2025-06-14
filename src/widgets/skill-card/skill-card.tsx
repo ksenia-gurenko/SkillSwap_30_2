@@ -1,8 +1,9 @@
-import type { FC } from 'react';
+import { type FC } from 'react';
 import type { TSkillCardProps } from './type';
 import styles from './skill-card.module.css';
-import { Badge, Button, IconButtonUI, Tag, UserInfoUI } from '../../shared/ui';
+import { Button, IconButtonUI, UserInfoUI } from '../../shared/ui';
 import { ICON_TYPE } from '../../shared/lib/constants';
+import { OverflowTags } from '../overflow-tags';
 
 export const SkillCard: FC<TSkillCardProps> = ({
   user,
@@ -12,9 +13,6 @@ export const SkillCard: FC<TSkillCardProps> = ({
   isLiked,
   onDetailsClick
 }) => {
-  const MAX_VISIBLE_TAGS = 2;
-  const visibleTags = wantsToLearn.slice(0, MAX_VISIBLE_TAGS);
-  const hiddenTagsCount = wantsToLearn.length - MAX_VISIBLE_TAGS;
 
   return (
     <div className={styles.card}>
@@ -26,25 +24,20 @@ export const SkillCard: FC<TSkillCardProps> = ({
             city={user.city}
             age={user.age}
           />
-          <IconButtonUI type={ICON_TYPE.LIKE} onClick={onLikeToggle} />
+          <IconButtonUI type={ICON_TYPE.LIKE} isActive={isLiked} onClick={onLikeToggle} />
         </div>
 
         <div className={styles.skills}>
           <div className={styles.section}>
             <div className={styles.sectionTitle}>Может научить:</div>
             <div className={styles.tags}>
-              {canTeach.map((skill) => (
-                <Tag key={skill} text={skill} />
-              ))}
+              <OverflowTags items={canTeach} gap={8} />
             </div>
           </div>
           <div className={styles.section}>
             <div className={styles.sectionTitle}>Хочет научиться:</div>
             <div className={styles.tags}>
-              {visibleTags.map((skill) => (
-                <Tag key={skill} text={skill} />
-              ))}
-              {hiddenTagsCount > 0 && <Badge count={hiddenTagsCount} />}
+              <OverflowTags items={wantsToLearn} gap={8} />
             </div>
           </div>
         </div>

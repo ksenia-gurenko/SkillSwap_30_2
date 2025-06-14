@@ -43,7 +43,7 @@ export const SkillCardSofia: Story = {
       age: 24
     },
     canTeach: ['Медитация'],
-    wantsToLearn: ['Французский язык', 'Немецкий язык', 'Тайм менеджмент'],
+    wantsToLearn: ['Французский язык', 'Немецкий язык', 'Тайм менеджмент', 'Игра на барабанах'],
     onLikeToggle: () => {},
     isLiked: false,
     onDetailsClick: () => {}
