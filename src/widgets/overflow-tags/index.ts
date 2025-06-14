@@ -1,1 +1,1 @@
-export { OverflowTags } from "./overflow-tags";
+export { OverflowTags } from './overflow-tags';

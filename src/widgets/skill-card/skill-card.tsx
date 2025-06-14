@@ -13,7 +13,6 @@ export const SkillCard: FC<TSkillCardProps> = ({
   isLiked,
   onDetailsClick
 }) => {
-
   const contentWidth = 284;
 
   return (
@@ -26,20 +25,32 @@ export const SkillCard: FC<TSkillCardProps> = ({
             city={user.city}
             age={user.age}
           />
-          <IconButtonUI type={ICON_TYPE.LIKE} isActive={isLiked} onClick={onLikeToggle} />
+          <IconButtonUI
+            type={ICON_TYPE.LIKE}
+            isActive={isLiked}
+            onClick={onLikeToggle}
+          />
         </div>
 
         <div className={styles.skills}>
           <div className={styles.section}>
             <div className={styles.sectionTitle}>Может научить:</div>
             <div className={styles.tags}>
-              <OverflowTags items={canTeach} containerWidth={contentWidth} gap={8} />
+              <OverflowTags
+                items={canTeach}
+                containerWidth={contentWidth}
+                gap={8}
+              />
             </div>
           </div>
           <div className={styles.section}>
             <div className={styles.sectionTitle}>Хочет научиться:</div>
             <div className={styles.tags}>
-              <OverflowTags items={wantsToLearn} containerWidth={contentWidth} gap={8} />
+              <OverflowTags
+                items={wantsToLearn}
+                containerWidth={contentWidth}
+                gap={8}
+              />
             </div>
           </div>
         </div>
