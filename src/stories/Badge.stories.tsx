@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Badge from '../shared/ui/badge';
+import { Badge } from '../shared/ui';
 
 const meta: Meta<typeof Badge> = {
-  title: 'Shared UI/Badge',
+  title: 'UI/Badge',
   component: Badge,
   tags: ['autodocs'],
   argTypes: {

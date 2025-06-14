@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { LikeButtonUI } from '../shared/ui';
 
 const meta = {
-  title: 'LikeButtonUI',
+  title: 'UI/LikeButtonUI',
   component: LikeButtonUI,
   tags: ['autodocs'],
   parameters: {

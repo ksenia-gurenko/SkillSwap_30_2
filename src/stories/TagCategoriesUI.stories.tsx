@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Tag, SKILL_CATEGORIES } from '../shared/ui/tag';
+import { Tag, SKILL_CATEGORIES } from '../shared/ui';
 
 /**
  * Мета-конфигурация для отображения всех категорий тегов
  */
 const meta: Meta<typeof Tag> = {
-  title: 'UI/Tag/All Categories',
+  title: 'UI/Tag',
   component: Tag,
   parameters: {
     layout: 'padded',
