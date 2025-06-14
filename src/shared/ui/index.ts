@@ -1,4 +1,3 @@
-export * from './like-button';
 export * from './user-avatar';
 export * from './user-info';
 export * from './stepper';
@@ -6,4 +5,6 @@ export * from './logo';
 export * from './footer';
 export * from './badge';
 export * from './button';
-export * from './tag';
+export * from './app-header';
+export * from './icon';
+export * from './tag';''

@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  width: 24px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
