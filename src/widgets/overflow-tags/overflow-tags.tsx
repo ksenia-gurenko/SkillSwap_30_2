@@ -6,7 +6,7 @@ import styles from './overflow-tags.module.css';
 export const OverflowTags: FC<TOverflowTagsProps> = ({
     items,
     containerWidth,
-    gap,
+    gap = 8,
 }) => {
     const [visibleCount, setVisibleCount] = useState(items.length);
     const containerRef = useRef<HTMLDivElement>(null);
@@ -17,6 +17,8 @@ export const OverflowTags: FC<TOverflowTagsProps> = ({
             const containerWidth = containerRef.current.offsetWidth;
             let totalWidth = 0;
             let fitCount = 0;
+            let maxBadgeWidth = 50;
+            totalWidth += maxBadgeWidth;
 
             const tags = Array.from(containerRef.current.childNodes) as HTMLElement[];
             tags.forEach(child => {
