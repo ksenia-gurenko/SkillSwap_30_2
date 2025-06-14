@@ -14,6 +14,8 @@ export const SkillCard: FC<TSkillCardProps> = ({
   onDetailsClick
 }) => {
 
+  const contentWidth = 284;
+
   return (
     <div className={styles.card}>
       <div className={styles.content}>
@@ -31,19 +33,19 @@ export const SkillCard: FC<TSkillCardProps> = ({
           <div className={styles.section}>
             <div className={styles.sectionTitle}>Может научить:</div>
             <div className={styles.tags}>
-              <OverflowTags items={canTeach} gap={8} />
+              <OverflowTags items={canTeach} containerWidth={contentWidth} gap={8} />
             </div>
           </div>
           <div className={styles.section}>
             <div className={styles.sectionTitle}>Хочет научиться:</div>
             <div className={styles.tags}>
-              <OverflowTags items={wantsToLearn} gap={8} />
+              <OverflowTags items={wantsToLearn} containerWidth={contentWidth} gap={8} />
             </div>
           </div>
         </div>
 
         <div className={styles.buttonWrapper}>
-          <Button width={284} fill onClick={onDetailsClick}>
+          <Button width={contentWidth} fill onClick={onDetailsClick}>
             Подробнее
           </Button>
         </div>

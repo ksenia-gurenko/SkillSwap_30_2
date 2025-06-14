@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState, type FC } from "react";
 import type { TOverflowTagsProps } from "./type";
 import { Badge, Tag } from "../../shared/ui";
+import styles from './overflow-tags.module.css';
 
 export const OverflowTags: FC<TOverflowTagsProps> = ({
     items,
-    gap
+    containerWidth,
+    gap,
 }) => {
     const [visibleCount, setVisibleCount] = useState(items.length);
     const containerRef = useRef<HTMLDivElement>(null);
@@ -28,10 +30,14 @@ export const OverflowTags: FC<TOverflowTagsProps> = ({
         checkOverflow();
         window.addEventListener('resize', checkOverflow);
         return () => window.removeEventListener('resize', checkOverflow);
-    }, [items]);
+    }, [items, gap]);
 
     return (
-        <div ref={containerRef} className="overflow-container">
+        <div
+            ref={containerRef}
+            className={styles.container}
+            style={{ gap: `${gap}px`, width: `${containerWidth}px` }}>
+
             {items.slice(0, visibleCount).map(item => (
                 <Tag key={item} text={item} />
             ))}

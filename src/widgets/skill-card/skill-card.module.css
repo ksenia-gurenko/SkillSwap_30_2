@@ -22,7 +22,6 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  width: 284px;
 }
 
 .skills {
@@ -36,14 +35,6 @@
   font-size: 16px;
   font-weight: 500;
   color: #253017;
-}
-
-.tags {
-  display: flex;
-  gap: 8px;
-  overflow: hidden;
-  white-space: nowrap;
-  max-width: 100%; 
 }
 
 .buttonWrapper {
