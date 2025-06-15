@@ -1,0 +1,47 @@
+[
+    {
+        "user": {
+            "avatar": "src/assets/avatar_ivan.png",
+            "name": "Иван",
+            "city": "Санкт-Петербург",
+            "age": "34"
+        },
+        "canTeach": [
+            "Игра на барабанах"
+        ],
+        "wantsToLearn": [
+            "Тайм менеджмент",
+            "Медитация"
+        ]
+    },
+    {
+        "user": {
+            "avatar": "src/assets/avatar_ana.png",
+            "name": "Анна",
+            "city": "Казань",
+            "age": "26"
+        },
+        "canTeach": [
+            "Английский язык"
+        ],
+        "wantsToLearn": [
+            "Тайм менеджмент",
+            "Медитация"
+        ]
+    },
+    {
+        "user": {
+            "avatar": "src/assets/avatar_maksim.png",
+            "name": "Максим",
+            "city": "Москва",
+            "age": "23"
+        },
+        "canTeach": [
+            "Бизнес-план"
+        ],
+        "wantsToLearn": [
+            "Тайм менеджмент",
+            "Медитация"
+        ]
+    }
+]
