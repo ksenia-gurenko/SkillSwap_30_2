@@ -12,7 +12,7 @@
 }
 
 @font-face {
-  font-weight: 400;
+  font-weight: 400, 500;
   font-family: 'Roboto';
   src: url('./font-files/Roboto/Roboto-VariableFont_wght.ttf')
     format('truetype');

@@ -3,7 +3,7 @@ import { AppHeaderUI } from '../shared/ui';
 import { MemoryRouter } from 'react-router-dom';
 
 const meta = {
-  title: 'AppHeaderUI',
+  title: 'UI/AppHeaderUI',
   component: AppHeaderUI,
   tags: ['autodocs'],
   parameters: {
