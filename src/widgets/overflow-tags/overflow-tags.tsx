@@ -44,7 +44,7 @@ export const OverflowTags: FC<TOverflowTagsProps> = ({
         <Tag key={item} text={item} />
       ))}
       {visibleCount < items.length && (
-        <Badge count={items.length - visibleCount} />
+        <Badge count={items.length - visibleCount} onClick={() => { }} />
       )}
     </div>
   );
