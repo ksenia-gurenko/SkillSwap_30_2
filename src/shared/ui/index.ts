@@ -1,10 +1,11 @@
+export * from './stepper';
 export * from './user-avatar';
 export * from './user-info';
-export * from './stepper';
 export * from './logo';
 export * from './footer';
 export * from './badge';
 export * from './button';
 export * from './app-header';
 export * from './icon';
-export * from './tag';''
+export * from './tag';
+('');
