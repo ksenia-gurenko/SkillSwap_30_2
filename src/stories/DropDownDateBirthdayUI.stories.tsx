@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
 import { DropDownDateBirthday } from '../shared/ui/dropdown-date-birthday';
-import '../index.css'; // Возможно, потребуется импортировать глобальные стили
 
 const meta: Meta<typeof DropDownDateBirthday> = {
   title: 'UI/DropDownDateBirthday',

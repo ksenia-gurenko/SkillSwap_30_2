@@ -174,8 +174,9 @@ export const DropDownDateBirthday = forwardRef<HTMLDivElement, DropDownDateBirth
       setShowYearPicker(false);
     };
 
-    const currentYear = currentViewDate.getFullYear();
-    const years = Array.from({ length: 201 }, (_, i) => currentYear - 100 + i); // 100 лет назад и 100 лет вперед
+    const currentYear = new Date().getFullYear(); // Получаем текущий год
+    const startYear = 1890;
+    const years = Array.from({ length: currentYear - startYear + 1 }, (_, i) => startYear + i); // Года от 1890 до текущего
 
     return (
       <div
