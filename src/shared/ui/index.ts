@@ -7,5 +7,5 @@ export * from './badge';
 export * from './button';
 export * from './app-header';
 export * from './icon';
-export * from './tag-catalog';''
-export * from './input';
+export * from './tag-catalog';
+export * from './section-header';''

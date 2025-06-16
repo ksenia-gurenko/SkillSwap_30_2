@@ -28,8 +28,7 @@
   color: var(--btn-secondary-color);
   font-weight: 400;
   font-size: 16px;
-  font-family: 'Roboto', sans-serif;
-  line-height: 24px;
+  font-family: "Roboto", sans-serif;
   white-space: nowrap;
   text-decoration: none;
   background: transparent;
@@ -43,15 +42,15 @@
  * Различные горизонтальные паддинги
  */
 
-.button--padding-55 {
+.button_padding-55 {
   padding-inline: 55px;
 }
 
-.button--padding-80 {
+.button_padding-80 {
   padding-inline: 80px;
 }
 
-.button--padding-192 {
+.button_padding-192 {
   padding-inline: 192px;
 }
 
@@ -87,10 +86,10 @@
  * Кнопки с иконками
  */
 
-.button--close,
-.button--edit,
-.button--pending,
-.button--view-all {
+.button_close,
+.button_edit,
+.button_pending,
+.button_view-all {
   gap: 8px;
   color: var(--btn-secondary-color);
 }
@@ -99,29 +98,74 @@
  * Варианты кнопок
  */
 
-.button--filled {
+.button_filled {
   color: var(--btn-secondary-color);
   background-color: var(--btn-primary);
   border-color: var(--btn-primary);
 }
 
-.button--close,
-.button--view-all {
+.button_close,
+.button_view-all {
   background: var(--btn-white);
   border: none;
 }
 
-.button--edit {
+.button_edit {
   background: var(--btn-white);
   border-color: var(--btn-primary);
 }
 
-.button--pending {
+.button_pending {
   background: transparent;
   border-color: var(--btn-primary);
 }
 
 /* ==================== ИНТЕРАКТИВНЫЕ СОСТОЯНИЯ ==================== */
+
+/* Focus */
+
+.button:focus-visible {
+  outline: 2px solid var(--btn-primary);
+  outline-offset: 2px;
+}
+
+/* Disabled */
+
+.button:disabled {
+  color: var(--btn-disabled-color);
+  cursor: not-allowed;
+}
+
+.button:disabled:not(
+    .button_filled,
+    .button_close,
+    .button_edit,
+    .button_pending,
+    .button_view-all
+  ) {
+  border-color: var(--btn-disabled-bg);
+}
+
+.button_filled:disabled {
+  color: var(--btn-hover-color);
+  background-color: var(--btn-disabled-bg);
+  border-color: var(--btn-disabled-bg);
+}
+
+.button_close:disabled,
+.button_edit:disabled,
+.button_view-all:disabled {
+  background-color: var(--btn-light-bg);
+}
+
+.button_edit:disabled {
+  border-color: var(--btn-disabled-bg);
+}
+
+.button_pending:disabled {
+  background-color: transparent;
+  border-color: var(--btn-disabled-bg);
+}
 
 /* Hover */
 
@@ -130,28 +174,28 @@
 }
 
 .button:hover:not(
-    .button--filled,
-    .button--close,
-    .button--pending,
-    .button--view-all,
+    .button_filled,
+    .button_close,
+    .button_pending,
+    .button_view-all,
     :disabled
   ),
-.button--edit:hover:not(:disabled) {
+.button_edit:hover:not(:disabled) {
   color: var(--btn-hover-color);
   border-color: var(--btn-primary-hover);
 }
 
-.button--filled:hover:not(:disabled) {
+.button_filled:hover:not(:disabled) {
   background-color: var(--btn-primary-hover);
   border-color: var(--btn-primary-hover);
 }
 
-.button--close:hover:not(:disabled),
-.button--view-all:hover:not(:disabled) {
+.button_close:hover:not(:disabled),
+.button_view-all:hover:not(:disabled) {
   background-color: var(--btn-light-bg);
 }
 
-.button--pending:hover:not(:disabled) {
+.button_pending:hover:not(:disabled) {
   background-color: var(--btn-edit-hover);
   border-color: var(--btn-primary-hover);
 }
@@ -163,87 +207,42 @@
 }
 
 .button:active:not(
-    .button--filled,
-    .button--close,
-    .button--pending,
-    .button--view-all,
+    .button_filled,
+    .button_close,
+    .button_pending,
+    .button_view-all,
     :disabled
   ),
-.button--edit:active:not(:disabled) {
+.button_edit:active:not(:disabled) {
   color: var(--btn-secondary-color);
   border-color: var(--btn-primary-active);
 }
 
-.button--filled:active:not(:disabled) {
+.button_filled:active:not(:disabled) {
   color: var(--btn-white);
   background-color: var(--btn-primary-active);
   border-color: var(--btn-primary-active);
 }
 
-.button--close:active:not(:disabled),
-.button--view-all:active:not(:disabled) {
+.button_close:active:not(:disabled),
+.button_view-all:active:not(:disabled) {
   background-color: var(--btn-primary-hover);
 }
 
-.button--pending:active:not(:disabled) {
+.button_pending:active:not(:disabled) {
   color: var(--btn-secondary-color);
   background-color: var(--btn-edit-active);
   border-color: var(--btn-primary-active);
 }
 
-/* Disabled */
-
-.button:disabled {
-  color: var(--btn-disabled-color);
-  cursor: not-allowed;
-}
-
-.button:disabled:not(
-    .button--filled,
-    .button--close,
-    .button--edit,
-    .button--pending,
-    .button--view-all
-  ) {
-  border-color: var(--btn-disabled-bg);
-}
-
-.button--filled:disabled {
-  color: var(--btn-hover-color);
-  background-color: var(--btn-disabled-bg);
-  border-color: var(--btn-disabled-bg);
-}
-
-.button--close:disabled,
-.button--edit:disabled,
-.button--view-all:disabled {
-  background-color: var(--btn-light-bg);
-}
-
-.button--edit:disabled {
-  border-color: var(--btn-disabled-bg);
-}
-
-.button--pending:disabled {
-  background-color: transparent;
-  border-color: var(--btn-disabled-bg);
-}
-
-/* Focus */
-
-.button:focus-visible {
-  outline: 2px solid var(--btn-primary);
-  outline-offset: 2px;
-}
-
 /* Фильтры для иконок */
 
-.button--edit:hover:not(:disabled) .button__edit-icon {
+.button_edit:hover:not(:disabled) .button__edit-icon {
   filter: brightness(0) saturate(100%) invert(36%) sepia(12%) saturate(392%)
     hue-rotate(68deg) brightness(96%) contrast(88%);
 }
 
-.button--edit:active:not(:disabled) .button__edit-icon {
+.button_edit:active:not(:disabled) .button__edit-icon {
   filter: brightness(0) saturate(100%) invert(14%) sepia(16%) saturate(1102%)
     hue-rotate(68deg) brightness(97%) contrast(89%);
-}
+} 
