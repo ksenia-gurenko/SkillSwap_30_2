@@ -2,6 +2,7 @@
 
 .footer {
   max-width: 1440px;
+  height: 168px;
   margin: 0 auto;
   padding: 32px 36px;
 }
@@ -14,32 +15,26 @@
   justify-content: flex-start;
   align-items: flex-start;
   gap: 24px;
-  width: 100%;
+  height: 100%;
 }
 
 /* Каждый блок */
 
 .block {
-  position: relative;
   display: flex;
-  flex-shrink: 0;
+  flex-shrink: 1;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 16px;
   width: 324px;
+  height: 100%;
 }
 
-/* Сдвигаем блоки 2, 3, 4 вниз на 60px */
+/* Убираем лишние margin и используем gap */
 
 .block:nth-child(2),
 .block:nth-child(3),
 .block:nth-child(4) {
-  margin-top: 60px;
-}
-
-/* Логотип в первом блоке (вверху) */
-
-.logoSection {
-  margin-bottom: 112px;
+  margin-left: 0;
 }
 
 /* Центрирование списка во втором, третьем и четвертом блоках */
@@ -71,11 +66,18 @@
 
 .link {
   color: #253017;
+  font-weight: 400;
   font-size: 16px;
-  font-family: 'Roboto', 'Arial', sans-serif;
+  font-family: 'Roboto', sans-serif;
   line-height: 1.5;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
   text-decoration: none;
   transition: color 0.2s ease;
+}
+
+.link:hover {
+  color: #253017;
 }
 
 /* Копирайт в первом блоке (внизу) */
@@ -91,38 +93,9 @@
   line-height: 1.2;
 }
 
-/* Адаптивность для мобильных устройств */
-
-@media (width <= 1440px) {
-  .blocksContainer {
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-
-  .block {
-    width: calc(50% - 12px);
-    min-width: 280px;
-  }
-}
-
-@media (width <= 768px) {
-  .blocksContainer {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .block {
-    width: 100%;
-    max-width: 324px;
-  }
-
-  .block:nth-child(2),
-  .block:nth-child(3),
-  .block:nth-child(4) {
-    margin-top: 0;
-  }
-
-  .footer {
-    padding: 24px 20px;
-  }
+.copyrightText {
+  margin: 0;
+  color: #69735d;
+  font-size: 12px;
+  white-space: nowrap;
 }
