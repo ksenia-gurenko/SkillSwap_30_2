@@ -13,64 +13,8 @@ export const FooterUI: FC = () => (
         <div className={styles.logoSection}>
           <LogoUI />
         </div>
-        {/* Второй блок - О проекте, Все навыки */}
-        <div className={styles.block}>
-          <div className={styles.linkListCenter}>
-            <ul className={styles.linkList}>
-              <li>
-                {/* TODO: Заменить на реальные ссылки */}
-                <a href='#' className={styles.link}>
-                  О проекте
-                </a>
-              </li>
-              <li>
-                {/* TODO: Заменить на реальные ссылки */}
-                <a href='#' className={styles.link}>
-                  Все навыки
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        {/* Третий блок - Контакты, Блог */}
-        <div className={styles.block}>
-          <div className={styles.linkListCenter}>
-            <ul className={styles.linkList}>
-              <li>
-                {/* TODO: Заменить на реальные ссылки */}
-                <a href='#' className={styles.link}>
-                  Контакты
-                </a>
-              </li>
-              <li>
-                {/* TODO: Заменить на реальные ссылки */}
-                <a href='#' className={styles.link}>
-                  Блог
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        {/* Четвертый блок - Политика конфиденциальности, Пользовательское соглашение */}
-        <div className={styles.block}>
-          <div className={styles.linkListCenter}>
-            <ul className={styles.linkList}>
-              <li>
-                {/* TODO: Заменить на реальные ссылки */}
-                <a href='#' className={styles.link}>
-                  Политика конфиденциальности
-                </a>
-              </li>
-              <li>
-                {/* TODO: Заменить на реальные ссылки */}
-                <a href='#' className={styles.link}>
-                  Пользовательское соглашение
-                </a>
-              </li>
-            </ul>
-          </div>
+        <div className={styles.copyrightSection}>
+          <p className={styles.copyrightText}>SkillSwap &mdash; 2025</p>
         </div>
       </div>
 
@@ -79,11 +23,13 @@ export const FooterUI: FC = () => (
         <div className={styles.linkListCenter}>
           <ul className={styles.linkList}>
             <li>
+              {/* TODO: Заменить на реальные ссылки */}
               <a href='#' className={styles.link}>
                 О проекте
               </a>
             </li>
             <li>
+              {/* TODO: Заменить на реальные ссылки */}
               <a href='#' className={styles.link}>
                 Все навыки
               </a>
@@ -97,11 +43,13 @@ export const FooterUI: FC = () => (
         <div className={styles.linkListCenter}>
           <ul className={styles.linkList}>
             <li>
+              {/* TODO: Заменить на реальные ссылки */}
               <a href='#' className={styles.link}>
                 Контакты
               </a>
             </li>
             <li>
+              {/* TODO: Заменить на реальные ссылки */}
               <a href='#' className={styles.link}>
                 Блог
               </a>
@@ -115,11 +63,13 @@ export const FooterUI: FC = () => (
         <div className={styles.linkListCenter}>
           <ul className={styles.linkList}>
             <li>
+              {/* TODO: Заменить на реальные ссылки */}
               <a href='#' className={styles.link}>
                 Политика конфиденциальности
               </a>
             </li>
             <li>
+              {/* TODO: Заменить на реальные ссылки */}
               <a href='#' className={styles.link}>
                 Пользовательское соглашение
               </a>
