@@ -1,6 +1,6 @@
+export * from './stepper';
 export * from './user-avatar';
 export * from './user-info';
-export * from './stepper';
 export * from './logo';
 export * from './footer';
 export * from './badge';
