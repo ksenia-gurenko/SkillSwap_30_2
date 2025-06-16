@@ -1,7 +1,17 @@
 .wrapper {
     position: relative;
-    display: inline-block;
-    font-family: Arial, sans-serif; /* Пример шрифта */
+    display: inline-flex;
+    flex-direction: column;
+    font-family: "Roboto", sans-serif;
+  }
+  
+  .label {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #253017;
+    text-align: left;
+    margin-bottom: 4px;
   }
   
   .inputWrapper {
@@ -9,10 +19,10 @@
     align-items: center;
     border: 1px solid #ccc;
     border-radius: 8px;
-    padding: 8px 12px;
+    padding: 12px 20px;
     background-color: #fff;
     cursor: pointer;
-    width: 200px; /* Пример ширины */
+    width: 168px;
   }
   
   .inputWrapper.disabled {
@@ -29,6 +39,7 @@
     color: #333;
     cursor: pointer;
     background-color: transparent;
+    max-width: 140px; /* Ограничиваем ширину текста даты */
   }
   
   .input::placeholder {
@@ -38,7 +49,7 @@
   .icon {
     width: 20px;
     height: 20px;
-    margin-left: 8px;
+    margin-left: 9px;
     cursor: pointer;
   }
   
@@ -58,16 +69,60 @@
   
   .calendarHeader {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Центрируем месяц и год */
     align-items: center;
     margin-bottom: 16px;
     font-weight: bold;
+    gap: 20px; /* Расстояние между блоками месяца и года */
   }
   
-  .month,
-  .year {
+  .monthSelect,
+  .yearSelect {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 4px; /* Расстояние между текстом и стрелкой */
+  }
+  
+  .monthName,
+  .yearNumber {
     font-size: 18px;
-    color: #333;
+    color: #253017; /* Новый цвет шрифта */
+  }
+  
+  .arrowIcon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .pickerDropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 11;
+    width: 100%;
+  }
+  
+  .pickerItem {
+    padding: 8px 12px;
+    cursor: pointer;
+    color: #253017; /* Новый цвет шрифта для элементов списка */
+  }
+  
+  .pickerItem:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .pickerItem.selectedPickerItem {
+    background-color: #e0e0e0;
+    font-weight: bold;
   }
   
   .weekdays {
@@ -76,7 +131,13 @@
     text-align: center;
     margin-bottom: 8px;
     font-weight: bold;
-    color: #8cc63f; /* Цвет как на макете */
+    color: #8cc63f;
+  }
+  
+  .daysGrid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
   }
   
   .day {
@@ -95,9 +156,19 @@
     background-color: #f0f0f0;
   }
   
+  .day.emptyDay {
+    color: #ccc;
+    cursor: default;
+    background-color: transparent;
+  }
+  
   .day.selected {
-    background-color: #8cc63f; /* Цвет выделенного дня */
+    background-color: #8cc63f;
     color: #fff;
+  }
+  
+  .day.today {
+    border: 1px solid #8cc63f;
   }
   
   .actions {

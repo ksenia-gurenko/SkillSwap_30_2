@@ -8,4 +8,5 @@ export * from './button';
 export * from './app-header';
 export * from './icon';
 export * from './tag-catalog';
-export * from './section-header';''
+export * from './section-header';
+export * from './dropdown-date-birthday';
