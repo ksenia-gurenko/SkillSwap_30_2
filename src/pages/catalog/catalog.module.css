@@ -1,2 +1,41 @@
 .containerMain {
+    display: flex;
+    padding: 0 40px;
+    background-color: #f9faf7;
+    box-sizing: border-box;
+}
+
+.filters {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 12px;
+    width: 260px;
+    margin-right: 32px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.catalogContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.sectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cardGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(284px, 1fr));
+    gap: 24px;
 }

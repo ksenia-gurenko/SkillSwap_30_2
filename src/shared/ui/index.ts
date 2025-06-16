@@ -8,3 +8,4 @@ export * from './button';
 export * from './app-header';
 export * from './icon';
 export * from './Tag';
+export * from './section-header';
