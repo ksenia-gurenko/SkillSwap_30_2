@@ -1,0 +1,79 @@
+/* Основной контейнер страницы */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Контейнер контента (между header и footer) */
+
+.content {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  width: 460px;
+  margin: 204px auto;
+  padding: 0;
+}
+
+/* Текстовый блок */
+
+.textBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  width: 460px;
+  padding: 0;
+}
+
+/* Заголовок h2 */
+
+.heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 28px;
+  color: #253017;
+  font-weight: 500;
+  font-size: 24px;
+  font-family: 'Jost', sans-serif;
+  font-style: normal;
+  line-height: 28;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+
+/* Описание под заголовком */
+
+.description {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 48px;
+  color: #253017;
+  font-weight: 400;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  line-height: 24;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+/* Контейнер для кнопок */
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+  width: 460px;
+  height: 48px;
+  padding: 0;
+}
