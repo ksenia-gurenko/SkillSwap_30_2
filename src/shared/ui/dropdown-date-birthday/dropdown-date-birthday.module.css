@@ -6,7 +6,6 @@
   }
   
   .label {
-    font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-size: 16px;
     color: #253017;
@@ -20,13 +19,13 @@
     border: 1px solid #69735D;
     border-radius: 8px;
     padding: 12px 20px;
-    background-color: #fff;
+    background: #fff;
     cursor: pointer;
     width: 168px;
   }
   
   .inputWrapper.disabled {
-    background-color: #f0f0f0;
+    background: #f0f0f0;
     cursor: not-allowed;
     opacity: 0.7;
   }
@@ -38,8 +37,8 @@
     font-size: 16px;
     color: #253017;
     cursor: pointer;
-    background-color: transparent;
-    max-width: 140px; /* Ограничиваем ширину текста даты */
+    background: transparent;
+    max-width: 140px;
   }
   
   .input::placeholder {
@@ -58,22 +57,22 @@
     top: 100%;
     left: 0;
     z-index: 10;
-    background-color: #fff;
-    border: 1px solid #ccc;
+    background: #fff;
+    border: 1px solid #69735D;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     padding: 24px 28px 16px;
     margin-top: 8px;
-    width: 220px; /* Ширина календаря */
+    width: 220px;
   }
   
   .calendarHeader {
     display: flex;
-    justify-content: center; /* Центрируем месяц и год */
+    justify-content: center;
     align-items: center;
     margin-bottom: 16px;
     font-weight: bold;
-    gap: 20px; /* Расстояние между блоками месяца и года */
+    gap: 20px;
   }
   
   .monthSelect,
@@ -82,13 +81,13 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    gap: 4px; /* Расстояние между текстом и стрелкой */
+    gap: 4px;
   }
   
   .monthName,
   .yearNumber {
     font-size: 16px;
-    color: #253017; /* Новый цвет шрифта */
+    color: #253017;
   }
   
   .arrowIcon {
@@ -96,34 +95,33 @@
     height: 16px;
   }
   
-  .pickerDropdown {
+  .pickerDropdown,
+  .pickerDropdown_open,
+  .pickerDropdown_closed {
     position: absolute;
     top: 42%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
+    width: 220px;
+    height: 190px;
+    background: #fff;
     border: 1px solid #69735D;
     border-radius: 12px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    height: 190px;
-    width: 220px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     overflow-y: auto;
     z-index: 11;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     padding: 8px;
-
-    /* Начальное состояние для анимации */
+    transition: opacity 0.1s, visibility 0.1s, transform 0.1s;
     opacity: 0;
     visibility: hidden;
-    transform: translate(-50%, -60%); /* Небольшое смещение вверх при появлении */
-    transition: opacity 0.1s ease-out, visibility 0.1s ease-out, transform 0.1s ease-out; /* Плавный переход */
+    transform: translate(-50%, -60%);
   }
   
   .pickerDropdown_open {
     opacity: 1;
     visibility: visible;
-    transform: translate(-50%, -50%); /* Конечная позиция */
+    transform: translate(-50%, -50%);
   }
   
   .pickerDropdown_closed {
@@ -144,11 +142,11 @@
   }
   
   .pickerItem:hover {
-    background-color: #f0f0f0;
+    background: #f0f0f0;
   }
   
   .pickerItem.selectedPickerItem {
-    background-color: #ABD27A;
+    background: #ABD27A;
     color: #253017;
     font-weight: bold;
   }
@@ -181,17 +179,17 @@
   }
   
   .day:hover {
-    background-color: #f0f0f0;
+    background: #f0f0f0;
   }
   
   .day.emptyDay {
-    color: #9CA197; /* Новый цвет для дней вне текущего месяца */
+    color: #9CA197;
     cursor: default;
-    background-color: transparent;
+    background: transparent;
   }
   
   .day.selected {
-    background-color: #ABD27A;
+    background: #ABD27A;
     color: #253017;
   }
   
@@ -204,5 +202,9 @@
     justify-content: center;
     gap: 10px;
     margin-top: 16px;
+  }
+  
+  .input:focus {
+    caret-color: #508826;
   }
   

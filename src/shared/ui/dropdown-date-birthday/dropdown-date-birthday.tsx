@@ -51,6 +51,7 @@ export const DropDownDateBirthday = forwardRef<HTMLDivElement, DropDownDateBirth
     const wrapperRef = useRef<HTMLDivElement>(null);
     const monthPickerRef = useRef<HTMLDivElement>(null);
     const yearPickerRef = useRef<HTMLDivElement>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
 
     // Синхронизация selectedDate с value из пропсов и инициализация dateInCalendarView
     useEffect(() => {
@@ -97,6 +98,15 @@ export const DropDownDateBirthday = forwardRef<HTMLDivElement, DropDownDateBirth
       }
     }, [showYearPicker]);
 
+    useEffect(() => {
+      if (isOpen && inputRef.current) {
+        inputRef.current.focus();
+      }
+      if (!isOpen && inputRef.current) {
+        inputRef.current.blur();
+      }
+    }, [isOpen]);
+
     const handleInputClick = () => {
       if (!disabled) {
         setIsOpen(!isOpen);
@@ -110,7 +120,8 @@ export const DropDownDateBirthday = forwardRef<HTMLDivElement, DropDownDateBirth
 
     // Эта функция теперь только выбирает день в календаре (подсвечивает)
     const handleDayClick = (date: Date) => {
-      setDateInCalendarView(date); // Обновляем только временную дату
+      setDateInCalendarView(date);
+      if (inputRef.current) inputRef.current.focus();
     };
 
     const handleCancel = () => {
@@ -263,15 +274,27 @@ export const DropDownDateBirthday = forwardRef<HTMLDivElement, DropDownDateBirth
         <span className={styles.label}>Дата рождения</span>
         <div className={`${styles.inputWrapper} ${disabled ? styles.disabled : ''}`}>
           <input
+            ref={inputRef}
             type="text"
-            readOnly
-            placeholder={placeholder}
-            value={formattedDate}
+            value={isOpen ? "" : formattedDate}
+            placeholder={isOpen ? "" : placeholder}
             onClick={handleInputClick}
             className={styles.input}
             disabled={disabled}
+            style={isOpen ? { caretColor: '#508826' } : {}}
+            tabIndex={0}
+            onChange={() => {}}
+            autoFocus={isOpen}
           />
-          <img src={calendarIcon} alt="Календарь" className={styles.icon} onClick={handleInputClick} />
+          <img
+            src={calendarIcon}
+            alt="calendar"
+            className={styles.calendarIcon}
+            onClick={handleInputClick}
+            style={{ cursor: 'pointer' }}
+            tabIndex={0}
+            aria-label="Открыть календарь"
+          />
         </div>
 
         {isVisibleForTransition && (
