@@ -45,8 +45,9 @@ export const Input: FC<InputProps> = ({
             type='button'
             onClick={() => setIsPasswordVisible((prev) => !prev)}
             className={styles.eyeButton}
+            aria-label={isPasswordVisible ? 'Скрыть пароль' : 'Показать пароль'}
           >
-            <img src={eyeIcon} alt='Переключить видимость' />
+            <img src={eyeIcon} alt='Переключить видимость' aria-hidden="true"/>
           </button>
         )}
       </div>
