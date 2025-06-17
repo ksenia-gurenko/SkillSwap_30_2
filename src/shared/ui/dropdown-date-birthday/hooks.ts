@@ -21,4 +21,4 @@ export const useTransitionState = (isVisible: boolean, delay = 100) => {
   }, [isVisible, delay]);
 
   return isVisibleForTransition;
-}; 
+};

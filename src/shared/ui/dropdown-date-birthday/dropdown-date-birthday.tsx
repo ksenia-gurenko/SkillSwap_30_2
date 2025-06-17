@@ -4,15 +4,19 @@ import styles from './dropdown-date-birthday.module.css';
 import calendarIcon from './calendar.svg'; // иконка календаря
 import arrowIcon from './arrow.svg'; // Новая иконка для стрелок выпадающего списка
 import { Button } from '../button';
-import { MONTH_NAMES, WEEKDAY_NAMES, DEFAULT_PLACEHOLDER, BIRTHDAY_LABEL } from './constants';
+import {
+  MONTH_NAMES,
+  WEEKDAY_NAMES,
+  DEFAULT_PLACEHOLDER,
+  BIRTHDAY_LABEL
+} from './constants';
 import { useTransitionState } from './hooks';
 
 /**
  * Вспомогательная функция для получения количества дней в месяце
  */
-const getDaysInMonth = (year: number, month: number) => {
-  return new Date(year, month + 1, 0).getDate();
-};
+const getDaysInMonth = (year: number, month: number) =>
+  new Date(year, month + 1, 0).getDate();
 
 /**
  * Вспомогательная функция для получения дня недели первого дня месяца (0 - воскресенье, 1 - понедельник)
@@ -25,13 +29,29 @@ const getStartDayOfMonth = (year: number, month: number) => {
 /**
  * Компонент выбора даты рождения с выпадающим календарем
  */
-export const DropDownDateBirthday = forwardRef<HTMLDivElement, DropDownDateBirthdayProps>(
-  ({ value, onChange, placeholder = DEFAULT_PLACEHOLDER, className = '', disabled = false }, ref) => {
+export const DropDownDateBirthday = forwardRef<
+  HTMLDivElement,
+  DropDownDateBirthdayProps
+>(
+  (
+    {
+      value,
+      onChange,
+      placeholder = DEFAULT_PLACEHOLDER,
+      className = '',
+      disabled = false
+    },
+    _ref
+  ) => {
     // Состояния
     const [isOpen, setIsOpen] = useState(false);
     const [selectedDate, setSelectedDate] = useState<Date | null>(value);
-    const [dateInCalendarView, setDateInCalendarView] = useState<Date | null>(value);
-    const [currentViewDate, setCurrentViewDate] = useState<Date>(value || new Date());
+    const [dateInCalendarView, setDateInCalendarView] = useState<Date | null>(
+      value
+    );
+    const [currentViewDate, setCurrentViewDate] = useState<Date>(
+      value || new Date()
+    );
     const [showMonthPicker, setShowMonthPicker] = useState(false);
     const [showYearPicker, setShowYearPicker] = useState(false);
 
@@ -99,7 +119,10 @@ export const DropDownDateBirthday = forwardRef<HTMLDivElement, DropDownDateBirth
     // Обработка клика вне компонента
     useEffect(() => {
       const handleClickOutside = (event: MouseEvent) => {
-        if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
+        if (
+          wrapperRef.current &&
+          !wrapperRef.current.contains(event.target as Node)
+        ) {
           setIsOpen(false);
           setShowMonthPicker(false);
           setShowYearPicker(false);
@@ -108,16 +131,34 @@ export const DropDownDateBirthday = forwardRef<HTMLDivElement, DropDownDateBirth
         }
 
         if (isOpen) {
-          if (showMonthPicker && monthPickerRef.current && !monthPickerRef.current.contains(event.target as Node)) {
-            const monthSelectElement = wrapperRef.current?.querySelector(`.${styles.monthSelect}`);
-            if (monthSelectElement && !monthSelectElement.contains(event.target as Node)) {
+          if (
+            showMonthPicker &&
+            monthPickerRef.current &&
+            !monthPickerRef.current.contains(event.target as Node)
+          ) {
+            const monthSelectElement = wrapperRef.current?.querySelector(
+              `.${styles.monthSelect}`
+            );
+            if (
+              monthSelectElement &&
+              !monthSelectElement.contains(event.target as Node)
+            ) {
               setShowMonthPicker(false);
             }
           }
 
-          if (showYearPicker && yearPickerRef.current && !yearPickerRef.current.contains(event.target as Node)) {
-            const yearSelectElement = wrapperRef.current?.querySelector(`.${styles.yearSelect}`);
-            if (yearSelectElement && !yearSelectElement.contains(event.target as Node)) {
+          if (
+            showYearPicker &&
+            yearPickerRef.current &&
+            !yearPickerRef.current.contains(event.target as Node)
+          ) {
+            const yearSelectElement = wrapperRef.current?.querySelector(
+              `.${styles.yearSelect}`
+            );
+            if (
+              yearSelectElement &&
+              !yearSelectElement.contains(event.target as Node)
+            ) {
               setShowYearPicker(false);
             }
           }
@@ -125,19 +166,22 @@ export const DropDownDateBirthday = forwardRef<HTMLDivElement, DropDownDateBirth
       };
 
       document.addEventListener('mousedown', handleClickOutside);
-      return () => document.removeEventListener('mousedown', handleClickOutside);
+      return () =>
+        document.removeEventListener('mousedown', handleClickOutside);
     }, [isOpen, showMonthPicker, showYearPicker, selectedDate]);
 
     // Форматирование даты
-    const formattedDate = useMemo(() => {
-      return selectedDate
-        ? selectedDate.toLocaleDateString('ru-RU', {
-            day: '2-digit',
-            month: '2-digit',
-            year: 'numeric',
-          })
-        : '';
-    }, [selectedDate]);
+    const formattedDate = useMemo(
+      () =>
+        selectedDate
+          ? selectedDate.toLocaleDateString('ru-RU', {
+              day: '2-digit',
+              month: '2-digit',
+              year: 'numeric'
+            })
+          : '',
+      [selectedDate]
+    );
 
     // Рендер дней календаря
     const renderCalendarDays = useMemo(() => {
@@ -157,11 +201,13 @@ export const DropDownDateBirthday = forwardRef<HTMLDivElement, DropDownDateBirth
 
       return days.map((date, index) => {
         const isCurrentMonthDay = date.getMonth() === month;
-        const isSelected = dateInCalendarView &&
+        const isSelected =
+          dateInCalendarView &&
           dateInCalendarView.getDate() === date.getDate() &&
           dateInCalendarView.getMonth() === date.getMonth() &&
           dateInCalendarView.getFullYear() === date.getFullYear();
-        const isToday = date.getDate() === new Date().getDate() &&
+        const isToday =
+          date.getDate() === new Date().getDate() &&
           date.getMonth() === new Date().getMonth() &&
           date.getFullYear() === new Date().getFullYear();
 
@@ -191,7 +237,9 @@ export const DropDownDateBirthday = forwardRef<HTMLDivElement, DropDownDateBirth
     };
 
     const handleMonthSelect = (monthIndex: number) => {
-      setCurrentViewDate(new Date(currentViewDate.getFullYear(), monthIndex, 1));
+      setCurrentViewDate(
+        new Date(currentViewDate.getFullYear(), monthIndex, 1)
+      );
       setShowMonthPicker(false);
       if (inputRef.current) inputRef.current.focus();
     };
@@ -204,14 +252,26 @@ export const DropDownDateBirthday = forwardRef<HTMLDivElement, DropDownDateBirth
 
     // Рендер компонента
     return (
-      <div className={`${styles.wrapper} ${className}`} ref={wrapperRef}>
+      <div
+        className={`${styles.wrapper} ${className}`}
+        ref={(node) => {
+          if (typeof _ref === 'function') {
+            _ref(node);
+          } else if (_ref) {
+            _ref.current = node;
+          }
+          wrapperRef.current = node;
+        }}
+      >
         <div className={styles.label}>{BIRTHDAY_LABEL}</div>
-        <div className={`${styles.inputWrapper} ${disabled ? styles.disabled : ''}`}>
+        <div
+          className={`${styles.inputWrapper} ${disabled ? styles.disabled : ''}`}
+        >
           <input
             ref={inputRef}
-            type="text"
-            value={isOpen ? "" : formattedDate}
-            placeholder={isOpen ? "" : placeholder}
+            type='text'
+            value={isOpen ? '' : formattedDate}
+            placeholder={isOpen ? '' : placeholder}
             onClick={handleInputClick}
             className={styles.input}
             disabled={disabled}
@@ -221,12 +281,12 @@ export const DropDownDateBirthday = forwardRef<HTMLDivElement, DropDownDateBirth
           />
           <img
             src={calendarIcon}
-            alt="calendar"
+            alt='calendar'
             className={styles.calendarIcon}
             onClick={handleInputClick}
             style={{ cursor: 'pointer' }}
             tabIndex={0}
-            aria-label="Открыть календарь"
+            aria-label='Открыть календарь'
           />
         </div>
 
@@ -234,25 +294,38 @@ export const DropDownDateBirthday = forwardRef<HTMLDivElement, DropDownDateBirth
           <div className={styles.calendarPopup}>
             <div className={styles.calendarHeader}>
               <div className={styles.monthSelect} onClick={handleMonthClick}>
-                <span className={styles.monthName}>{MONTH_NAMES[currentViewDate.getMonth()]}</span>
-                <img src={arrowIcon} alt="arrow" className={styles.arrowIcon} />
+                <span className={styles.monthName}>
+                  {MONTH_NAMES[currentViewDate.getMonth()]}
+                </span>
+                <img src={arrowIcon} alt='arrow' className={styles.arrowIcon} />
               </div>
               <div className={styles.yearSelect} onClick={handleYearClick}>
-                <span className={styles.yearNumber}>{currentViewDate.getFullYear()}</span>
-                <img src={arrowIcon} alt="arrow" className={styles.arrowIcon} />
+                <span className={styles.yearNumber}>
+                  {currentViewDate.getFullYear()}
+                </span>
+                <img src={arrowIcon} alt='arrow' className={styles.arrowIcon} />
               </div>
             </div>
 
             {showMonthPicker && (
-              <div ref={monthPickerRef} className={`${styles.pickerDropdown} ${isMonthPickerVisible ? styles.pickerDropdown_open : styles.pickerDropdown_closed}`}>
+              <div
+                ref={monthPickerRef}
+                className={`${styles.pickerDropdown} ${isMonthPickerVisible ? styles.pickerDropdown_open : styles.pickerDropdown_closed}`}
+              >
                 {MONTH_NAMES.map((month, i) => {
-                  const isFutureMonth = currentViewDate.getFullYear() === new Date().getFullYear() && i > new Date().getMonth();
+                  const isFutureMonth =
+                    currentViewDate.getFullYear() ===
+                      new Date().getFullYear() && i > new Date().getMonth();
                   return (
                     <div
                       key={month}
                       className={`${styles.pickerItem} ${currentViewDate.getMonth() === i ? styles.selectedPickerItem : ''} ${isFutureMonth ? styles.disabled : ''}`}
                       onClick={() => !isFutureMonth && handleMonthSelect(i)}
-                      style={isFutureMonth ? { color: '#9CA197', cursor: 'not-allowed' } : {}}
+                      style={
+                        isFutureMonth
+                          ? { color: '#9CA197', cursor: 'not-allowed' }
+                          : {}
+                      }
                     >
                       {month}
                     </div>
@@ -262,8 +335,14 @@ export const DropDownDateBirthday = forwardRef<HTMLDivElement, DropDownDateBirth
             )}
 
             {showYearPicker && (
-              <div ref={yearPickerRef} className={`${styles.pickerDropdown} ${isYearPickerVisible ? styles.pickerDropdown_open : styles.pickerDropdown_closed}`}>
-                {Array.from({ length: 100 }, (_, i) => new Date().getFullYear() - 50 + i).map((year) => (
+              <div
+                ref={yearPickerRef}
+                className={`${styles.pickerDropdown} ${isYearPickerVisible ? styles.pickerDropdown_open : styles.pickerDropdown_closed}`}
+              >
+                {Array.from(
+                  { length: 120 },
+                  (_, i) => new Date().getFullYear() - i
+                ).map((year) => (
                   <div
                     key={year}
                     className={`${styles.pickerItem} ${currentViewDate.getFullYear() === year ? styles.selectedPickerItem : ''}`}
@@ -281,15 +360,13 @@ export const DropDownDateBirthday = forwardRef<HTMLDivElement, DropDownDateBirth
               ))}
             </div>
 
-            <div className={styles.daysGrid}>
-              {renderCalendarDays}
-            </div>
+            <div className={styles.daysGrid}>{renderCalendarDays}</div>
 
             <div className={styles.actions}>
               <Button onClick={handleCancel} fill={false} width={125}>
                 Отменить
               </Button>
-              <Button onClick={handleSelect} fill={true} width={125}>
+              <Button onClick={handleSelect} fill width={125}>
                 Выбрать
               </Button>
             </div>
