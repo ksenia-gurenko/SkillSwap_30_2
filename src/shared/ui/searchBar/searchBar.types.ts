@@ -1,4 +1,3 @@
 export type SearchInputProps = {
-    placeholder?: string;
-  };
-  
+  placeholder: string;
+};
