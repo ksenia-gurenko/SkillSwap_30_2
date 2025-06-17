@@ -3,7 +3,7 @@ import { IconButtonUI } from '../shared/ui';
 import { ICON_TYPE } from '../shared/lib/constants';
 
 const meta = {
-  title: 'IconButtonUI',
+  title: 'UI/IconButtonUI',
   component: IconButtonUI,
   tags: ['autodocs'],
   parameters: {

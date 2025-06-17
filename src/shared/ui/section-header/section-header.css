@@ -1,0 +1,52 @@
+.section-header {
+  margin: 0;
+  color: #253017;
+  font-weight: 500;
+  font-family: "Jost", sans-serif;
+  letter-spacing: -0.01em;
+}
+
+.section-header_h2 {
+  color: #253017;
+  font-weight: 500;
+  font-size: 32px;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.section-header_h3 {
+  color: #253017;
+  font-weight: 500;
+  font-size: 24px;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.33;
+  letter-spacing: -0.01em;
+}
+
+.section-header_h4 {
+  color: #253017;
+  font-weight: 500;
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+.section-header_h5 {
+  color: #253017;
+  font-weight: 500;
+  font-size: 18px;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.44;
+  letter-spacing: -0.01em;
+}
+
+.section-header_h6 {
+  color: #253017;
+  font-weight: 500;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+} 

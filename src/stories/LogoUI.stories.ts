@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { LogoUI } from '../shared/ui';
 
 const meta = {
-  title: 'LogoUI',
+  title: 'UI/LogoUI',
   component: LogoUI,
   tags: ['autodocs'],
   parameters: {
