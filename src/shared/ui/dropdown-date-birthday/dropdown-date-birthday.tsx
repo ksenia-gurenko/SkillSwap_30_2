@@ -3,7 +3,7 @@ import { type DropDownDateBirthdayProps } from './types';
 import styles from './dropdown-date-birthday.module.css';
 import calendarIcon from './calendar.svg'; // иконка календаря
 import arrowIcon from './arrow.svg'; // Новая иконка для стрелок выпадающего списка
-import { Button, type ButtonProps } from '../button'; // Исправленный путь импорта
+import { Button } from '../button';
 
 /**
  * Вспомогательная функция для получения количества дней в месяце
@@ -40,42 +40,91 @@ const WEEKDAY_NAMES = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
 export const DropDownDateBirthday = forwardRef<HTMLDivElement, DropDownDateBirthdayProps>(
   ({ value, onChange, placeholder = 'дд.мм.гггг', className = '', disabled = false }, ref) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedDate, setSelectedDate] = useState<Date | null>(value);
-    const [currentViewDate, setCurrentViewDate] = useState<Date>(value || new Date()); // Дата для отображения календаря
+    const [selectedDate, setSelectedDate] = useState<Date | null>(value); // Фактическая выбранная дата для инпута
+    const [dateInCalendarView, setDateInCalendarView] = useState<Date | null>(value); // Временно выбранная дата в календаре
+    const [currentViewDate, setCurrentViewDate] = useState<Date>(value || new Date());
     const [showMonthPicker, setShowMonthPicker] = useState(false);
     const [showYearPicker, setShowYearPicker] = useState(false);
+    const [isVisibleForTransition, setIsVisibleForTransition] = useState(false);
+    const [isMonthPickerVisibleForTransition, setIsMonthPickerVisibleForTransition] = useState(false);
+    const [isYearPickerVisibleForTransition, setIsYearPickerVisibleForTransition] = useState(false);
     const wrapperRef = useRef<HTMLDivElement>(null);
     const monthPickerRef = useRef<HTMLDivElement>(null);
     const yearPickerRef = useRef<HTMLDivElement>(null);
 
+    // Синхронизация selectedDate с value из пропсов и инициализация dateInCalendarView
     useEffect(() => {
       setSelectedDate(value);
+      setDateInCalendarView(value); // Инициализируем временную дату текущей датой из пропсов
       if (value) {
         setCurrentViewDate(value);
       }
     }, [value]);
 
+    // Управление видимостью основного календаря для анимации
+    useEffect(() => {
+      if (isOpen) {
+        setIsVisibleForTransition(true);
+      } else {
+        const timer = setTimeout(() => {
+          setIsVisibleForTransition(false);
+        }, 100); // Должен совпадать с длительностью transition в CSS
+        return () => clearTimeout(timer);
+      }
+    }, [isOpen]);
+
+    // Управление видимостью пикера месяцев для анимации
+    useEffect(() => {
+      if (showMonthPicker) {
+        setIsMonthPickerVisibleForTransition(true);
+      } else {
+        const timer = setTimeout(() => {
+          setIsMonthPickerVisibleForTransition(false);
+        }, 100); // Должен совпадать с длительностью transition в CSS
+        return () => clearTimeout(timer);
+      }
+    }, [showMonthPicker]);
+
+    // Управление видимостью пикера годов для анимации
+    useEffect(() => {
+      if (showYearPicker) {
+        setIsYearPickerVisibleForTransition(true);
+      } else {
+        const timer = setTimeout(() => {
+          setIsYearPickerVisibleForTransition(false);
+        }, 100); // Должен совпадать с длительностью transition в CSS
+        return () => clearTimeout(timer);
+      }
+    }, [showYearPicker]);
+
     const handleInputClick = () => {
       if (!disabled) {
         setIsOpen(!isOpen);
-        setShowMonthPicker(false); // Закрываем пикеры при открытии/закрытии основного календаря
+        // При открытии календаря, временная дата должна быть равна текущей выбранной дате
+        setDateInCalendarView(selectedDate);
+        setCurrentViewDate(selectedDate || new Date()); // Сбрасываем вид календаря на выбранную дату или текущую
+        setShowMonthPicker(false);
         setShowYearPicker(false);
       }
     };
 
-    const handleDateSelect = (date: Date) => {
-      setSelectedDate(date);
-      onChange(date);
-      setIsOpen(false);
+    // Эта функция теперь только выбирает день в календаре (подсвечивает)
+    const handleDayClick = (date: Date) => {
+      setDateInCalendarView(date); // Обновляем только временную дату
     };
 
     const handleCancel = () => {
       setIsOpen(false);
       setShowMonthPicker(false);
       setShowYearPicker(false);
+      // При отмене сбрасываем временную дату до фактической выбранной
+      setDateInCalendarView(selectedDate);
     };
 
     const handleSelect = () => {
+      // При выборе сохраняем временную дату как фактическую выбранную
+      setSelectedDate(dateInCalendarView);
+      onChange(dateInCalendarView); // Вызываем onChange с подтвержденной датой
       setIsOpen(false);
       setShowMonthPicker(false);
       setShowYearPicker(false);
@@ -89,7 +138,8 @@ export const DropDownDateBirthday = forwardRef<HTMLDivElement, DropDownDateBirth
           setIsOpen(false);
           setShowMonthPicker(false);
           setShowYearPicker(false);
-          return; // Прекращаем дальнейшую обработку
+          setDateInCalendarView(selectedDate); // Сбрасываем временную дату при закрытии извне
+          return;
         }
 
         // Если основной календарь открыт, проверяем клики внутри него
@@ -116,7 +166,7 @@ export const DropDownDateBirthday = forwardRef<HTMLDivElement, DropDownDateBirth
       return () => {
         document.removeEventListener('mousedown', handleClickOutside);
       };
-    }, [isOpen, showMonthPicker, showYearPicker]); // Зависимости для useEffect
+    }, [isOpen, showMonthPicker, showYearPicker, selectedDate]); // Добавлена selectedDate в зависимости
 
     const formattedDate = selectedDate
       ? selectedDate.toLocaleDateString('ru-RU', {
@@ -131,8 +181,7 @@ export const DropDownDateBirthday = forwardRef<HTMLDivElement, DropDownDateBirth
       const year = currentViewDate.getFullYear();
       const month = currentViewDate.getMonth(); // 0-11 (Январь - 0, Декабрь - 11)
 
-      const firstDayOfMonth = new Date(year, month, 1);
-      const startDayOfWeek = (firstDayOfMonth.getDay() + 6) % 7; // День недели первого дня месяца (0=Пн, 6=Вс)
+      const startDayOfWeek = getStartDayOfMonth(year, month); // Используем функцию getStartDayOfMonth
       const numDaysInMonth = getDaysInMonth(year, month); // Получаем количество дней в текущем месяце
 
       // Вычисляем общее количество ячеек, чтобы включить дни предыдущего месяца и текущего месяца,
@@ -153,10 +202,11 @@ export const DropDownDateBirthday = forwardRef<HTMLDivElement, DropDownDateBirth
 
       return days.map((date, index) => {
         const isCurrentMonthDay = date.getMonth() === month;
-        const isSelected = selectedDate &&
-                           selectedDate.getDate() === date.getDate() &&
-                           selectedDate.getMonth() === date.getMonth() &&
-                           selectedDate.getFullYear() === date.getFullYear();
+        // Сравниваем с dateInCalendarView для визуального выделения
+        const isSelected = dateInCalendarView &&
+                           dateInCalendarView.getDate() === date.getDate() &&
+                           dateInCalendarView.getMonth() === date.getMonth() &&
+                           dateInCalendarView.getFullYear() === date.getFullYear();
         const isToday = date.getDate() === new Date().getDate() &&
                         date.getMonth() === new Date().getMonth() &&
                         date.getFullYear() === new Date().getFullYear();
@@ -165,13 +215,13 @@ export const DropDownDateBirthday = forwardRef<HTMLDivElement, DropDownDateBirth
           <div
             key={index}
             className={`${styles.day} ${!isCurrentMonthDay ? styles.emptyDay : ''} ${isSelected ? styles.selected : ''} ${isToday ? styles.today : ''}`}
-            onClick={() => handleDateSelect(date)}
+            onClick={() => handleDayClick(date)} // Вызываем handleDayClick
           >
             {date.getDate()}
           </div>
         );
       });
-    }, [currentViewDate, selectedDate, handleDateSelect]);
+    }, [currentViewDate, dateInCalendarView, handleDayClick]); // Добавлена dateInCalendarView в зависимости
 
     const handleMonthClick = () => {
       setShowMonthPicker(!showMonthPicker);
@@ -224,8 +274,8 @@ export const DropDownDateBirthday = forwardRef<HTMLDivElement, DropDownDateBirth
           <img src={calendarIcon} alt="Календарь" className={styles.icon} onClick={handleInputClick} />
         </div>
 
-        {isOpen && (
-          <div className={styles.calendarPopup}>
+        {isVisibleForTransition && (
+          <div className={`${styles.calendarPopup} ${isOpen ? styles.calendarPopup_open : styles.calendarPopup_closed}`}>
             <div className={styles.calendarHeader}>
                 <div className={styles.monthSelect}>
                     <span className={styles.monthName} onClick={handleMonthClick}>{MONTH_NAMES[currentViewDate.getMonth()]}</span>
@@ -236,8 +286,8 @@ export const DropDownDateBirthday = forwardRef<HTMLDivElement, DropDownDateBirth
                     <img src={arrowIcon} alt="Выбрать год" className={styles.arrowIcon} onClick={handleYearClick} />
                 </div>
             </div>
-            {showMonthPicker && (
-                <div ref={monthPickerRef} className={styles.pickerDropdown}>
+            {isMonthPickerVisibleForTransition && (
+                <div ref={monthPickerRef} className={`${styles.pickerDropdown} ${showMonthPicker ? styles.pickerDropdown_open : styles.pickerDropdown_closed}`}>
                     {MONTH_NAMES.map((month, index) => (
                         <div
                             key={month}
@@ -249,8 +299,8 @@ export const DropDownDateBirthday = forwardRef<HTMLDivElement, DropDownDateBirth
                     ))}
                 </div>
             )}
-            {showYearPicker && (
-                <div ref={yearPickerRef} className={styles.pickerDropdown}>
+            {isYearPickerVisibleForTransition && (
+                <div ref={yearPickerRef} className={`${styles.pickerDropdown} ${showYearPicker ? styles.pickerDropdown_open : styles.pickerDropdown_closed}`}>
                     {years.map(year => (
                         <div
                             key={year}

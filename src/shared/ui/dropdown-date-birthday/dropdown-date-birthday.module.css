@@ -112,6 +112,24 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     padding: 8px;
+
+    /* Начальное состояние для анимации */
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, -60%); /* Небольшое смещение вверх при появлении */
+    transition: opacity 0.1s ease-out, visibility 0.1s ease-out, transform 0.1s ease-out; /* Плавный переход */
+  }
+  
+  .pickerDropdown_open {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%); /* Конечная позиция */
+  }
+  
+  .pickerDropdown_closed {
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, -60%);
   }
   
   .pickerItem {
