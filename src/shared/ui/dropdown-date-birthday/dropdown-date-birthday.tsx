@@ -84,10 +84,31 @@ export const DropDownDateBirthday = forwardRef<HTMLDivElement, DropDownDateBirth
     // Закрытие календаря и пикеров при клике вне компонента
     useEffect(() => {
       const handleClickOutside = (event: MouseEvent) => {
+        // Если клик произошел вне всего компонента DropDownDateBirthday, закрываем всё
         if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
           setIsOpen(false);
           setShowMonthPicker(false);
           setShowYearPicker(false);
+          return; // Прекращаем дальнейшую обработку
+        }
+
+        // Если основной календарь открыт, проверяем клики внутри него
+        if (isOpen) {
+          // Если открыт пикер месяцев и клик не в нем самом, и не на кнопке/названии месяца, закрываем его
+          if (showMonthPicker && monthPickerRef.current && !monthPickerRef.current.contains(event.target as Node)) {
+            const monthSelectElement = wrapperRef.current?.querySelector(`.${styles.monthSelect}`);
+            if (monthSelectElement && !monthSelectElement.contains(event.target as Node)) {
+              setShowMonthPicker(false);
+            }
+          }
+
+          // Если открыт пикер годов и клик не в нем самом, и не на кнопке/названии года, закрываем его
+          if (showYearPicker && yearPickerRef.current && !yearPickerRef.current.contains(event.target as Node)) {
+            const yearSelectElement = wrapperRef.current?.querySelector(`.${styles.yearSelect}`);
+            if (yearSelectElement && !yearSelectElement.contains(event.target as Node)) {
+              setShowYearPicker(false);
+            }
+          }
         }
       };
 
@@ -95,7 +116,7 @@ export const DropDownDateBirthday = forwardRef<HTMLDivElement, DropDownDateBirth
       return () => {
         document.removeEventListener('mousedown', handleClickOutside);
       };
-    }, []);
+    }, [isOpen, showMonthPicker, showYearPicker]); // Зависимости для useEffect
 
     const formattedDate = selectedDate
       ? selectedDate.toLocaleDateString('ru-RU', {
@@ -174,7 +195,8 @@ export const DropDownDateBirthday = forwardRef<HTMLDivElement, DropDownDateBirth
 
     const currentYear = new Date().getFullYear(); // Получаем текущий год
     const startYear = 1890;
-    const years = Array.from({ length: currentYear - startYear + 1 }, (_, i) => startYear + i); // Года от 1890 до текущего
+    const numberOfYears = currentYear - startYear + 1;
+    const years = Array.from({ length: numberOfYears }, (_, i) => currentYear - i); // Года от текущего до 1890
 
     return (
       <div
