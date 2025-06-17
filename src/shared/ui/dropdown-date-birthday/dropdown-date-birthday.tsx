@@ -3,6 +3,7 @@ import { type DropDownDateBirthdayProps } from './types';
 import styles from './dropdown-date-birthday.module.css';
 import calendarIcon from './calendar.svg'; // иконка календаря
 import arrowIcon from './arrow.svg'; // Новая иконка для стрелок выпадающего списка
+import { Button, type ButtonProps } from '../button'; // Исправленный путь импорта
 
 /**
  * Вспомогательная функция для получения количества дней в месяце
@@ -107,38 +108,35 @@ export const DropDownDateBirthday = forwardRef<HTMLDivElement, DropDownDateBirth
     // Логика для генерации дней календаря
     const renderCalendarDays = useMemo(() => {
       const year = currentViewDate.getFullYear();
-      const month = currentViewDate.getMonth(); // 0-11
-      const numDaysInMonth = getDaysInMonth(year, month);
-      const startDayIndex = getStartDayOfMonth(year, month); // 0 (Пн) - 6 (Вс)
+      const month = currentViewDate.getMonth(); // 0-11 (Январь - 0, Декабрь - 11)
 
-      const days: (number | null)[] = [];
+      const firstDayOfMonth = new Date(year, month, 1);
+      const startDayOfWeek = (firstDayOfMonth.getDay() + 6) % 7; // День недели первого дня месяца (0=Пн, 6=Вс)
+      const numDaysInMonth = getDaysInMonth(year, month); // Получаем количество дней в текущем месяце
 
-      // Добавляем пустые дни в начале месяца
-      for (let i = 0; i < startDayIndex; i++) {
-        days.push(null);
+      // Вычисляем общее количество ячеек, чтобы включить дни предыдущего месяца и текущего месяца,
+      // а затем дополнить до конца последней недели.
+      const totalCells = Math.ceil((numDaysInMonth + startDayOfWeek) / 7) * 7;
+
+      const days: Date[] = [];
+
+      // Начинаем с дня, который является первым днем для отображения в сетке
+      // Это может быть день из предыдущего месяца
+      const startDate = new Date(year, month, 1 - startDayOfWeek);
+
+      for (let i = 0; i < totalCells; i++) {
+        const date = new Date(startDate);
+        date.setDate(startDate.getDate() + i);
+        days.push(date);
       }
 
-      // Добавляем дни текущего месяца
-      for (let i = 1; i <= numDaysInMonth; i++) {
-        days.push(i);
-      }
-
-      // Добавляем пустые дни в конце, чтобы заполнить сетку до 6 недель (если нужно)
-      const totalCells = days.length;
-      const remainingCells = 42 - totalCells; // Максимум 6 недель * 7 дней = 42 ячейки
-      for (let i = 0; i < remainingCells; i++) {
-        days.push(null);
-      }
-
-      return days.map((day, index) => {
-        const isCurrentMonthDay = day !== null;
-        const date = isCurrentMonthDay ? new Date(year, month, day) : null;
-        const isSelected = selectedDate && date &&
+      return days.map((date, index) => {
+        const isCurrentMonthDay = date.getMonth() === month;
+        const isSelected = selectedDate &&
                            selectedDate.getDate() === date.getDate() &&
                            selectedDate.getMonth() === date.getMonth() &&
                            selectedDate.getFullYear() === date.getFullYear();
-        const isToday = !selectedDate && date &&
-                        date.getDate() === new Date().getDate() &&
+        const isToday = date.getDate() === new Date().getDate() &&
                         date.getMonth() === new Date().getMonth() &&
                         date.getFullYear() === new Date().getFullYear();
 
@@ -146,9 +144,9 @@ export const DropDownDateBirthday = forwardRef<HTMLDivElement, DropDownDateBirth
           <div
             key={index}
             className={`${styles.day} ${!isCurrentMonthDay ? styles.emptyDay : ''} ${isSelected ? styles.selected : ''} ${isToday ? styles.today : ''}`}
-            onClick={() => isCurrentMonthDay && handleDateSelect(date!)}
+            onClick={() => handleDateSelect(date)}
           >
-            {day}
+            {date.getDate()}
           </div>
         );
       });
@@ -210,38 +208,38 @@ export const DropDownDateBirthday = forwardRef<HTMLDivElement, DropDownDateBirth
                 <div className={styles.monthSelect}>
                     <span className={styles.monthName} onClick={handleMonthClick}>{MONTH_NAMES[currentViewDate.getMonth()]}</span>
                     <img src={arrowIcon} alt="Выбрать месяц" className={styles.arrowIcon} onClick={handleMonthClick} />
-                    {showMonthPicker && (
-                        <div ref={monthPickerRef} className={styles.pickerDropdown}>
-                            {MONTH_NAMES.map((month, index) => (
-                                <div
-                                    key={month}
-                                    className={`${styles.pickerItem} ${currentViewDate.getMonth() === index ? styles.selectedPickerItem : ''}`}
-                                    onClick={() => handleMonthSelect(index)}
-                                >
-                                    {month}
-                                </div>
-                            ))}
-                        </div>
-                    )}
                 </div>
                 <div className={styles.yearSelect}>
                     <span className={styles.yearNumber} onClick={handleYearClick}>{currentViewDate.getFullYear()}</span>
                     <img src={arrowIcon} alt="Выбрать год" className={styles.arrowIcon} onClick={handleYearClick} />
-                    {showYearPicker && (
-                        <div ref={yearPickerRef} className={styles.pickerDropdown}>
-                            {years.map(year => (
-                                <div
-                                    key={year}
-                                    className={`${styles.pickerItem} ${currentViewDate.getFullYear() === year ? styles.selectedPickerItem : ''}`}
-                                    onClick={() => handleYearSelect(year)}
-                                >
-                                    {year}
-                                </div>
-                            ))}
-                        </div>
-                    )}
                 </div>
             </div>
+            {showMonthPicker && (
+                <div ref={monthPickerRef} className={styles.pickerDropdown}>
+                    {MONTH_NAMES.map((month, index) => (
+                        <div
+                            key={month}
+                            className={`${styles.pickerItem} ${currentViewDate.getMonth() === index ? styles.selectedPickerItem : ''}`}
+                            onClick={() => handleMonthSelect(index)}
+                        >
+                            {month}
+                        </div>
+                    ))}
+                </div>
+            )}
+            {showYearPicker && (
+                <div ref={yearPickerRef} className={styles.pickerDropdown}>
+                    {years.map(year => (
+                        <div
+                            key={year}
+                            className={`${styles.pickerItem} ${currentViewDate.getFullYear() === year ? styles.selectedPickerItem : ''}`}
+                            onClick={() => handleYearSelect(year)}
+                        >
+                                {year}
+                        </div>
+                    ))}
+                </div>
+            )}
             <div className={styles.weekdays}>
               {WEEKDAY_NAMES.map(name => <span key={name}>{name}</span>)}
             </div>
@@ -249,12 +247,12 @@ export const DropDownDateBirthday = forwardRef<HTMLDivElement, DropDownDateBirth
               {renderCalendarDays}
             </div>
             <div className={styles.actions}>
-              <button className={styles.cancelButton} onClick={handleCancel}>
+              <Button onClick={handleCancel} fill={false} width={125}>
                 Отменить
-              </button>
-              <button className={styles.selectButton} onClick={handleSelect}>
+              </Button>
+              <Button onClick={handleSelect} fill={true} width={125}>
                 Выбрать
-              </button>
+              </Button>
             </div>
           </div>
         )}
