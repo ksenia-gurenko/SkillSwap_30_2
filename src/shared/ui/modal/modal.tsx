@@ -1,22 +1,10 @@
 // src/shared/ui/modal/modal.tsx
-import React, { type ReactNode } from 'react';
+import React from 'react';
 import styles from './modal.module.css';
-import clsx from 'clsx';
-import UserCircleIcon from './user-circle.svg';
+import type { IconModalProps } from './types';
+import { Button } from '../button';
 
-interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  title?: string;
-  icon?: ReactNode[];
-  children?: ReactNode;
-  primaryButtonText?: string;
-  secondaryButtonText?: string;
-  onPrimaryButtonClick?: () => void;
-  onSecondaryButtonClick?: () => void;
-}
-
-export const Modal: React.FC<ModalProps> = ({
+export const Modal: React.FC<IconModalProps> = ({
   isOpen,
   onClose,
   title,
@@ -36,45 +24,31 @@ export const Modal: React.FC<ModalProps> = ({
   };
 
   return (
-    <div className={styles['modal__backdrop']} onClick={handleBackdropClick}>
+    <div className={styles.modal__backdrop} onClick={handleBackdropClick}>
       <div className={styles.modal}>
-        {icon && Array.isArray(icon) ? (
-          <div className={styles['modal__icon']}>
-            {icon.map((item, index) => (
-              <div key={index}>{item}</div>
-            ))}
+        {icon && (
+          <div className={styles.modal__icon}>
+            {Array.isArray(icon) ? icon.map((item, _index) => item) : icon}
           </div>
-        ) : (
-          <div className={styles['modal__icon']}>{icon}</div>
         )}
         {title && (
-          <div className={styles['modal__header']}>
+          <div className={styles.modal__header}>
             <p>{title}</p>
           </div>
         )}
-        {children && <div className={styles['modal__body']}>{children}</div>}
-        <div className={styles['modal__footer']}>
+        {children && <div className={styles.modal__body}>{children}</div>}
+        <div className={styles.modal__footer}>
           {secondaryButtonText && (
-            <button
-              className={clsx(
-                styles['modal__button'],
-                styles['modal__button--secondary']
-              )}
-              onClick={onSecondaryButtonClick}
-            >
+            <Button fill={false} onClick={onSecondaryButtonClick}>
+              <div className={styles.modal__footer}>
               {secondaryButtonText}
-            </button>
+              </div>
+            </Button>
           )}
           {primaryButtonText && (
-            <button
-              className={clsx(
-                styles['modal__button'],
-                styles['modal__button--primary']
-              )}
-              onClick={onPrimaryButtonClick}
-            >
+            <Button fill={true} onClick={onPrimaryButtonClick}>
               {primaryButtonText}
-            </button>
+            </Button>
           )}
         </div>
       </div>

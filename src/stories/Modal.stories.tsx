@@ -79,24 +79,6 @@ const UserCircleIcon = () => (
   </svg>
 );
 
-const NotificationBellIcon = () => (
-  <svg
-    width='32'
-    height='14'
-    viewBox='0 0 32 14'
-    fill='none'
-    xmlns='http://www.w3.org/2000/svg'
-  >
-    <path
-      d='M1.20801 1.25C2.92551 7.71875 8.99301 12.5 16.208 12.5C23.4268 12.5 29.4868 7.71875 31.208 1.25'
-      stroke='#253017'
-      stroke-width='1.5'
-      stroke-linecap='round'
-      stroke-linejoin='round'
-    />
-  </svg>
-);
-
 const NotificationIcon = () => (
   <svg
     width='74'

@@ -1,4 +1,5 @@
 import { type ReactNode } from 'react';
+import type { ButtonProps } from '../button/types';
 
 /**
  * Базовые пропсы для всех модальных окон
@@ -8,9 +9,6 @@ export interface BaseModalProps {
   onClose: () => void;
 }
 
-/**
- * Пропсы для модалки с заголовком и иконкой
- */
 export interface IconModalProps extends BaseModalProps {
   title?: string;
   icon?: ReactNode[];
@@ -19,4 +17,6 @@ export interface IconModalProps extends BaseModalProps {
   secondaryButtonText?: string;
   onPrimaryButtonClick?: () => void;
   onSecondaryButtonClick?: () => void;
+  primaryButtonProps?: Omit<ButtonProps, 'children' | 'onClick'>;
+  secondaryButtonProps?: Omit<ButtonProps, 'children' | 'onClick'>;
 }
