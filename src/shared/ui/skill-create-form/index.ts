@@ -1,1 +1,1 @@
-export { SkillCreateForm } from './skill-create-form'; 
+export { SkillCreateForm } from './skill-create-form';

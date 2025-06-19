@@ -5,8 +5,8 @@
   justify-content: center;
   align-items: flex-start;
   min-height: 100vh;
-  background: #F9FAF7;
   padding: 20px 0;
+  background: #f9faf7;
 }
 
 .content {
@@ -15,23 +15,24 @@
 }
 
 .block {
-  background: #fff;
-  border-radius: 12px;
-  max-width: 556px;
-  width: 100%;
-  font-size: 16px;
-  font-family: 'Roboto', Arial, sans-serif;
-  padding: 50px 60px;
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  min-height: 692px;
-  align-items: center;
-  text-align: center;
   justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 556px;
+  min-height: 692px;
+  padding: 50px 60px;
+  font-size: 16px;
+  font-family: 'Roboto', "Arial", sans-serif;
+  text-align: center;
+  background: #ffffff;
+  border-radius: 12px;
 }
 
 /* Для левого блока — прижать текст к левому краю */
+
 .block_left {
   align-items: flex-start;
   text-align: left;
@@ -48,9 +49,9 @@
 }
 
 .formField > * {
+  box-sizing: border-box;
   width: 100% !important;
   min-width: 0 !important;
-  box-sizing: border-box;
 }
 
 .formField > .wrapper {
@@ -66,64 +67,97 @@
 
 .blocksRow {
   display: flex;
+  justify-content: center;
   gap: 24px;
   margin-top: 0;
-  justify-content: center;
 }
 
 .imageDrop {
-  border: 1px dashed #69735D;
-  border-radius: 12px;
+  margin-bottom: 16px;
   padding: 20px;
   text-align: center;
-  margin-bottom: 16px;
-  background: #fff;
+  background: #ffffff;
+  border: 1px dashed #69735d;
+  border-radius: 12px;
   cursor: pointer;
   transition: border-color 0.2s;
 }
 
 .imageDropText {
-  color: #69735d;
   margin-bottom: 8px;
+  color: #69735d;
 }
 
 .imageButton {
-  background: none;
-  border: none;
-  color: #508826;
-  cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 0;
   margin-bottom: 0;
+  padding: 0;
+  color: #508826;
   font-size: 16px;
-  font-family: 'Roboto', Arial, sans-serif;
+  font-family: 'Roboto', "Arial", sans-serif;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
-.imageButton:active, .imageButton:focus {
-  outline: none;
+.imageButton:active,
+.imageButton:focus {
   color: #5e8c2f;
+  outline: none;
 }
 
 .imageName {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
   margin-top: 8px;
   color: #253017;
   word-break: break-all;
 }
 
+.imageRemoveBtn {
+  display: flex;
+  align-items: center;
+  margin-left: 4px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.inputMinHeight0 {
+  min-height: 0 !important;
+}
+
+.schoolBoardImg {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: 10px auto 40px;
+}
+
+.headerAbsolute {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
 .textarea {
+  box-sizing: border-box;
   width: 100%;
   min-height: 96px;
+  padding: 12px 20px;
+  color: #253017;
+  font-size: 16px;
+  font-family: 'Roboto', "Arial", sans-serif;
+  background: #ffffff;
   border: 1px solid #69735d;
   border-radius: 12px;
-  padding: 12px 20px;
-  font-size: 16px;
-  font-family: 'Roboto', Arial, sans-serif;
   resize: vertical;
-  box-sizing: border-box;
-  color: #253017;
-  background: #fff;
 }
 
 .textarea::placeholder {
@@ -132,24 +166,31 @@
 
 .label {
   margin-bottom: 4px;
-  font-size: 16px;
-  line-height: 24px;
   color: #253017;
+  font-size: 16px;
 }
 
-.input:focus, .textarea:focus {
+.input:focus,
+.textarea:focus {
+  border-color: #69735d;
   outline: none;
   box-shadow: none;
-  border-color: #69735d;
 }
 
-.inputError, .textareaError {
+.inputError,
+.textareaError {
   border-color: #e03232 !important;
 }
 
 .errorText {
-  color: #e03232;
-  font-size: 12px;
   margin-top: 4px;
   margin-left: 2px;
-} 
+  color: #e03232;
+  font-size: 12px;
+}
+
+.infoText {
+  margin-top: 16px;
+  font-size: 16px;
+  font-family: 'Roboto', "Arial", sans-serif;
+}
