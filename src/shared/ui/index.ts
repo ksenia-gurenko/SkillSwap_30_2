@@ -7,5 +7,6 @@ export * from './badge';
 export * from './button';
 export * from './app-header';
 export * from './icon';
-export * from './tag';
-('');
+export * from './radio-button';
+export * from './tag-catalog';
+export * from './section-header';

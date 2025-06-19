@@ -79,9 +79,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     // Формируем классы для кнопки
     const buttonClasses = [
       styles.button,
-      fill && styles['button--filled'],
-      variant && styles[`button--${variant}`],
-      paddingX && styles[`button--padding-${paddingX}`],
+      fill && styles['button_filled'],
+      variant && styles[`button_${variant}`],
+      paddingX && styles[`button_padding-${paddingX}`],
       className
     ]
       .filter(Boolean)

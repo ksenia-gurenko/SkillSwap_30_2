@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './tag.module.css';
-import { getSkillColor } from './constants';
+import { getSkillColor } from '../tag-catalog/constants';
 
 /**
  * Интерфейс пропсов для компонента Tag
