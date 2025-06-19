@@ -71,4 +71,5 @@ button {
 
 main {
   min-width: 100vw;
+  flex: 1;
 }
