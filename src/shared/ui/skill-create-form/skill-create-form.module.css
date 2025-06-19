@@ -1,0 +1,47 @@
+/* Основные стили для SkillCreateForm */
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background: #F9FAF7;
+  padding: 40px 0;
+}
+
+.content {
+  width: 100%;
+  padding-top: 50px;
+}
+
+.block {
+  background: #fff;
+  border-radius: 12px;
+  max-width: 556px;
+  width: 100%;
+  padding: 40px 32px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.formField {
+  margin-bottom: 16px;
+}
+
+.formField:last-child {
+  margin-bottom: 0;
+}
+
+.stepperContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.blocksRow {
+  display: flex;
+  gap: 24px;
+  margin-top: 0;
+  justify-content: center;
+} 
