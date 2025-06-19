@@ -10,6 +10,7 @@ import imageIcon from '../button/Icon_right.svg';
 import galleryAddIcon from './gallery-add.svg';
 import { Button } from '../button';
 import schoolBoardIcon from './school-board.svg';
+import crossIcon from '../button/cross.svg';
 
 // Примерные опции для демонстрации
 const categoryOptions = [
@@ -21,7 +22,7 @@ const categoryOptions = [
 export const SkillCreateForm: React.FC = () => {
   const [category, setCategory] = useState<string[]>([]);
   const [subcategory, setSubcategory] = useState<string[]>([]);
-  const [image, setImage] = useState<File | null>(null);
+  const [images, setImages] = useState<File[]>([]);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
@@ -43,16 +44,17 @@ export const SkillCreateForm: React.FC = () => {
     if (category.length === 0) newErrors.category = 'Выберите категорию';
     if (subcategory.length === 0) newErrors.subcategory = 'Выберите подкатегорию';
     else if (subcategory.length > 5) newErrors.subcategory = 'Не более 5 подкатегорий';
-    if (image) {
-      if (!['image/jpeg', 'image/png'].includes(image.type)) newErrors.image = 'Только jpeg или png';
-      if (image.size > 2 * 1024 * 1024) newErrors.image = 'Файл не больше 2MB';
-    }
+    if (images.length > 10) newErrors.image = 'Не более 10 файлов';
+    images.forEach((file, idx) => {
+      if (!['image/jpeg', 'image/png'].includes(file.type)) newErrors.image = `Файл ${file.name}: только jpeg или png`;
+      if (file.size > 2 * 1024 * 1024) newErrors.image = `Файл ${file.name}: не больше 2MB`;
+    });
     return newErrors;
   };
 
   React.useEffect(() => {
     setErrors(validate());
-  }, [title, category, subcategory, image]);
+  }, [title, category, subcategory, images]);
 
   const isSubmitDisabled =
     !!Object.keys(errors).length ||
@@ -63,9 +65,12 @@ export const SkillCreateForm: React.FC = () => {
   // Drag&Drop обработчики
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-    const file = e.dataTransfer.files[0];
-    if (file) {
-      setImage(file);
+    const files = Array.from(e.dataTransfer.files).filter(f => ['image/jpeg', 'image/png'].includes(f.type));
+    if (files.length) {
+      setImages(prev => {
+        const merged = [...prev, ...files].slice(0, 10);
+        return merged;
+      });
       setTouched(t => ({ ...t, image: true }));
     }
   };
@@ -73,16 +78,16 @@ export const SkillCreateForm: React.FC = () => {
     e.preventDefault();
   };
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setImage(file);
+    const files = e.target.files ? Array.from(e.target.files).filter(f => ['image/jpeg', 'image/png'].includes(f.type)) : [];
+    if (files.length) {
+      setImages(prev => {
+        const merged = [...prev, ...files].slice(0, 10);
+        return merged;
+      });
       setTouched(t => ({ ...t, image: true }));
     }
-  };
-  const validateFile = (file: File) => {
-    const isValidType = ['image/jpeg', 'image/png'].includes(file.type);
-    const isValidSize = file.size <= 2 * 1024 * 1024;
-    return isValidType && isValidSize;
+    // сбрасываем value, чтобы можно было выбрать тот же файл повторно
+    if (e.target.value) e.target.value = '';
   };
 
   return (
@@ -153,22 +158,39 @@ export const SkillCreateForm: React.FC = () => {
                   onDragOver={handleDragOver}
                 >
                   <div className={styles.imageDropText}>Перетащите или выберите изображения навыка</div>
-                  <button
-                    type="button"
-                    className={styles.imageButton}
-                    onClick={() => fileInputRef.current?.click()}
-                  >
-                    <img src={galleryAddIcon} alt="Галерея" style={{ marginRight: 4, verticalAlign: 'middle' }} />
-                    <span>Выбрать изображения</span>
-                  </button>
-                  <input
-                    type="file"
-                    accept="image/jpeg,image/png"
-                    style={{ display: 'none' }}
-                    ref={fileInputRef}
-                    onChange={handleFileChange}
-                  />
-                  {image && <div className={styles.imageName}>{image.name}</div>}
+                  {images.length < 10 && (
+                    <>
+                      <button
+                        type="button"
+                        className={styles.imageButton}
+                        onClick={() => fileInputRef.current?.click()}
+                      >
+                        <img src={galleryAddIcon} alt="Галерея" style={{ marginRight: 4, verticalAlign: 'middle' }} />
+                        <span>Выбрать изображения</span>
+                      </button>
+                      <input
+                        type="file"
+                        accept="image/jpeg,image/png"
+                        style={{ display: 'none' }}
+                        ref={fileInputRef}
+                        onChange={handleFileChange}
+                        multiple
+                      />
+                    </>
+                  )}
+                  {images.length > 0 && (
+                    <div className={styles.imageName} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, marginTop: 8 }}>
+                      <span>Загружено файлов: {images.length}</span>
+                      <button
+                        type="button"
+                        aria-label="Удалить все изображения"
+                        style={{ background: 'none', border: 'none', padding: 0, marginLeft: 4, cursor: 'pointer', display: 'flex', alignItems: 'center' }}
+                        onClick={() => setImages([])}
+                      >
+                        <img src={crossIcon} alt="Удалить все" width={16} height={16} />
+                      </button>
+                    </div>
+                  )}
                 </div>
                 {errors.image && touched.image && <div className={styles.errorText}>{errors.image}</div>}
               </div>
