@@ -1,5 +1,5 @@
 import { Route, Routes, useLocation } from 'react-router-dom';
-import { AppHeaderUI } from '../shared/ui';
+import { AppHeaderUI, FooterUI } from '../shared/ui';
 import styles from './app.module.css';
 import { CatalogPage } from '../pages';
 
@@ -21,6 +21,7 @@ function App() {
       <Routes location={background || location}>
         <Route path='/' element={<CatalogPage />} />
       </Routes>
+      <FooterUI />
     </div>
   );
 }
