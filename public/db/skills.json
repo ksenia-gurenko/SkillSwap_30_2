@@ -1,5 +1,6 @@
 [
     {
+        "_id": "1",
         "user": {
             "_id": "1",
             "avatar": "/assets/avatar_ivan.png",
@@ -16,6 +17,7 @@
         ]
     },
     {
+        "_id": "2",
         "user": {
             "_id": "2",
             "avatar": "/assets/avatar_ana.png",
@@ -32,6 +34,7 @@
         ]
     },
     {
+        "_id": "3",
         "user": {
             "_id": "3",
             "avatar": "/assets/avatar_maksim.png",
@@ -48,6 +51,7 @@
         ]
     },
     {
+        "_id": "4",
         "user": {
             "_id": "4",
             "avatar": "/assets/avatar_ilona.png",
@@ -64,6 +68,7 @@
         ]
     },
     {
+        "_id": "5",
         "user": {
             "_id": "5",
             "avatar": "/assets/avatar_michail.png",
@@ -80,6 +85,7 @@
         ]
     },
     {
+        "_id": "6",
         "user": {
             "_id": "6",
             "avatar": "/assets/avatar_maria.png",
@@ -96,6 +102,7 @@
         ]
     },
     {
+        "_id": "7",
         "user": {
             "_id": "7",
             "avatar": "/assets/avatar_victoria.png",
@@ -113,6 +120,7 @@
         ]
     },
     {
+        "_id": "8",
         "user": {
             "_id": "8",
             "avatar": "/assets/avatar_vicoria_v2.png",

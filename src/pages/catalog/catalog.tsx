@@ -4,13 +4,24 @@ import type { TSkill } from '../../entities/types';
 import skillsData from '../../../public/db/skills.json';
 import { SkillCard } from '../../widgets';
 import { SectionHeader, Button } from '../../shared/ui';
+import { useLocalList } from '../../shared/hooks/useLocalList';
+import { LOCAL_STORAGE_KEYS } from '../../shared/lib/constants';
 
 export const CatalogPage: FC = () => {
   const [skills, setSkills] = useState<TSkill[]>([]);
+  const [likedSkills, setLikedSkills] = useLocalList<string>(LOCAL_STORAGE_KEYS.LIKED_SKILLS, []);
 
   useEffect(() => {
     setSkills(skillsData as unknown as TSkill[]);
   }, []);
+
+  const handleLikeToggle = (skillId: string) => {
+    setLikedSkills(prev =>
+      prev.includes(skillId)
+        ? prev.filter(id => id !== skillId)
+        : [...prev, skillId]
+    );
+  }
 
   const sections = [
     { title: 'Популярное', items: skills.slice(0, 3) },
@@ -37,8 +48,8 @@ export const CatalogPage: FC = () => {
                   user={skill.user}
                   canTeach={skill.canTeach}
                   wantsToLearn={skill.wantsToLearn}
-                  onLikeToggle={() => { }}
-                  isLiked={false}
+                  onLikeToggle={() => handleLikeToggle(skill._id)}
+                  isLiked={likedSkills.includes(skill._id)}
                   onDetailsClick={() => { }}
                 />
               ))}

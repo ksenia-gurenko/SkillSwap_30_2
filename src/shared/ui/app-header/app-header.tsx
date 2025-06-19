@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import type { TAppHeaderUIProps } from './type';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import styles from './app-header.module.css';
 import { LogoUI } from '../logo';
 import { Button } from '../button';
@@ -15,6 +15,8 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({
   isCompact = false,
   bgColor
 }) => {
+  const location = useLocation();
+
   if (isCompact) {
     return (
       <header
@@ -70,7 +72,12 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({
             <div className={styles.icons}>
               <IconButtonUI type={ICON_TYPE.MOON} />
               <IconButtonUI type={ICON_TYPE.NOTIFICATION} />
-              <IconButtonUI type={ICON_TYPE.LIKE} />
+              <Link to='/favorites'>
+                <IconButtonUI 
+                  type={ICON_TYPE.LIKE}
+                  isActive={location.pathname.startsWith('/favorites')}
+                />
+              </Link>
             </div>
             <div className={styles.userInfo}>
               <span className={styles.userName}>{userName}</span>

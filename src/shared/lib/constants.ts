@@ -11,3 +11,7 @@ export enum ICON_TYPE {
   CHEVRON_DOWN,
   SEARCH
 }
+
+export enum LOCAL_STORAGE_KEYS {
+  LIKED_SKILLS = 'likedSkills'
+}
