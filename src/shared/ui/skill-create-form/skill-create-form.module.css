@@ -141,4 +141,15 @@
   outline: none;
   box-shadow: none;
   border-color: #69735d;
+}
+
+.inputError, .textareaError {
+  border-color: #e03232 !important;
+}
+
+.errorText {
+  color: #e03232;
+  font-size: 12px;
+  margin-top: 4px;
+  margin-left: 2px;
 } 

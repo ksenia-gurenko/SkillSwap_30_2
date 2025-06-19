@@ -22,21 +22,51 @@ export const SkillCreateForm: React.FC = () => {
   const [category, setCategory] = useState<string[]>([]);
   const [subcategory, setSubcategory] = useState<string[]>([]);
   const [image, setImage] = useState<File | null>(null);
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Получаем список подкатегорий для выбранных категорий
   const subcategoryOptions = useMemo(() => {
     if (category.length === 0) return [];
-    // Собираем все подкатегории для выбранных категорий
     return category.flatMap(cat => SKILL_SUBCATEGORIES[cat] || []);
   }, [category]);
+
+  // Валидация
+  const validate = () => {
+    const newErrors: { [key: string]: string } = {};
+    if (!title.trim()) newErrors.title = 'Название обязательно';
+    else if (title.trim().length < 3) newErrors.title = 'Минимум 3 символа';
+    else if (title.trim().length > 50) newErrors.title = 'Максимум 50 символов';
+    if (category.length === 0) newErrors.category = 'Выберите категорию';
+    if (subcategory.length === 0) newErrors.subcategory = 'Выберите подкатегорию';
+    else if (subcategory.length > 5) newErrors.subcategory = 'Не более 5 подкатегорий';
+    if (image) {
+      if (!['image/jpeg', 'image/png'].includes(image.type)) newErrors.image = 'Только jpeg или png';
+      if (image.size > 2 * 1024 * 1024) newErrors.image = 'Файл не больше 2MB';
+    }
+    return newErrors;
+  };
+
+  React.useEffect(() => {
+    setErrors(validate());
+  }, [title, category, subcategory, image]);
+
+  const isSubmitDisabled =
+    !!Object.keys(errors).length ||
+    !title.trim() ||
+    category.length === 0 ||
+    subcategory.length === 0;
 
   // Drag&Drop обработчики
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     const file = e.dataTransfer.files[0];
-    if (file && validateFile(file)) {
+    if (file) {
       setImage(file);
+      setTouched(t => ({ ...t, image: true }));
     }
   };
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
@@ -44,8 +74,9 @@ export const SkillCreateForm: React.FC = () => {
   };
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file && validateFile(file)) {
+    if (file) {
       setImage(file);
+      setTouched(t => ({ ...t, image: true }));
     }
   };
   const validateFile = (file: File) => {
@@ -70,10 +101,16 @@ export const SkillCreateForm: React.FC = () => {
                 <label className={styles.label}>Название навыка</label>
                 <input
                   type="text"
-                  className={styles.textarea}
+                  className={errors.title && touched.title ? styles.textarea + ' ' + styles.inputError : styles.textarea}
                   placeholder="Введите название вашего навыка"
                   style={{ minHeight: 0 }}
+                  value={title}
+                  onChange={e => setTitle(e.target.value)}
+                  onBlur={() => setTouched(t => ({ ...t, title: true }))}
+                  maxLength={50}
+                  required
                 />
+                {errors.title && touched.title && <div className={styles.errorText}>{errors.title}</div>}
               </div>
               <div className={styles.formField}>
                 <CheckboxDropdown
@@ -81,8 +118,9 @@ export const SkillCreateForm: React.FC = () => {
                   placeholder="Выберите категорию навыка"
                   options={SKILL_CATEGORIES}
                   selected={category}
-                  onChange={setCategory}
+                  onChange={val => { setCategory(val); setTouched(t => ({ ...t, category: true })); }}
                 />
+                {errors.category && touched.category && <div className={styles.errorText}>{errors.category}</div>}
               </div>
               <div className={styles.formField}>
                 <CheckboxDropdown
@@ -90,22 +128,27 @@ export const SkillCreateForm: React.FC = () => {
                   placeholder="Выберите подкатегорию навыка"
                   options={subcategoryOptions}
                   selected={subcategory}
-                  onChange={setSubcategory}
+                  onChange={val => { setSubcategory(val); setTouched(t => ({ ...t, subcategory: true })); }}
                   disabled={category.length === 0}
                 />
+                {errors.subcategory && touched.subcategory && <div className={styles.errorText}>{errors.subcategory}</div>}
               </div>
               <div className={styles.formField}>
                 <label className={styles.label}>Описание</label>
                 <textarea
-                  className={styles.textarea}
+                  className={errors.description && touched.description ? styles.textarea + ' ' + styles.textareaError : styles.textarea}
                   placeholder="Коротко опишите, чему можете научить"
                   rows={4}
                   maxLength={500}
+                  value={description}
+                  onChange={e => setDescription(e.target.value)}
+                  onBlur={() => setTouched(t => ({ ...t, description: true }))}
                 />
+                {errors.description && touched.description && <div className={styles.errorText}>{errors.description}</div>}
               </div>
               <div className={styles.formField}>
                 <div
-                  className={styles.imageDrop}
+                  className={styles.imageDrop + (errors.image && touched.image ? ' ' + styles.inputError : '')}
                   onDrop={handleDrop}
                   onDragOver={handleDragOver}
                 >
@@ -127,10 +170,11 @@ export const SkillCreateForm: React.FC = () => {
                   />
                   {image && <div className={styles.imageName}>{image.name}</div>}
                 </div>
+                {errors.image && touched.image && <div className={styles.errorText}>{errors.image}</div>}
               </div>
               <div style={{ display: 'flex', gap: 24, justifyContent: 'center' }}>
                 <Button paddingX={80}>Назад</Button>
-                <Button fill paddingX={55}>Продолжить</Button>
+                <Button fill paddingX={55} disabled={isSubmitDisabled}>Продолжить</Button>
               </div>
             </div>
           </div>
