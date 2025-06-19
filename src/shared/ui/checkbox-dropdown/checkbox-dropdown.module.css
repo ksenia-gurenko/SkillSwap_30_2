@@ -1,0 +1,133 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.inputOuter {
+  width: 100%;
+}
+
+.inputFlex {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.input {
+  flex: 1;
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 20px);
+  left: 0;
+  width: 99.6%;
+  background: #fff;
+  border: 1px solid #69735d;
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  z-index: 10;
+  padding: 8px 0 8px 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  color: #253017;
+  max-height: 400px;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+}
+
+/* Кастомизация скроллбара */
+.dropdown::-webkit-scrollbar {
+  width: 8px; /* ширина скроллбара */
+  height: 8px;
+}
+
+.dropdown::-webkit-scrollbar-thumb {
+  background: #dbe3c0;
+  border-radius: 8px;
+  /* Делаем скроллбар короче: */
+  margin-top: 24px;
+  margin-bottom: 24px;
+  min-height: 40px;
+}
+
+.dropdown::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  padding: 8px 20px;
+  cursor: pointer;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  font-family: inherit;
+  transition: background 0.2s;
+}
+
+.option:hover {
+  background: #f5f7f2;
+}
+
+.nativeCheckbox {
+  position: absolute;
+  opacity: 0;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  position: relative;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+.inputWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.chevronRight {
+  position: absolute;
+  right: 20px;
+  top: 110%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  background: transparent;
+}
+
+.chevronOpen {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.dropdownTopLine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 101%;
+  height: 8px;
+  border: 1px solid rgba(105, 115, 93, 0.2);
+  border-top: none;
+  border-radius: 0 0 18px 18px;
+  margin-bottom: 5px;
+  background: #fff; /* или прозрачный, если нужно */
+  z-index: 2;
+  pointer-events: none;
+} 

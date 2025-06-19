@@ -10,3 +10,4 @@ export * from './icon';
 export * from './radio-button';
 export * from './tag-catalog';
 export * from './section-header';
+export { CheckboxDropdown } from './checkbox-dropdown';
