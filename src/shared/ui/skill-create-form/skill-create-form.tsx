@@ -12,6 +12,7 @@ import galleryAddIcon from './gallery-add.svg';
 import { Button } from '../button';
 import schoolBoardIcon from './school-board.svg';
 import crossIcon from '../button/cross.svg';
+import { SkillProposalModal } from '../skill-proposal-modal/skill-proposal-modal';
 
 export const SkillCreateForm: React.FC = () => {
   const [category, setCategory] = useState<string[]>([]);
@@ -21,6 +22,7 @@ export const SkillCreateForm: React.FC = () => {
   const [description, setDescription] = useState('');
   const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [showModal, setShowModal] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Получаем список подкатегорий для выбранных категорий
@@ -28,6 +30,11 @@ export const SkillCreateForm: React.FC = () => {
     if (category.length === 0) return [];
     return category.flatMap((cat) => SKILL_SUBCATEGORIES[cat] || []);
   }, [category]);
+
+  // Получаем массив label для выбранных подкатегорий
+  const selectedSubcategoryLabels = subcategoryOptions
+    .filter(opt => subcategory.includes(opt.value))
+    .map(opt => opt.label);
 
   // Валидация
   const validate = () => {
@@ -239,7 +246,7 @@ export const SkillCreateForm: React.FC = () => {
                 style={{ display: 'flex', gap: 24, justifyContent: 'center' }}
               >
                 <Button paddingX={80}>Назад</Button>
-                <Button fill paddingX={55} disabled={isSubmitDisabled}>
+                <Button fill paddingX={55} disabled={isSubmitDisabled} onClick={() => setShowModal(true)}>
                   Продолжить
                 </Button>
               </div>
@@ -262,6 +269,17 @@ export const SkillCreateForm: React.FC = () => {
           </div>
         </div>
       </div>
+      {showModal && (
+        <SkillProposalModal
+          title={title}
+          subcategories={selectedSubcategoryLabels}
+          description={description}
+          images={images.map(file => URL.createObjectURL(file))}
+          onEdit={() => setShowModal(false)}
+          onConfirm={() => setShowModal(false)}
+          onClose={() => setShowModal(false)}
+        />
+      )}
     </div>
   );
 };
