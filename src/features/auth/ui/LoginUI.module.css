@@ -1,0 +1,82 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    max-width: 100vw;
+    background-color: #F9FAF7;
+}
+
+.title {
+    color: #253017;
+    font-family: 'Jost', sans-serif;
+    margin: 0;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+}
+
+.formBlock {
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    height: 692px;
+    width: 556px;
+    margin: 32px 0;
+}
+
+.separatorWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.separatorLine {
+    flex: 1;
+    height: 1px;
+    background-color: #E4E8DF;
+}
+
+.separatorText {
+    color: #253017;
+    font-size: 16px;
+    padding: 12px 4px;
+}
+
+.formWrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 106px 60px 18px 60px;
+    max-width: 436px;
+    max-height: 369px;
+    height: 100%;
+    gap: 10px;
+}
+
+.inputWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 44px;
+}
+
+.overrideStyles {
+    min-width: 0 !important;
+    text-align: start !important;
+}
+
+.authButtonWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.header {
+    width: 100%;
+}
+
+.registrationButton {
+    border: none;
+    color: #508826;
+}
