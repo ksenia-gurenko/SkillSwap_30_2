@@ -1,7 +1,6 @@
 .containerMain {
     display: flex;
     padding: 0 40px;
-    background-color: #f9faf7;
     box-sizing: border-box;
 }
 
@@ -36,6 +35,6 @@
 
 .cardGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(284px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(324px, 1fr));
     gap: 24px;
 }

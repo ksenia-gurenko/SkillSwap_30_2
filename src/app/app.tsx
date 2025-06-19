@@ -17,7 +17,6 @@ function App() {
         isCompact={isCompact}
         userAvatarUrl='src/stories/assets/avatar_michail.png'
         userName='Michail'
-        bgColor='#F9FAF7'
       />
       <Routes location={background || location}>
         <Route path='/' element={<CatalogPage />} />
