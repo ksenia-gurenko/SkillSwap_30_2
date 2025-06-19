@@ -54,6 +54,8 @@ export const DropDownDateBirthday = forwardRef<
     );
     const [showMonthPicker, setShowMonthPicker] = useState(false);
     const [showYearPicker, setShowYearPicker] = useState(false);
+    const [inputValue, setInputValue] = useState('');
+    const [inputError, setInputError] = useState(false);
 
     // Рефы
     const wrapperRef = useRef<HTMLDivElement>(null);
@@ -66,6 +68,19 @@ export const DropDownDateBirthday = forwardRef<
     const isMonthPickerVisible = useTransitionState(showMonthPicker);
     const isYearPickerVisible = useTransitionState(showYearPicker);
 
+    // Форматирование даты
+    const formattedDate = useMemo(
+      () =>
+        selectedDate
+          ? selectedDate.toLocaleDateString('ru-RU', {
+              day: '2-digit',
+              month: '2-digit',
+              year: 'numeric'
+            })
+          : '',
+      [selectedDate]
+    );
+
     // Синхронизация с пропсами
     useEffect(() => {
       setSelectedDate(value);
@@ -74,6 +89,14 @@ export const DropDownDateBirthday = forwardRef<
         setCurrentViewDate(value);
       }
     }, [value]);
+
+    // Синхронизация inputValue с выбранной датой только при закрытии календаря
+    useEffect(() => {
+      if (!isOpen) {
+        setInputValue(formattedDate);
+        setInputError(false);
+      }
+    }, [isOpen, formattedDate]);
 
     // Управление фокусом
     useEffect(() => {
@@ -93,11 +116,21 @@ export const DropDownDateBirthday = forwardRef<
         setCurrentViewDate(selectedDate || new Date());
         setShowMonthPicker(false);
         setShowYearPicker(false);
+        setInputValue(selectedDate ? formattedDate : ''); // Показываем подтверждённую дату при открытии
       }
     };
 
     const handleDayClick = (date: Date) => {
       setDateInCalendarView(date);
+      setInputValue(
+        date
+          ? date.toLocaleDateString('ru-RU', {
+              day: '2-digit',
+              month: '2-digit',
+              year: 'numeric'
+            })
+          : ''
+      );
       if (inputRef.current) inputRef.current.focus();
     };
 
@@ -106,6 +139,7 @@ export const DropDownDateBirthday = forwardRef<
       setShowMonthPicker(false);
       setShowYearPicker(false);
       setDateInCalendarView(selectedDate);
+      setInputValue(formattedDate); // Сброс на подтверждённую дату
     };
 
     const handleSelect = () => {
@@ -114,6 +148,15 @@ export const DropDownDateBirthday = forwardRef<
       setIsOpen(false);
       setShowMonthPicker(false);
       setShowYearPicker(false);
+      setInputValue(
+        dateInCalendarView
+          ? dateInCalendarView.toLocaleDateString('ru-RU', {
+              day: '2-digit',
+              month: '2-digit',
+              year: 'numeric'
+            })
+          : ''
+      );
     };
 
     // Обработка клика вне компонента
@@ -169,19 +212,6 @@ export const DropDownDateBirthday = forwardRef<
       return () =>
         document.removeEventListener('mousedown', handleClickOutside);
     }, [isOpen, showMonthPicker, showYearPicker, selectedDate]);
-
-    // Форматирование даты
-    const formattedDate = useMemo(
-      () =>
-        selectedDate
-          ? selectedDate.toLocaleDateString('ru-RU', {
-              day: '2-digit',
-              month: '2-digit',
-              year: 'numeric'
-            })
-          : '',
-      [selectedDate]
-    );
 
     // Рендер дней календаря
     const renderCalendarDays = useMemo(() => {
@@ -250,6 +280,74 @@ export const DropDownDateBirthday = forwardRef<
       if (inputRef.current) inputRef.current.focus();
     };
 
+    // Проверка валидности даты в формате дд.мм.гггг
+    const parseDate = (str: string): Date | null => {
+      const match = str.match(/^([0-9]{2})\.([0-9]{2})\.([0-9]{4})$/);
+      if (!match) return null;
+      const day = parseInt(match[1], 10);
+      const month = parseInt(match[2], 10) - 1;
+      const year = parseInt(match[3], 10);
+      if (year < new Date().getFullYear() - 120 || year > new Date().getFullYear()) return null;
+      const date = new Date(year, month, day);
+      if (
+        date.getFullYear() !== year ||
+        date.getMonth() !== month ||
+        date.getDate() !== day
+      ) {
+        return null;
+      }
+      return date;
+    };
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      let val = e.target.value.replace(/[^0-9]/g, '');
+      // Автоматически расставляем точки
+      if (val.length > 2 && val.length <= 4) {
+        val = val.slice(0, 2) + '.' + val.slice(2);
+      } else if (val.length > 4) {
+        val = val.slice(0, 2) + '.' + val.slice(2, 4) + '.' + val.slice(4, 8);
+      }
+      setInputValue(val);
+
+      // Поэтапный парсинг
+      const now = new Date();
+      let day = now.getDate();
+      let month = now.getMonth();
+      let year = now.getFullYear();
+      const parts = val.split('.');
+      if (parts[0] && parts[0].length === 2) {
+        day = Math.max(1, Math.min(31, parseInt(parts[0], 10)));
+      }
+      if (parts[1] && parts[1].length === 2) {
+        month = Math.max(0, Math.min(11, parseInt(parts[1], 10) - 1));
+      }
+      if (parts[2] && parts[2].length === 4) {
+        year = parseInt(parts[2], 10);
+      }
+      const previewDate = new Date(year, month, day);
+      setCurrentViewDate(previewDate);
+      setDateInCalendarView(previewDate);
+
+      // Валидация только если введена полная дата
+      if (val.length === 10) {
+        const parsed = parseDate(val);
+        if (parsed) {
+          setInputError(false);
+        } else {
+          setInputError(true);
+        }
+      } else {
+        setInputError(false);
+      }
+    };
+
+    // Обработчик нажатия Enter
+    const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === 'Enter' && !inputError && isOpen) {
+        handleSelect();
+      }
+    };
+
     // Рендер компонента
     return (
       <div
@@ -270,14 +368,16 @@ export const DropDownDateBirthday = forwardRef<
           <input
             ref={inputRef}
             type='text'
-            value={isOpen ? '' : formattedDate}
+            value={isOpen ? inputValue : formattedDate}
             placeholder={isOpen ? '' : placeholder}
             onClick={handleInputClick}
             className={styles.input}
             disabled={disabled}
-            style={isOpen ? { caretColor: '#508826' } : {}}
+            style={isOpen ? { caretColor: '#508826', borderColor: inputError ? '#ff4d4f' : undefined } : {}}
             tabIndex={0}
-            onChange={() => {}}
+            onChange={isOpen ? handleInputChange : undefined}
+            maxLength={10}
+            onKeyDown={isOpen ? handleInputKeyDown : undefined}
           />
           <img
             src={calendarIcon}
@@ -366,7 +466,7 @@ export const DropDownDateBirthday = forwardRef<
               <Button onClick={handleCancel} fill={false} width={125}>
                 Отменить
               </Button>
-              <Button onClick={handleSelect} fill width={125}>
+              <Button onClick={handleSelect} fill width={125} disabled={inputError}>
                 Выбрать
               </Button>
             </div>
