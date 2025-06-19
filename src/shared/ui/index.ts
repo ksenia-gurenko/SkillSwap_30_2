@@ -10,7 +10,5 @@ export * from './icon';
 export * from './radio-button';
 export * from './tag-catalog';
 export * from './section-header';
-<<<<<<< HEAD
 export * from './dropdown-date-birthday';
-=======
->>>>>>> 0628ae33e94732b333a88d9706e2c307ba10e773
+
