@@ -7,6 +7,9 @@ import { Input } from '../input';
 import { CheckboxDropdown } from '../checkbox-dropdown/checkbox-dropdown';
 import { SKILL_CATEGORIES, SKILL_SUBCATEGORIES } from '../checkbox-dropdown/constants';
 import imageIcon from '../button/Icon_right.svg';
+import galleryAddIcon from './gallery-add.svg';
+import { Button } from '../button';
+import schoolBoardIcon from './school-board.svg';
 
 // Примерные опции для демонстрации
 const categoryOptions = [
@@ -61,7 +64,7 @@ export const SkillCreateForm: React.FC = () => {
           <StepperUI currentStep={3} totalSteps={3} />
         </div>
         <div className={styles.blocksRow}>
-          <div className={styles.block}>
+          <div className={styles.block + ' ' + styles.block_left}>
             <div className={styles.formFields}>
               <div className={styles.formField}>
                 <label className={styles.label}>Название навыка</label>
@@ -112,7 +115,7 @@ export const SkillCreateForm: React.FC = () => {
                     className={styles.imageButton}
                     onClick={() => fileInputRef.current?.click()}
                   >
-                    <img src={imageIcon} alt="Выбрать" style={{ marginRight: 8, verticalAlign: 'middle' }} />
+                    <img src={galleryAddIcon} alt="Галерея" style={{ marginRight: 4, verticalAlign: 'middle' }} />
                     <span>Выбрать изображения</span>
                   </button>
                   <input
@@ -125,10 +128,14 @@ export const SkillCreateForm: React.FC = () => {
                   {image && <div className={styles.imageName}>{image.name}</div>}
                 </div>
               </div>
+              <div style={{ display: 'flex', gap: 24, justifyContent: 'center' }}>
+                <Button paddingX={80}>Назад</Button>
+                <Button fill paddingX={55}>Продолжить</Button>
+              </div>
             </div>
           </div>
           <div className={styles.block}>
-            {/* Здесь будет картинка */}
+            <img src={schoolBoardIcon} alt="Доска" style={{ width: '100%', maxWidth: 300, margin: '10px auto 40px', display: 'block' }} />
             <SectionHeader text="Укажите, чем вы готовы поделиться" level="h3" />
             <p style={{ fontFamily: 'Roboto, Arial, sans-serif', fontSize: 16, marginTop: 16 }}>
               Так другие люди смогут увидеть ваши предложения и предложить вам обмен!
