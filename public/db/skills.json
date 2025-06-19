@@ -2,7 +2,7 @@
     {
         "user": {
             "_id": "1",
-            "avatar": "src/assets/avatar_ivan.png",
+            "avatar": "/assets/avatar_ivan.png",
             "name": "Иван",
             "city": "Санкт-Петербург",
             "age": "34"
@@ -18,7 +18,7 @@
     {
         "user": {
             "_id": "2",
-            "avatar": "src/assets/avatar_ana.png",
+            "avatar": "/assets/avatar_ana.png",
             "name": "Анна",
             "city": "Казань",
             "age": "26"
@@ -34,7 +34,7 @@
     {
         "user": {
             "_id": "3",
-            "avatar": "src/assets/avatar_maksim.png",
+            "avatar": "/assets/avatar_maksim.png",
             "name": "Максим",
             "city": "Москва",
             "age": "23"
@@ -50,7 +50,7 @@
     {
         "user": {
             "_id": "4",
-            "avatar": "src/assets/avatar_ilona.png",
+            "avatar": "/assets/avatar_ilona.png",
             "name": "Илона",
             "city": "Екатеринбург",
             "age": "33"
@@ -66,7 +66,7 @@
     {
         "user": {
             "_id": "5",
-            "avatar": "src/assets/avatar_michail.png",
+            "avatar": "/assets/avatar_michail.png",
             "name": "Михаил",
             "city": "Новосибирск",
             "age": "29"
@@ -82,7 +82,7 @@
     {
         "user": {
             "_id": "6",
-            "avatar": "src/assets/avatar_maria.png",
+            "avatar": "/assets/avatar_maria.png",
             "name": "Мария",
             "city": "Краснодар",
             "age": "21"
@@ -98,7 +98,7 @@
     {
         "user": {
             "_id": "7",
-            "avatar": "src/assets/avatar_victoria.png",
+            "avatar": "/assets/avatar_victoria.png",
             "name": "Виктория",
             "city": "Кемерово",
             "age": "30"
@@ -115,7 +115,7 @@
     {
         "user": {
             "_id": "8",
-            "avatar": "src/assets/avatar_vicoria_v2.png",
+            "avatar": "/assets/avatar_vicoria_v2.png",
             "name": "Виктория",
             "city": "Сочи",
             "age": "31"

@@ -2,6 +2,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import { AppHeaderUI, FooterUI } from '../shared/ui';
 import styles from './app.module.css';
 import { CatalogPage } from '../pages';
+import avatarUrl from "../../public/assets/avatar_michail.png";
 
 function App() {
   const location = useLocation();
@@ -15,7 +16,7 @@ function App() {
       <AppHeaderUI
         isAuth={isAuth}
         isCompact={isCompact}
-        userAvatarUrl='src/stories/assets/avatar_michail.png'
+        userAvatarUrl={avatarUrl}
         userName='Michail'
       />
       <Routes location={background || location}>
