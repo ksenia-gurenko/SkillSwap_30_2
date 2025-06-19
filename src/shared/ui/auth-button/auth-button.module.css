@@ -1,0 +1,29 @@
+.authButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    padding: 12px 24px;
+    background-color: transparent;
+    border: 1px solid #2c2f20;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+.authButton:hover {
+    background-color: #f8faf6;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+}
+
+.label {
+    color: #253017;
+}
