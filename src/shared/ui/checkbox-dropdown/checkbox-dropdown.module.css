@@ -1,7 +1,6 @@
 .wrapper {
   position: relative;
   width: 100%;
-  margin-bottom: 20px;
 }
 
 .inputOuter {
@@ -16,11 +15,17 @@
 
 .input {
   flex: 1;
+  min-width: 0 !important;
+}
+
+.input:focus {
+  outline: none;
+  box-shadow: none;
 }
 
 .dropdown {
   position: absolute;
-  top: calc(100% + 20px);
+  top: calc(100% - 10px);
   left: 0;
   width: 99.6%;
   background: #fff;
@@ -105,7 +110,7 @@ input[type="checkbox"] {
 .chevronRight {
   position: absolute;
   right: 20px;
-  top: 110%;
+  top: 70%;
   transform: translateY(-50%);
   z-index: 2;
   display: flex;
@@ -130,4 +135,13 @@ input[type="checkbox"] {
   background: #fff; /* или прозрачный, если нужно */
   z-index: 2;
   pointer-events: none;
+}
+
+.label {
+  margin-bottom: 4px;
+  font-size: 16px;
+  line-height: 24px;
+  color: #253017;
+  display: block;
+  font-family: 'Roboto', sans-serif;
 } 

@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from 'react';
-import { Input } from '../input';
 import { IconButtonUI } from '../icon/icon';
 import { ICON_TYPE } from '../../lib/constants';
 import styles from './checkbox-dropdown.module.css';
@@ -18,7 +17,6 @@ interface CheckboxDropdownProps {
   selected: string[];
   onChange: (selected: string[]) => void;
   disabled?: boolean;
-  type?: 'category' | 'subcategory';
 }
 
 export const CheckboxDropdown = ({
@@ -28,7 +26,6 @@ export const CheckboxDropdown = ({
   selected,
   onChange,
   disabled = false,
-  type = 'category',
 }: CheckboxDropdownProps) => {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -56,9 +53,6 @@ export const CheckboxDropdown = ({
     setSearch('');
   };
 
-  const defaultLabel = type === 'category' ? 'Категория навыка, которому хотите научиться' : 'Подкатегория навыка, которому хотите научиться';
-  const defaultPlaceholder = type === 'category' ? 'Выберите категорию' : 'Выберите подкатегорию навыка';
-
   const filteredOptions = search.trim().length > 0
     ? options.filter(option => option.label.toLowerCase().includes(search.trim().toLowerCase()))
     : options;
@@ -66,9 +60,14 @@ export const CheckboxDropdown = ({
   return (
     <div className={styles.wrapper} ref={ref}>
       <div className={styles.inputWrapper}>
-        <Input
-          label={label ?? defaultLabel}
-          placeholder={placeholder ?? defaultPlaceholder}
+        {label ? (
+          <label className={styles.label}>
+            {label}
+          </label>
+        ) : null}
+        <input
+          type="text"
+          placeholder={placeholder || ''}
           value={
             search.length > 0
               ? search
@@ -92,6 +91,18 @@ export const CheckboxDropdown = ({
           }}
           className={styles.input}
           disabled={disabled}
+          style={{
+            border: '1px solid #69735d',
+            borderRadius: '12px',
+            padding: '12px 20px',
+            backgroundColor: 'white',
+            fontSize: '16px',
+            lineHeight: '24px',
+            color: '#253017',
+            width: '100%',
+            boxSizing: 'border-box',
+            marginBottom: '0',
+          }}
         />
         <span
           className={open ? `${styles.chevronRight} ${styles.chevronOpen}` : styles.chevronRight}

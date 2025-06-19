@@ -19,7 +19,6 @@ export const Category: Story = {
         options={SKILL_CATEGORIES}
         selected={selected}
         onChange={setSelected}
-        type="category"
       />
     );
   },
@@ -41,14 +40,76 @@ export const Subcategory: Story = {
             setCategory(val);
             setSubcat([]);
           }}
-          type="category"
         />
         <CheckboxDropdown
           options={subOptions}
           selected={subcat}
           onChange={setSubcat}
           disabled={category.length === 0}
-          type="subcategory"
+        />
+      </div>
+    );
+  },
+};
+
+export const CategoryAndSubcategoryLong: Story = {
+  render: () => {
+    const [category, setCategory] = useState<string[]>([]);
+    const [subcat, setSubcat] = useState<string[]>([]);
+    const subOptions = category.length > 0
+      ? category.flatMap((cat) => SKILL_SUBCATEGORIES[cat] || [])
+      : [];
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 32, maxWidth: 480 }}>
+        <CheckboxDropdown
+          options={SKILL_CATEGORIES}
+          selected={category}
+          onChange={(val) => {
+            setCategory(val);
+            setSubcat([]);
+          }}
+          label="Категория навыка, которому хотите научиться"
+          placeholder="Выберите категорию"
+        />
+        <CheckboxDropdown
+          options={subOptions}
+          selected={subcat}
+          onChange={setSubcat}
+          disabled={category.length === 0}
+          label="Подкатегория навыка, которому хотите научиться"
+          placeholder="Выберите подкатегорию"
+        />
+      </div>
+    );
+  },
+};
+
+export const CategoryAndSubcategoryShort: Story = {
+  render: () => {
+    const [category, setCategory] = useState<string[]>([]);
+    const [subcat, setSubcat] = useState<string[]>([]);
+    const subOptions = category.length > 0
+      ? category.flatMap((cat) => SKILL_SUBCATEGORIES[cat] || [])
+      : [];
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 32, maxWidth: 480 }}>
+        <CheckboxDropdown
+          options={SKILL_CATEGORIES}
+          selected={category}
+          onChange={(val) => {
+            setCategory(val);
+            setSubcat([]);
+          }}
+          label="Категория навыка"
+          placeholder="Выберите категорию навыка"
+        />
+        <CheckboxDropdown
+          options={subOptions}
+          selected={subcat}
+          onChange={setSubcat}
+          disabled={category.length === 0}
+          label="Подкатегория навыка"
+          placeholder="Выберите подкатегорию навыка"
         />
       </div>
     );
