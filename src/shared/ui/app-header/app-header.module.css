@@ -3,9 +3,9 @@
   justify-content: space-between;
   align-items: center;
   padding: 36px 36px 20px;
-  font-family: 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
   font-size: 16px;
   margin-bottom: 32px;
+  font-family: 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
 }
 
 .left,
@@ -22,16 +22,16 @@
 
 .center {
   flex-grow: 1;
-  margin: 0 32px;
   justify-content: center;
+  margin: 0 32px;
 }
 
 .nav {
   display: flex;
-  margin-left: 32px;
-  gap: 16px;
   justify-content: center;
   align-items: center;
+  gap: 16px;
+  margin-left: 32px;
 }
 
 .navLink {
@@ -53,17 +53,17 @@
   display: flex;
   align-items: center;
   width: 100%;
-  background-color: #fff;
   padding: 8px 12px;
+  background-color: #ffffff;
   border-radius: 8px;
 }
 
 .searchInput {
-  border: none;
-  margin-left: 8px;
-  outline: none;
-  background: transparent;
   width: 100%;
+  margin-left: 8px;
+  background: transparent;
+  border: none;
+  outline: none;
 }
 
 .userInfo {

@@ -1,0 +1,45 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-width: 527px;
+    height: 48px;
+    gap: 8px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 12px;
+    position: relative;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+}
+
+.input {
+    border: none;
+    outline: none;
+    background: transparent;
+    flex-grow: 1;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #253017;
+    caret-color: #508826;
+}
+
+.clear {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.input::placeholder {
+    color: #69735D;
+}
+
+.input:focus::placeholder {
+    color: transparent;
+}
