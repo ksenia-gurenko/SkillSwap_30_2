@@ -23,6 +23,11 @@ export const Modal: React.FC<IconModalProps> = ({
     }
   };
 
+  const btnWidth =
+    secondaryButtonText !== undefined && primaryButtonText !== undefined
+      ? 208
+      : 436;
+
   return (
     <div className={styles.modal__backdrop} onClick={handleBackdropClick}>
       <div className={styles.modal}>
@@ -39,14 +44,12 @@ export const Modal: React.FC<IconModalProps> = ({
         {children && <div className={styles.modal__body}>{children}</div>}
         <div className={styles.modal__footer}>
           {secondaryButtonText && (
-            <Button fill={false} onClick={onSecondaryButtonClick}>
-              <div className={styles.modal__footer}>
-              {secondaryButtonText}
-              </div>
+            <Button onClick={onSecondaryButtonClick} width={btnWidth}>
+              <div className={styles.modal__footer}>{secondaryButtonText}</div>
             </Button>
           )}
           {primaryButtonText && (
-            <Button fill={true} onClick={onPrimaryButtonClick}>
+            <Button fill onClick={onPrimaryButtonClick} width={btnWidth}>
               {primaryButtonText}
             </Button>
           )}
