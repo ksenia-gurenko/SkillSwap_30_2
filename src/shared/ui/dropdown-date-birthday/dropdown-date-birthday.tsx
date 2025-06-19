@@ -287,7 +287,11 @@ export const DropDownDateBirthday = forwardRef<
       const day = parseInt(match[1], 10);
       const month = parseInt(match[2], 10) - 1;
       const year = parseInt(match[3], 10);
-      if (year < new Date().getFullYear() - 120 || year > new Date().getFullYear()) return null;
+      if (
+        year < new Date().getFullYear() - 120 ||
+        year > new Date().getFullYear()
+      )
+        return null;
       const date = new Date(year, month, day);
       if (
         date.getFullYear() !== year ||
@@ -373,7 +377,14 @@ export const DropDownDateBirthday = forwardRef<
             onClick={handleInputClick}
             className={styles.input}
             disabled={disabled}
-            style={isOpen ? { caretColor: '#508826', borderColor: inputError ? '#ff4d4f' : undefined } : {}}
+            style={
+              isOpen
+                ? {
+                    caretColor: '#508826',
+                    borderColor: inputError ? '#ff4d4f' : undefined
+                  }
+                : {}
+            }
             tabIndex={0}
             onChange={isOpen ? handleInputChange : undefined}
             maxLength={10}
@@ -466,7 +477,12 @@ export const DropDownDateBirthday = forwardRef<
               <Button onClick={handleCancel} fill={false} width={125}>
                 Отменить
               </Button>
-              <Button onClick={handleSelect} fill width={125} disabled={inputError}>
+              <Button
+                onClick={handleSelect}
+                fill
+                width={125}
+                disabled={inputError}
+              >
                 Выбрать
               </Button>
             </div>
