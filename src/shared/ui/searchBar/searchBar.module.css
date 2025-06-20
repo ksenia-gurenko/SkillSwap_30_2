@@ -1,14 +1,14 @@
 .wrapper {
+    position: relative;
     display: flex;
     align-items: center;
+    gap: 8px;
     width: 100%;
     min-width: 527px;
     height: 48px;
-    gap: 8px;
-    background: #fff;
-    border-radius: 12px;
     padding: 12px;
-    position: relative;
+    background: #ffffff;
+    border-radius: 12px;
 }
 
 .icon {
@@ -17,22 +17,22 @@
 }
 
 .input {
+    flex-grow: 1;
+    color: #253017;
+    font-weight: 400;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    line-height: 24px;
+    background: transparent;
     border: none;
     outline: none;
-    background: transparent;
-    flex-grow: 1;
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
-    color: #253017;
     caret-color: #508826;
 }
 
 .clear {
+    padding: 0;
     background: none;
     border: none;
-    padding: 0;
     cursor: pointer;
 }
 

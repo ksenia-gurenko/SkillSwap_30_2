@@ -1,0 +1,280 @@
+/* Основные стили */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f9faf7;
+}
+
+.content {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* Левая карточка */
+
+.leftCard {
+  flex-shrink: 0;
+  width: 324px;
+  padding: 32px;
+  background-color: #ffffff;
+  border-radius: 12px;
+}
+
+.skillCardContainer {
+  height: 100%;
+}
+
+.customSkillCard {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cardSkills {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skillSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sectionTitle {
+  color: #253017;
+  font-weight: 500;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.skillTags {
+  width: 100%;
+}
+
+/* Скрываем кнопку и лайк */
+
+.customSkillCard .buttonWrapper,
+.customSkillCard .iconButton {
+  display: none;
+}
+
+/* Правая карточка */
+
+.rightCard {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 444px;
+  padding: 32px 52px;
+  background-color: #ffffff;
+  border-radius: 12px;
+}
+
+.likeButtonContainer {
+  position: absolute;
+  top: 32px;
+  right: 52px;
+  z-index: 10;
+}
+
+.cardContent {
+  display: flex;
+  gap: 77px;
+  margin-top: 44px;
+}
+
+/* Левая часть - текстовая информация */
+
+.textContent {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.skillTitle {
+  margin: 0 0 4px;
+  color: #253017;
+  font-weight: 500;
+  font-size: 32px;
+  font-family: 'Jost', sans-serif;
+  line-height: 1.25; /* Без px */
+  letter-spacing: -0.01em;
+}
+
+.skillCategory {
+  margin: 0 0 20px;
+  color: #666666;
+  font-weight: 400;
+  font-size: 12px;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.33; /* Без px */
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.skillDescription {
+  margin: 0 0 28px;
+  color: #253017;
+  font-weight: 400;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.5; /* Без px */
+  letter-spacing: 0.02em;
+}
+
+.exchangeButton {
+  margin-top: auto;
+}
+
+/* Правая часть - фотографии */
+
+.photoSection {
+  display: flex;
+  flex: 1;
+  gap: 24px;
+}
+
+.mainPhotoContainer {
+  position: relative;
+  width: 324px;
+  height: 324px;
+  overflow: hidden;
+  background-color: #eeeeee;
+  border-radius: 12px;
+}
+
+.mainPhoto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photoNavButton {
+  position: absolute;
+  top: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  background: rgb(228 232 223 / 100%);
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.prevButton {
+  left: 16px;
+}
+
+.nextButton {
+  right: 16px;
+}
+
+/* Миниатюры */
+
+.thumbnails {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 92px;
+}
+
+.thumbnail {
+  position: relative;
+  width: 92px;
+  height: 92px;
+  overflow: hidden;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.thumbnailImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.activeThumbnail {
+  border: 2px solid #4a6b2d;
+}
+
+/* Заголовок похожих предложений */
+
+.relatedSkillsHeader {
+  width: 100%;
+  max-width: 1440px;
+  margin: 32px auto 16px;
+  padding: 0 24px;
+}
+
+.relatedSkillsHeader h2 {
+  margin: 0;
+  color: #253017;
+  font-weight: 500;
+  font-size: 24px;
+  font-family: 'Jost', sans-serif;
+  line-height: 1.16; /* Без px */
+  letter-spacing: -0.01em;
+}
+
+/* Состояния загрузки */
+
+.loading,
+.error {
+  padding: 20px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.error {
+  color: #ff0000;
+}
+
+/* Адаптив */
+
+@media (width <= 768px) {
+  .content {
+    flex-direction: column;
+  }
+
+  .leftCard {
+    width: 100%;
+  }
+
+  .cardContent {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .photoSection {
+    flex-direction: column;
+  }
+
+  .mainPhotoContainer {
+    width: 100%;
+  }
+
+  .thumbnails {
+    flex-direction: row;
+    width: 100%;
+  }
+}
+

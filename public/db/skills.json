@@ -1,0 +1,30 @@
+{
+  "skills": [
+    {
+      "id": "1",
+      "title": "React разработка",
+      "description": "Научу создавать современные SPA-приложения",
+      "category": "Программирование",
+      "isAvailable": true,
+      "wantsToLearn": ["UI/UX дизайн"],
+      "author": {
+        "name": "Иван Петров",
+        "avatarUrl": "https://i.pravatar.cc/150?img=1",
+        "city": "Москва",
+        "age": 28
+      }
+    },
+    {
+      "id": "2",
+      "title": "UI/UX дизайн",
+      "description": "Основы Figma и проектирование интерфейсов",
+      "category": "Дизайн",
+      "isAvailable": true,
+      "author": {
+        "name": "Анна Сидорова",
+        "city": "Санкт-Петербург",
+        "age": 25
+      }
+    }
+  ]
+}
