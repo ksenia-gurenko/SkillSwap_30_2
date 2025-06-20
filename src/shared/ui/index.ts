@@ -10,3 +10,5 @@ export * from './icon';
 export * from './radio-button';
 export * from './tag-catalog';
 export * from './section-header';
+export * from './dropdown-date-birthday';
+
