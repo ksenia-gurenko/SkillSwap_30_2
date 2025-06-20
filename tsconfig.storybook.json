@@ -1,0 +1,12 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+      "types": ["@storybook/react", "@storybook/addons"],
+      "noEmit": true
+    },
+    "include": [
+      ".storybook/**/*",
+      "src/**/*.stories.tsx",
+      "src/**/*.stories.ts"
+    ]
+  }
