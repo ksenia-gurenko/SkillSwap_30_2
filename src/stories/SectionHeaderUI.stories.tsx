@@ -4,7 +4,7 @@ import { SectionHeader } from '../shared/ui/section-header';
 const meta: Meta<typeof SectionHeader> = {
   title: 'UI/SectionHeader',
   component: SectionHeader,
-  tags: ['autodocs'],
+  tags: ['autodocs']
 };
 
 export default meta;
@@ -13,7 +13,7 @@ type Story = StoryObj<typeof SectionHeader>;
 export const H2: Story = {
   args: {
     text: 'Популярное, Новое',
-    level: 'h2',
+    level: 'h2'
   },
   render: (args) => (
     <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
@@ -23,13 +23,13 @@ export const H2: Story = {
       </div>
       <SectionHeader {...args} />
     </div>
-  ),
+  )
 };
 
 export const H3: Story = {
   args: {
     text: 'Фильтры, Расскажите немного о себе, Дом и уют',
-    level: 'h3',
+    level: 'h3'
   },
   render: (args) => (
     <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
@@ -39,13 +39,13 @@ export const H3: Story = {
       </div>
       <SectionHeader {...args} />
     </div>
-  ),
+  )
 };
 
 export const H4: Story = {
   args: {
     text: 'Навыки, Пол автора',
-    level: 'h4',
+    level: 'h4'
   },
   render: (args) => (
     <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
@@ -55,13 +55,13 @@ export const H4: Story = {
       </div>
       <SectionHeader {...args} />
     </div>
-  ),
+  )
 };
 
 export const H5: Story = {
   args: {
     text: 'Иван, Анна',
-    level: 'h5',
+    level: 'h5'
   },
   render: (args) => (
     <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
@@ -71,13 +71,13 @@ export const H5: Story = {
       </div>
       <SectionHeader {...args} />
     </div>
-  ),
+  )
 };
 
 export const H6: Story = {
   args: {
     text: 'Может научить:, Хочет научиться:',
-    level: 'h6',
+    level: 'h6'
   },
   render: (args) => (
     <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
@@ -87,5 +87,5 @@ export const H6: Story = {
       </div>
       <SectionHeader {...args} />
     </div>
-  ),
-}; 
+  )
+};
