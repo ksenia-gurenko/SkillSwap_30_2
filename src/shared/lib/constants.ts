@@ -9,5 +9,6 @@ export enum ICON_TYPE {
   NOTIFICATION,
   LIKE,
   CHEVRON_DOWN,
+  CHEVRON_UP,
   SEARCH
 }
