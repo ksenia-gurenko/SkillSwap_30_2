@@ -98,10 +98,17 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({
               <IconButtonUI type={ICON_TYPE.MOON} />
             </div>
             <div className={styles.rightButtons}>
-              <Button width={92}>Войти</Button>
-              <Button width={208} fill>
-                Зарегистрироваться
-              </Button>
+              <Link to='/login'>
+                <Button width={92}>Войти</Button>
+              </Link>
+
+              <Link to='/registration'>
+                <Button width={208} fill>
+                  Зарегистрироваться
+                </Button>
+
+              </Link>
+
             </div>
           </>
         )}
