@@ -17,7 +17,7 @@ export const OverflowTags: FC<TOverflowTagsProps> = ({
       const containerWidth = containerRef.current.offsetWidth;
       let totalWidth = 0;
       let fitCount = 0;
-      let maxBadgeWidth = 50;
+      const maxBadgeWidth = 50;
       totalWidth += maxBadgeWidth;
 
       const tags = Array.from(containerRef.current.childNodes) as HTMLElement[];
@@ -44,7 +44,7 @@ export const OverflowTags: FC<TOverflowTagsProps> = ({
         <Tag key={item} text={item} />
       ))}
       {visibleCount < items.length && (
-        <Badge count={items.length - visibleCount} onClick={() => { }} />
+        <Badge count={items.length - visibleCount} onClick={() => {}} />
       )}
     </div>
   );

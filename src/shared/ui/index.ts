@@ -11,3 +11,4 @@ export * from './radio-button';
 export * from './tag-catalog';
 export * from './section-header';
 export { CheckboxDropdown } from './checkbox-dropdown';
+export * from './dropdown-date-birthday';

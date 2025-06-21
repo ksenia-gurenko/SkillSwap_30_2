@@ -9,5 +9,10 @@ export enum ICON_TYPE {
   NOTIFICATION,
   LIKE,
   CHEVRON_DOWN,
+  CHEVRON_UP,
   SEARCH
+}
+
+export enum LOCAL_STORAGE_KEYS {
+  LIKED_SKILLS = 'likedSkills'
 }
