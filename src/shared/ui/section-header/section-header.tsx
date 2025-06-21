@@ -6,7 +6,10 @@ interface SectionHeaderProps {
   level?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 }
 
-export const SectionHeader: React.FC<SectionHeaderProps> = ({ text, level = 'h2' }) => {
+export const SectionHeader: React.FC<SectionHeaderProps> = ({
+  text,
+  level = 'h2'
+}) => {
   switch (level) {
     case 'h3':
       return <h3 className="section-header section-header_h3">{text}</h3>;
@@ -19,4 +22,4 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({ text, level = 'h2'
     default:
       return <h2 className="section-header section-header_h2">{text}</h2>;
   }
-}; 
+};
