@@ -15,16 +15,11 @@ type Story = StoryObj<typeof meta>;
 
 export const OverflowTagsNotOver: Story = {
   args: {
-    items: [
-      'Медитация',
-      'Лень',
-      'Танцы'
-    ],
+    items: ['Медитация', 'Лень', 'Танцы'],
     containerWidth: 284,
     gap: 8
   }
 };
-
 
 export const OverflowTags2Over: Story = {
   args: {
