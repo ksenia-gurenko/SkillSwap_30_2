@@ -5,7 +5,7 @@
   font-weight: 400;
   font-family: system-ui, 'Avenir', 'Helvetica', 'Arial', sans-serif;
   line-height: 1.5;
-  background-color: #242424;
+  background-color: #F9FAF7;
   color-scheme: light dark;
   font-synthesis: none;
   text-rendering: optimizelegibility;
@@ -28,10 +28,10 @@ a:hover {
 }
 
 body {
-  display: flex;
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
+  padding: 0;
   place-items: center;
   overflow-x: hidden;
   background-color: #f9faf7;
