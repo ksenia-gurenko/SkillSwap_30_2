@@ -6,13 +6,13 @@ import styles from './styles.module.css';
 export const RelatedSkills = ({ skills }: { skills: Skill[] }) => {
   const convertToCardProps = (skill: Skill): TSkillCardProps & { compact?: boolean } => ({
     user: {
-      avatar: skill.author.avatarUrl || '',
-      name: skill.author.name,
-      city: skill.author.city || 'Город не указан',
-      age: skill.author.age || 0
+      avatar: skill.user.avatar, // Используем user.avatar вместо author.avatarUrl
+      name: skill.user.name,
+      city: skill.user.city || 'Город не указан',
+      age: typeof skill.user.age === 'string' ? parseInt(skill.user.age) || 0 : skill.user.age || 0
     },
-    canTeach: [], // Пустой массив, чтобы скрыть блок "Может научить"
-    wantsToLearn: [], // Пустой массив, чтобы скрыть блок "Хочет научиться"
+    canTeach: skill.canTeach || [], // Используем реальные данные canTeach
+    wantsToLearn: skill.wantsToLearn || [], // Используем реальные данные wantsToLearn
     onLikeToggle: () => {},
     isLiked: false,
     onDetailsClick: () => {},
@@ -23,7 +23,10 @@ export const RelatedSkills = ({ skills }: { skills: Skill[] }) => {
     <div className={styles.related}>
       <div className={styles.grid}>
         {skills.map((skill) => (
-          <SkillCard key={skill.id} {...convertToCardProps(skill)} />
+          <SkillCard 
+            key={skill._id} // Используем _id вместо id
+            {...convertToCardProps(skill)} 
+          />
         ))}
       </div>
     </div>

@@ -3,10 +3,9 @@ import { useParams } from 'react-router-dom';
 import { AppHeaderUI } from '../../shared/ui/app-header';
 import { FooterUI } from '../../shared/ui/footer';
 import { Button } from '../../shared/ui/button';
-import { IconButtonUI } from '../../shared/ui/icon'; 
-import { UserInfoUI } from '../../shared/ui/user-info'; // Добавлен UserInfoUI
-import { OverflowTags } from '../../widgets/overflow-tags'; // Добавлен OverflowTags
-//import { SkillCard } from '../../widgets/skill-card';
+import { IconButtonUI } from '../../shared/ui/icon';
+import { UserInfoUI } from '../../shared/ui/user-info';
+import { OverflowTags } from '../../widgets/overflow-tags';
 import { RelatedSkills } from './related-skills';
 import { fetchSkillById, fetchRelatedSkills } from '../../entities/skill/api';
 import type { Skill } from '../../entities/skill/model';
@@ -14,7 +13,7 @@ import { ICON_TYPE } from '../../shared/lib/constants';
 import styles from './styles.module.css';
 
 type SkillPageProps = {
-  mockSkill?: Skill;
+  mockSkill?: Skill | null;
   mockRelatedSkills?: Skill[];
   mockLoading?: boolean;
   mockError?: string;
@@ -34,26 +33,62 @@ export const SkillPage = ({
   const [error, setError] = useState(mockError || null);
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
 
+  // Функция для безопасного получения данных пользователя
+  const getSafeUserData = () => {
+    if (!skill) return {
+      avatar: '/default-avatar.jpg',
+      name: 'Неизвестный пользователь',
+      city: 'Город не указан',
+      age: 0
+    };
+    
+    return {
+      avatar: skill.user?.avatar || '/default-avatar.jpg',
+      name: skill.user?.name || 'Неизвестный пользователь',
+      city: skill.user?.city || 'Город не указан',
+      age: typeof skill.user?.age === 'string' 
+        ? parseInt(skill.user.age) || 0 
+        : skill.user?.age || 0
+    };
+  };
+
+  // Фото для галереи
   const photos = [
-    skill?.author.avatarUrl || '/default-avatar.jpg',
+    getSafeUserData().avatar,
     '/photo1.jpg',
     '/photo2.jpg',
     '/photo3.jpg'
   ];
 
   useEffect(() => {
+    console.log('Загрузка данных для ID:', id); // Логирование ID
+    
     if (mockSkill || mockLoading !== undefined || mockError) return;
 
     const loadData = async () => {
+      setIsLoading(true);
       try {
-        const skillData = await fetchSkillById(id!);
+        if (!id) {
+          throw new Error('ID не указан');
+        }
+
+        const skillData = await fetchSkillById(id);
+        if (!skillData) {
+          throw new Error('Навык не найден');
+        }
+
         setSkill(skillData);
-        const related = await fetchRelatedSkills(skillData.category, id!);
-        setRelatedSkills(related.slice(0, 4));
+        
+        const related = await fetchRelatedSkills(
+          skillData.category || 'other', 
+          id
+        );
+        setRelatedSkills(related);
+        
         setError(null);
       } catch (err) {
         console.error('Ошибка загрузки данных:', err);
-        setError('Ошибка при загрузке данных');
+        setError(err instanceof Error ? err.message : 'Не удалось загрузить данные');
       } finally {
         setIsLoading(false);
       }
@@ -63,7 +98,8 @@ export const SkillPage = ({
   }, [id, mockSkill, mockLoading, mockError]);
 
   const handleExchangeRequest = () => {
-    alert(`Заявка на обмен по навыку "${skill?.title}" отправлена!`);
+    if (!skill) return;
+    alert(`Заявка на обмен по навыку "${skill.title || 'неизвестный навык'}" отправлена!`);
   };
 
   const handleLikeToggle = () => {
@@ -86,21 +122,22 @@ export const SkillPage = ({
   if (error) return <div className={styles.error}>{error}</div>;
   if (!skill) return <div className={styles.error}>Навык не найден</div>;
 
-   
+  const user = getSafeUserData();
+
   return (
     <div className={styles.page}>
       <AppHeaderUI isAuth={false} />
       <main className={styles.content}>
-        {/* Левая карточка с модифицированным содержимым SkillCard */}
+        {/* Левая карточка */}
         <div className={styles.leftCard}>
           <div className={styles.skillCardContainer}>
             <div className={styles.customSkillCard}>
               <div className={styles.cardHeader}>
                 <UserInfoUI
-                  src={skill.author.avatarUrl || ''}
-                  name={skill.author.name}
-                  city={skill.author.city || 'Город не указан'}
-                  age={skill.author.age || 0}
+                  src={user.avatar}
+                  name={user.name}
+                  city={user.city}
+                  age={user.age}
                 />
               </div>
 
@@ -109,7 +146,7 @@ export const SkillPage = ({
                   <div className={styles.sectionTitle}>Может научить:</div>
                   <div className={styles.skillTags}>
                     <OverflowTags
-                      items={[skill.title]}
+                      items={skill.canTeach || []}
                       containerWidth={284}
                       gap={8}
                     />
@@ -129,7 +166,7 @@ export const SkillPage = ({
             </div>
           </div>
         </div>
-        
+
         {/* Правая карточка */}
         <div className={styles.rightCard}>
           <div className={styles.likeButtonContainer}>
@@ -139,15 +176,14 @@ export const SkillPage = ({
               onClick={handleLikeToggle}
             />
           </div>
-          
+
           <div className={styles.cardContent}>
-            {/* Левая часть - текстовая информация */}
             <div className={styles.textContent}>
-              <h1 className={styles.skillTitle}>{skill.title}</h1>
-              <p className={styles.skillCategory}>{skill.category}</p>
-              <p className={styles.skillDescription}>{skill.description}</p>
+              <h1 className={styles.skillTitle}>{skill.title || 'Неизвестный навык'}</h1>
+              <p className={styles.skillCategory}>{skill.category || 'Без категории'}</p>
+              <p className={styles.skillDescription}>{skill.description || 'Нет описания'}</p>
               <div className={styles.exchangeButton}>
-                <Button 
+                <Button
                   width={284}
                   fill
                   onClick={handleExchangeRequest}
@@ -157,16 +193,18 @@ export const SkillPage = ({
                 </Button>
               </div>
             </div>
-            
-            {/* Правая часть - фотографии */}
+
             <div className={styles.photoSection}>
               <div className={styles.mainPhotoContainer}>
-                <img 
-                  src={photos[currentPhotoIndex]} 
+                <img
+                  src={photos[currentPhotoIndex]}
                   alt={`Фото ${currentPhotoIndex + 1}`}
                   className={styles.mainPhoto}
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = '/default-avatar.jpg';
+                  }}
                 />
-                <button 
+                <button
                   className={`${styles.photoNavButton} ${styles.prevButton}`}
                   onClick={handlePrevPhoto}
                   aria-label="Предыдущее фото"
@@ -175,7 +213,7 @@ export const SkillPage = ({
                     <path d="M5.20677 11.3327C5.32366 11.3327 5.44056 11.2896 5.53284 11.1973C5.71126 11.0189 5.71126 10.7236 5.53284 10.5452L1.5215 6.53384C1.22619 6.23852 1.22619 5.75864 1.5215 5.46332L5.53284 1.45198C5.71126 1.27356 5.71126 0.978248 5.53284 0.79983C5.35442 0.621411 5.05911 0.621411 4.88069 0.79983L0.86935 4.81117C0.555576 5.12494 0.377158 5.54946 0.377158 5.99858C0.377158 6.4477 0.549422 6.87222 0.86935 7.18599L4.88069 11.1973C4.97298 11.2835 5.08987 11.3327 5.20677 11.3327Z" fill="#69735D"/>
                   </svg>
                 </button>
-                <button 
+                <button
                   className={`${styles.photoNavButton} ${styles.nextButton}`}
                   onClick={handleNextPhoto}
                   aria-label="Следующее фото"
@@ -185,10 +223,10 @@ export const SkillPage = ({
                   </svg>
                 </button>
               </div>
-              
+
               <div className={styles.thumbnails}>
                 {photos.slice(0, 3).map((photo, index) => (
-                  <div 
+                  <div
                     key={index}
                     className={`${styles.thumbnail} ${
                       index === currentPhotoIndex ? styles.activeThumbnail : ''
@@ -199,6 +237,9 @@ export const SkillPage = ({
                       src={photo}
                       alt={`Миниатюра ${index + 1}`}
                       className={styles.thumbnailImage}
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = '/default-avatar.jpg';
+                      }}
                     />
                   </div>
                 ))}
@@ -208,11 +249,11 @@ export const SkillPage = ({
         </div>
       </main>
       
-      <div className={styles.relatedSkillsHeader}>
+  <div className={styles.relatedSkillsHeader}>
         <h2>Похожие предложения</h2>
       </div>
-      <RelatedSkills skills={relatedSkills} />
-      
+      {relatedSkills.length > 0 && <RelatedSkills skills={relatedSkills} />}
+
       <FooterUI />
     </div>
   );

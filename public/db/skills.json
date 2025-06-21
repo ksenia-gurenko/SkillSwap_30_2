@@ -1,30 +1,140 @@
-{
-  "skills": [
+[
     {
-      "id": "1",
-      "title": "React разработка",
-      "description": "Научу создавать современные SPA-приложения",
-      "category": "Программирование",
-      "isAvailable": true,
-      "wantsToLearn": ["UI/UX дизайн"],
-      "author": {
-        "name": "Иван Петров",
-        "avatarUrl": "https://i.pravatar.cc/150?img=1",
-        "city": "Москва",
-        "age": 28
-      }
+        "_id": "1",
+        "user": {
+            "_id": "1",
+            "avatar": "/assets/avatar_ivan.png",
+            "name": "Иван",
+            "city": "Санкт-Петербург",
+            "age": "34"
+        },
+        "canTeach": [
+            "Игра на барабанах"
+        ],
+        "wantsToLearn": [
+            "Тайм менеджмент",
+            "Медитация"
+        ]
     },
     {
-      "id": "2",
-      "title": "UI/UX дизайн",
-      "description": "Основы Figma и проектирование интерфейсов",
-      "category": "Дизайн",
-      "isAvailable": true,
-      "author": {
-        "name": "Анна Сидорова",
-        "city": "Санкт-Петербург",
-        "age": 25
-      }
+        "_id": "2",
+        "user": {
+            "_id": "2",
+            "avatar": "/assets/avatar_ana.png",
+            "name": "Анна",
+            "city": "Казань",
+            "age": "26"
+        },
+        "canTeach": [
+            "Английский язык"
+        ],
+        "wantsToLearn": [
+            "Тайм менеджмент",
+            "Медитация"
+        ]
+    },
+    {
+        "_id": "3",
+        "user": {
+            "_id": "3",
+            "avatar": "/assets/avatar_maksim.png",
+            "name": "Максим",
+            "city": "Москва",
+            "age": "23"
+        },
+        "canTeach": [
+            "Бизнес-план"
+        ],
+        "wantsToLearn": [
+            "Тайм менеджмент",
+            "Медитация"
+        ]
+    },
+    {
+        "_id": "4",
+        "user": {
+            "_id": "4",
+            "avatar": "/assets/avatar_ilona.png",
+            "name": "Илона",
+            "city": "Екатеринбург",
+            "age": "33"
+        },
+        "canTeach": [
+            "Английский язык"
+        ],
+        "wantsToLearn": [
+            "Тайм менеджмент",
+            "Медитация"
+        ]
+    },
+    {
+        "_id": "5",
+        "user": {
+            "_id": "5",
+            "avatar": "/assets/avatar_michail.png",
+            "name": "Михаил",
+            "city": "Новосибирск",
+            "age": "29"
+        },
+        "canTeach": [
+            "Английский язык"
+        ],
+        "wantsToLearn": [
+            "Тайм менеджмент",
+            "Медитация"
+        ]
+    },
+    {
+        "_id": "6",
+        "user": {
+            "_id": "6",
+            "avatar": "/assets/avatar_maria.png",
+            "name": "Мария",
+            "city": "Краснодар",
+            "age": "21"
+        },
+        "canTeach": [
+            "Английский язык"
+        ],
+        "wantsToLearn": [
+            "Тайм менеджмент",
+            "Медитация"
+        ]
+    },
+    {
+        "_id": "7",
+        "user": {
+            "_id": "7",
+            "avatar": "/assets/avatar_victoria.png",
+            "name": "Виктория",
+            "city": "Кемерово",
+            "age": "30"
+        },
+        "canTeach": [
+            "Игра на барабанах"
+        ],
+        "wantsToLearn": [
+            "Тайм менеджмент",
+            "Медитация",
+            "Английский язык"
+        ]
+    },
+    {
+        "_id": "8",
+        "user": {
+            "_id": "8",
+            "avatar": "/assets/avatar_vicoria_v2.png",
+            "name": "Виктория",
+            "city": "Сочи",
+            "age": "31"
+        },
+        "canTeach": [
+            "Игра на барабанах"
+        ],
+        "wantsToLearn": [
+            "Тайм менеджмент",
+            "Медитация",
+            "Английский язык"
+        ]
     }
-  ]
-}
+]

@@ -1,14 +1,18 @@
 export interface Skill {
-  id: string;
+  _id: string;
   title: string;
   description: string;
   category: string;
   isAvailable: boolean;
-  author: {
+  
+  user: {
+    _id: string;
+    avatar: string;
     name: string;
-    avatarUrl?: string;
-    city?: string;
-    age?: number;
+    city: string;
+    age: number | string;
   };
-  wantsToLearn?: string[];
+  
+  canTeach: string[];
+  wantsToLearn: string[];
 }

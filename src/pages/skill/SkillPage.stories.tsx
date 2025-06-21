@@ -4,15 +4,17 @@ import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import type { Skill } from '../../entities/skill/model';
 
 const mockSkill: Skill = {
-  id: '1',
+  _id: '1',
   title: 'React разработка',
   description: 'Научу создавать современные SPA-приложения',
   category: 'Программирование',
   isAvailable: true,
-  wantsToLearn: ['UI/UX дизайн'],
-  author: {
+  canTeach: ['React', 'TypeScript', 'Redux'],
+  wantsToLearn: ['UI/UX дизайн', 'Node.js'],
+  user: {
+    _id: 'user1',
     name: 'Иван Петров',
-    avatarUrl: 'https://i.pravatar.cc/150?img=1',
+    avatar: 'https://i.pravatar.cc/150?img=1',
     city: 'Москва',
     age: 28
   }
@@ -20,12 +22,36 @@ const mockSkill: Skill = {
 
 const mockRelatedSkills: Skill[] = [
   {
-    id: '2',
+    _id: '2',
     title: 'UI/UX дизайн',
     description: 'Основы Figma и проектирование интерфейсов',
     category: 'Дизайн',
     isAvailable: true,
-    author: { name: 'Анна Сидорова', city: 'Санкт-Петербург', age: 25 }
+    canTeach: ['Figma', 'Adobe XD'],
+    wantsToLearn: ['Прототипирование'],
+    user: { 
+      _id: 'user2',
+      name: 'Анна Сидорова', 
+      avatar: 'https://i.pravatar.cc/150?img=3',
+      city: 'Санкт-Петербург', 
+      age: 25 
+    }
+  },
+  {
+    _id: '3',
+    title: 'JavaScript продвинутый',
+    description: 'Современный ES6+ и паттерны проектирования',
+    category: 'Программирование',
+    isAvailable: true,
+    canTeach: ['JavaScript', 'ES6+'],
+    wantsToLearn: ['WebAssembly'],
+    user: { 
+      _id: 'user3',
+      name: 'Максим Иванов', 
+      avatar: 'https://i.pravatar.cc/150?img=5',
+      city: 'Казань', 
+      age: 32 
+    }
   }
 ];
 
@@ -42,7 +68,15 @@ const meta = {
     )
   ],
   parameters: {
-    layout: 'fullscreen'
+    layout: 'fullscreen',
+    mockData: [
+      {
+        url: '/db/skills.json',
+        method: 'GET',
+        status: 200,
+        response: [mockSkill, ...mockRelatedSkills]
+      }
+    ]
   }
 } satisfies Meta<typeof SkillPage>;
 
@@ -72,7 +106,44 @@ export const ErrorState: Story = {
 
 export const NoSkillFound: Story = {
   args: {
-    mockSkill: undefined,
+    mockSkill: null,
+    mockLoading: false,
+    mockError: 'Навык не найден'
+  }
+};
+
+export const WithMultiplePhotos: Story = {
+  args: {
+    mockSkill: {
+      ...mockSkill,
+      user: {
+        ...mockSkill.user,
+        avatar: '/photo1.jpg' // Первая фото для галереи
+      }
+    },
+    mockRelatedSkills,
+    mockLoading: false
+  }
+};
+
+export const MinimalData: Story = {
+  args: {
+    mockSkill: {
+      _id: '4',
+      title: 'Минимальные данные',
+      description: '',
+      category: 'Другое',
+      isAvailable: true,
+      canTeach: [],
+      wantsToLearn: [],
+      user: {
+        _id: 'user4',
+        name: '',
+        avatar: '',
+        city: '',
+        age: 0
+      }
+    },
     mockLoading: false
   }
 };
