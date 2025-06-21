@@ -1,0 +1,196 @@
+/* Основные стили для SkillCreateForm */
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 20px 0;
+  background: #f9faf7;
+}
+
+.content {
+  width: 100%;
+  padding-top: 50px;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 556px;
+  min-height: 692px;
+  padding: 50px 60px;
+  font-size: 16px;
+  font-family: 'Roboto', "Arial", sans-serif;
+  text-align: center;
+  background: #ffffff;
+  border-radius: 12px;
+}
+
+/* Для левого блока — прижать текст к левому краю */
+
+.block_left {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.formFields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.formField {
+  margin-bottom: 0;
+}
+
+.formField > * {
+  box-sizing: border-box;
+  width: 100% !important;
+  min-width: 0 !important;
+}
+
+.formField > .wrapper {
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+.stepperContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.blocksRow {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 0;
+}
+
+.imageDrop {
+  margin-bottom: 16px;
+  padding: 20px;
+  text-align: center;
+  background: #ffffff;
+  border: 1px dashed #69735d;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.imageDropText {
+  margin-bottom: 8px;
+  color: #69735d;
+}
+
+.imageButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 0;
+  padding: 0;
+  color: #508826;
+  font-size: 16px;
+  font-family: 'Roboto', "Arial", sans-serif;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.imageButton:active,
+.imageButton:focus {
+  color: #5e8c2f;
+  outline: none;
+}
+
+.imageName {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  color: #253017;
+  word-break: break-all;
+}
+
+.imageRemoveBtn {
+  display: flex;
+  align-items: center;
+  margin-left: 4px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.inputMinHeight0 {
+  min-height: 0 !important;
+}
+
+.schoolBoardImg {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: 10px auto 40px;
+}
+
+.headerAbsolute {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
+.textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 96px;
+  padding: 12px 20px;
+  color: #253017;
+  font-size: 16px;
+  font-family: 'Roboto', "Arial", sans-serif;
+  background: #ffffff;
+  border: 1px solid #69735d;
+  border-radius: 12px;
+  resize: vertical;
+}
+
+.textarea::placeholder {
+  color: #69735d;
+}
+
+.label {
+  margin-bottom: 4px;
+  color: #253017;
+  font-size: 16px;
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: #69735d;
+  outline: none;
+  box-shadow: none;
+}
+
+.inputError,
+.textareaError {
+  border-color: #e03232 !important;
+}
+
+.errorText {
+  margin-top: 4px;
+  margin-left: 2px;
+  color: #e03232;
+  font-size: 12px;
+}
+
+.infoText {
+  margin-top: 16px;
+  font-size: 16px;
+  font-family: 'Roboto', "Arial", sans-serif;
+}
