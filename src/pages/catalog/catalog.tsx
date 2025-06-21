@@ -4,23 +4,30 @@ import type { TSkill } from '../../entities/types';
 import skillsData from '../../../public/db/skills.json';
 import { SkillCard } from '../../widgets';
 import { SectionHeader, Button } from '../../shared/ui';
-import { useLocalList } from '../../shared/hooks/useLocalList';
-import { LOCAL_STORAGE_KEYS } from '../../shared/lib/constants';
+import { useNavigate } from 'react-router-dom';
+import { useAppState } from '../../entities/app-state-context/useAppState';
+import { ACTION_TYPE } from '../../shared/lib/constants';
 
 export const CatalogPage: FC = () => {
+  const navigate = useNavigate();
+  const { state, dispatch } = useAppState();
   const [skills, setSkills] = useState<TSkill[]>([]);
-  const [likedSkills, setLikedSkills] = useLocalList<string>(LOCAL_STORAGE_KEYS.LIKED_SKILLS, []);
 
   useEffect(() => {
     setSkills(skillsData as unknown as TSkill[]);
   }, []);
 
-  const handleLikeToggle = (skillId: string) => {
-    setLikedSkills(prev =>
-      prev.includes(skillId)
-        ? prev.filter(id => id !== skillId)
-        : [...prev, skillId]
-    );
+  const handleLikeToggle = (skill: TSkill) => {
+    if (!state.isAuth) {
+      navigate('/login');
+      return;
+    }
+
+    if (state.favorites.some(fav => fav._id === skill._id)) {
+      dispatch({ type: ACTION_TYPE.REMOVE_FAVORITE, payload: skill._id });
+    } else {
+      dispatch({ type: ACTION_TYPE.ADD_FAVORITE, payload: skill });
+    }
   }
 
   const sections = [
@@ -48,8 +55,8 @@ export const CatalogPage: FC = () => {
                   user={skill.user}
                   canTeach={skill.canTeach}
                   wantsToLearn={skill.wantsToLearn}
-                  onLikeToggle={() => handleLikeToggle(skill._id)}
-                  isLiked={likedSkills.includes(skill._id)}
+                  onLikeToggle={() => handleLikeToggle(skill)}
+                  isLiked={state.favorites.some(fav => fav._id === skill._id)}
                   onDetailsClick={() => { }}
                 />
               ))}

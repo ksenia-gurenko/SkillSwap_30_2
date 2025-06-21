@@ -1,6 +1,7 @@
 import { createContext, useEffect, useReducer } from "react";
 import type { TAppState } from "../types";
 import { LOCAL_STORAGE_KEY, type Action } from "./type";
+import { ACTION_TYPE } from "../../shared/lib/constants";
 
 const initialState: TAppState = {
     currentUser: null,
@@ -15,15 +16,21 @@ export const AppStateContext = createContext<{
 
 const reducer = (state: TAppState, action: Action): TAppState => {
     switch (action.type) {
-        case 'SET_USER':
+        case ACTION_TYPE.SET_USER:
             return { ...state, currentUser: action.payload };
-        case 'SET_AUTH':
+        case ACTION_TYPE.SET_AUTH:
             return { ...state, isAuth: action.payload };
-        case 'ADD_FAVORITE':
+        case ACTION_TYPE.ADD_FAVORITE:
+            if (state.favorites.some(fav => fav._id === action.payload._id)) {
+                return state;
+            }
             return { ...state, favorites: [...state.favorites, action.payload] };
-        case 'REMOVE_FAVORITE':
-            return { ...state, favorites: state.favorites.filter(fav => fav._id !== action.payload) };
-        case 'RESET':
+        case ACTION_TYPE.REMOVE_FAVORITE:
+            return {
+                ...state,
+                favorites: state.favorites.filter(fav => fav._id !== action.payload)
+            };
+        case ACTION_TYPE.RESET:
             return initialState;
         default:
             return state;
