@@ -1,5 +1,16 @@
 import type { Option } from './type';
 
+export const CITIES: Option[] = [
+  { label: 'Смоленск', value: 'Smolensk' },
+  { label: 'Москва', value: 'Moscow' },
+  { label: 'Минск', value: 'Minsk' }
+]
+
+export const GENDER: Option[] = [
+  { label: 'Мужской', value: 'male' },
+  { label: 'Женский', value: 'female' }
+]
+
 export const SKILL_CATEGORIES: Option[] = [
   { label: 'Бизнес и карьера', value: 'business' },
   { label: 'Творчество и искусство', value: 'art' },

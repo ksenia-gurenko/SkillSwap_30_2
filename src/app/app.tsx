@@ -1,7 +1,7 @@
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { AppHeaderUI, FooterUI } from '../shared/ui';
 import styles from './app.module.css';
-import { CatalogPage, FavoritesPage, LoginPage } from '../pages';
+import { CatalogPage, FavoritesPage, LoginPage, RegistrationPage } from '../pages';
 import { useAppState } from '../entities/app-state-context/useAppState';
 
 function App() {
@@ -19,8 +19,8 @@ function App() {
       <Routes location={background || location}>
         <Route path='/' element={<CatalogPage />} />
         <Route path='/favorites' element={<FavoritesPage />} />
-        <Route path='/login' element={<LoginPage />}/>
-        <Route path='/registration' />
+        <Route path='/login' element={<LoginPage />} />
+        <Route path='/registration' element={<RegistrationPage />} />
       </Routes>
       <FooterUI />
     </div>

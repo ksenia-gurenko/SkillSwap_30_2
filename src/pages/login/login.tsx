@@ -38,8 +38,7 @@ export const LoginPage = () => {
 
                         </div>
 
-                        <Button fill width={436}>Войти</Button>
-
+                        <Button fill width={436} type='submit'>Войти</Button>
                         <p className={styles.registerText}>
                             <span onClick={() => navigate('/registration')}>Зарегистрироваться</span>
                         </p>

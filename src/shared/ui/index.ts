@@ -7,6 +7,7 @@ export * from './checkbox-dropdown';
 export * from './dropdown-date-birthday';
 export * from './footer';
 export * from './icon';
+export * from './image-drag-and-drop';
 export * from './input';
 export * from './logo';
 export * from './modal';

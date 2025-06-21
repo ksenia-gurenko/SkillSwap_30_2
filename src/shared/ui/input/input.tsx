@@ -21,6 +21,7 @@ export const Input: FC<InputProps> = ({
   iconLeft,
   type = 'text',
   className,
+  onChange,
   ...rest
 }) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -37,6 +38,7 @@ export const Input: FC<InputProps> = ({
           type={inputType}
           className={styles.input}
           placeholder={placeholder}
+          onChange={onChange}
           {...rest}
         />
 
@@ -47,7 +49,7 @@ export const Input: FC<InputProps> = ({
             className={styles.eyeButton}
             aria-label={isPasswordVisible ? 'Скрыть пароль' : 'Показать пароль'}
           >
-            <img src={eyeIcon} alt='Переключить видимость' aria-hidden="true"/>
+            <img src={eyeIcon} alt='Переключить видимость' aria-hidden="true" />
           </button>
         )}
       </div>

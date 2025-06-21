@@ -1,0 +1,67 @@
+.imageDrop {
+    margin-bottom: 16px;
+    padding: 20px;
+    text-align: center;
+    background: #ffffff;
+    border: 1px dashed #69735d;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+
+.imageDropText {
+    margin-bottom: 8px;
+    color: #69735d;
+}
+
+.inputError {
+    border-color: #e03232 !important;
+}
+
+.imageButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0;
+    padding: 0;
+    color: #508826;
+    font-size: 16px;
+    font-family: 'Roboto', "Arial", sans-serif;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.imageButton:active,
+.imageButton:focus {
+    color: #5e8c2f;
+    outline: none;
+}
+
+.imageName {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    color: #253017;
+    word-break: break-all;
+}
+
+.imageRemoveBtn {
+    display: flex;
+    align-items: center;
+    margin-left: 4px;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.errorText {
+    margin-top: 4px;
+    margin-left: 2px;
+    color: #e03232;
+    font-size: 12px;
+}
