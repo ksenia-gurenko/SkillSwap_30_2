@@ -12,3 +12,9 @@ export type TUser = {
     city: string,
     age: number
 }
+
+export type TAppState = {
+    currentUser: TUser | null;
+    isAuth: boolean;
+    favorites: TSkill[];
+}
