@@ -29,6 +29,12 @@
   max-width: 436px;
 }
 
+.loginProviders {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 .welcomeSection {
   flex: 1;
     display: flex;
@@ -44,14 +50,10 @@
   color: #333;
 }
 
-.inputGroup {
-  margin-bottom: 1.5rem;
-}
-
 .separator {
   display: flex;
   align-items: center;
-  margin: 1.5rem 0;
+  margin: 24px 0;
   color: #777;
 }
 
