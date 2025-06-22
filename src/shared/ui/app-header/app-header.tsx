@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import type { TAppHeaderUIProps } from './type';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import styles from './app-header.module.css';
 import { LogoUI } from '../logo';
 import { Button } from '../button';
@@ -16,8 +16,16 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({
   bgColor
 }) => {
   const location = useLocation();
+  const navigate = useNavigate();
 
-  if (isCompact) {
+  const goBack = () => {
+    navigate(-1);
+  }
+
+  if (
+    isCompact ||
+    location.pathname.startsWith('/login') ||
+    location.pathname.startsWith('/registration')) {
     return (
       <header
         className={styles.header}
@@ -29,7 +37,7 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({
           </Link>
         </div>
         <div className={styles.right}>
-          <Button width={147} variant='close'>
+          <Button width={147} variant='close' onClick={goBack}>
             Закрыть
           </Button>
         </div>
@@ -98,10 +106,17 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({
               <IconButtonUI type={ICON_TYPE.MOON} />
             </div>
             <div className={styles.rightButtons}>
-              <Button width={92}>Войти</Button>
-              <Button width={208} fill>
-                Зарегистрироваться
-              </Button>
+              <Link to='/login'>
+                <Button width={92}>Войти</Button>
+              </Link>
+
+              <Link to='/registration'>
+                <Button width={208} fill>
+                  Зарегистрироваться
+                </Button>
+
+              </Link>
+
             </div>
           </>
         )}

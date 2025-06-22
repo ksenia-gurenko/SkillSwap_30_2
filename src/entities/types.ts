@@ -10,5 +10,14 @@ export type TUser = {
     avatar: string,
     name: string,
     city: string,
-    age: number
+    age: number,
+    gender: string,
+}
+
+export type TAppState = {
+    currentUser: TUser | null;
+    isAuth: boolean;
+    users: TUser[],
+    favorites: TSkill[];
+    allSkillCards: TSkill[];
 }

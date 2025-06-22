@@ -4,6 +4,8 @@ import { ICON_TYPE } from '../../lib/constants';
 import styles from './checkbox-dropdown.module.css';
 import checkboxEmpty from './checkbox-empty.svg';
 import checkboxDone from './checkbox-done.svg';
+import radioSelected from './radio-button-done.svg'
+import radioEmpty from './radio-button.svg';
 
 interface Option {
   label: string;
@@ -17,6 +19,7 @@ interface CheckboxDropdownProps {
   selected: string[];
   onChange: (selected: string[]) => void;
   disabled?: boolean;
+  multiselect?: boolean;
 }
 
 export const CheckboxDropdown = ({
@@ -26,6 +29,7 @@ export const CheckboxDropdown = ({
   selected,
   onChange,
   disabled = false,
+  multiselect = true,
 }: CheckboxDropdownProps) => {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -45,10 +49,18 @@ export const CheckboxDropdown = ({
   }, [open]);
 
   const handleSelect = (value: string) => {
-    if (selected.includes(value)) {
-      onChange(selected.filter((v) => v !== value));
+    if (multiselect) {
+      if (selected.includes(value)) {
+        onChange(selected.filter((v) => v !== value));
+      } else {
+        onChange([...selected, value]);
+      }
     } else {
-      onChange([...selected, value]);
+      if (selected.includes(value)) {
+        onChange([]);
+      } else {
+        onChange([value]);
+      }
     }
     setSearch('');
   };
@@ -56,6 +68,18 @@ export const CheckboxDropdown = ({
   const filteredOptions = search.trim().length > 0
     ? options.filter(option => option.label.toLowerCase().includes(search.trim().toLowerCase()))
     : options;
+
+  const getInputValue = () => {
+    if (search.length > 0) return search;
+    if (selected.length === 0) return '';
+
+    if (multiselect) {
+      return `Выбрано: ${selected.length}`;
+    } else {
+      const selectedOption = options?.find(option => option.value === selected[0]);
+      return selectedOption ? selectedOption.label : '';
+    }
+  };
 
   return (
     <div className={styles.wrapper} ref={ref}>
@@ -68,15 +92,7 @@ export const CheckboxDropdown = ({
         <input
           type="text"
           placeholder={placeholder || ''}
-          value={
-            search.length > 0
-              ? search
-              : (
-                  selected.length === 0
-                    ? ''
-                    : `Выбрано: ${selected.length}`
-                )
-          }
+          value={getInputValue()}
           onClick={() => {
             if (!disabled) setOpen((prev) => !prev);
           }}
@@ -131,12 +147,21 @@ export const CheckboxDropdown = ({
                   className={styles.nativeCheckbox}
                 />
                 <span className={styles.checkbox}>
-                  <img
-                    src={selected.includes(option.value) ? checkboxDone : checkboxEmpty}
-                    alt={selected.includes(option.value) ? 'Выбрано' : 'Не выбрано'}
-                    width={24}
-                    height={24}
-                  />
+                  {multiselect ? (
+                    <img
+                      src={selected.includes(option.value) ? checkboxDone : checkboxEmpty}
+                      alt={selected.includes(option.value) ? 'Выбрано' : 'Не выбрано'}
+                      width={24}
+                      height={24}
+                    />
+                  ) : (
+                    <img
+                      src={selected.includes(option.value) ? radioSelected : radioEmpty}
+                      alt={selected.includes(option.value) ? 'Выбрано' : 'Не выбрано'}
+                      width={24}
+                      height={24}
+                    />
+                  )}
                 </span>
                 {option.label}
               </label>
@@ -148,4 +173,4 @@ export const CheckboxDropdown = ({
       )}
     </div>
   );
-}; 
+};
