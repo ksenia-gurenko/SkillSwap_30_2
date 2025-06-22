@@ -13,6 +13,11 @@ export enum ICON_TYPE {
   SEARCH
 }
 
-export enum LOCAL_STORAGE_KEYS {
-  LIKED_SKILLS = 'likedSkills'
+export enum ACTION_TYPE {
+  SET_USER,
+  SET_AUTH,
+  ADD_SKILL_CARD,
+  ADD_FAVORITE,
+  REMOVE_FAVORITE,
+  RESET
 }

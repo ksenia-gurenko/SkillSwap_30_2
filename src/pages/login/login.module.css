@@ -1,0 +1,89 @@
+.containerMain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  min-height: 100vh;  
+}
+
+.sections {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+}
+
+.section {
+  width: 556px;
+  height: 692px;
+  background-color: #fff;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginForm {
+  max-width: 436px;
+}
+
+.loginProviders {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.welcomeSection {
+  flex: 1;
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.loginTitle {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #333;
+}
+
+.separator {
+  display: flex;
+  align-items: center;
+  margin: 24px 0;
+  color: #777;
+}
+
+.separatorLine {
+  flex: 1;
+  height: 1px;
+  background-color: #ddd;
+  margin: 0 10px;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.loginButton {
+  margin-top: 10px;
+}
+
+.registerText {
+  text-align: center;
+  color: #666;
+}
+
+.registerText span {
+  color: #508826;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.registerText span:hover {
+  text-decoration: underline;
+}

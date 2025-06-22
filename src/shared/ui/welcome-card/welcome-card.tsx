@@ -8,7 +8,7 @@ const IMAGES: Record<string, { src: string, title: string, description: string }
     "0": {
         src: "/assets/firstStep.svg",
         title: "С возвращением в SkillSwap!",
-        description: "Обменивайтесь знаниями и навыками с другими людьми"
+        description: "Обменивайтесь знаниями и навыками c другими людьми"
     },
     "1": {
         src: "/assets/firstStep.svg",

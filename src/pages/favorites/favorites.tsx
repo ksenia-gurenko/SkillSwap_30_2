@@ -1,32 +1,30 @@
-import { useEffect, useState, type FC } from 'react';
+import { type FC } from 'react';
 import styles from './favorites.module.css';
 import { SkillCard } from '../../widgets';
 import { SectionHeader, Button } from '../../shared/ui';
-import { useLocalList } from '../../shared/hooks/useLocalList';
-import { LOCAL_STORAGE_KEYS } from '../../shared/lib/constants';
 import type { TSkill } from '../../entities/types';
-import skillsData from '../../../public/db/skills.json';
+import { useAppState } from '../../entities/app-state-context/useAppState';
+import { useNavigate } from 'react-router-dom';
+import { ACTION_TYPE } from '../../shared/lib/constants';
 
 export const FavoritesPage: FC = () => {
-    const [likedSkills, setLikedSkills] = useLocalList<string>(LOCAL_STORAGE_KEYS.LIKED_SKILLS, []);
-    const [allSkills, setAllSkills] = useState<TSkill[]>([]);
+    const navigate = useNavigate();
+    const { state, dispatch } = useAppState();
+    const favoriteSkills = state.favorites;
 
-    useEffect(() => {
-        setAllSkills(skillsData as unknown as TSkill[]);
-    }, []);
+    const handleLikeToggle = (skill: TSkill) => {
+        if (!state.isAuth) {
+            navigate('/login');
+            return;
+        }
 
-    const favoriteSkills = allSkills.filter(skill =>
-        likedSkills.includes(skill._id)
-    );
-
-    const handleLikeToggle = (skillId: string) => {
-        setLikedSkills(prev =>
-            prev.includes(skillId)
-                ? prev.filter(id => id !== skillId)
-                : [...prev, skillId]
-        );
+        if (state.favorites.some(fav => fav._id === skill._id)) {
+            dispatch({ type: ACTION_TYPE.REMOVE_FAVORITE, payload: skill._id });
+        } else {
+            dispatch({ type: ACTION_TYPE.ADD_FAVORITE, payload: skill });
+        }
     }
-
+    
     return (
         <main className={styles.containerMain}>
             <aside className={styles.filters}>
@@ -47,7 +45,7 @@ export const FavoritesPage: FC = () => {
                                     user={skill.user}
                                     canTeach={skill.canTeach}
                                     wantsToLearn={skill.wantsToLearn}
-                                    onLikeToggle={() => handleLikeToggle(skill._id)}
+                                    onLikeToggle={() => handleLikeToggle(skill)}
                                     isLiked
                                     onDetailsClick={() => { }}
                                 />
