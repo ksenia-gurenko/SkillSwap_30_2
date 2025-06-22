@@ -1,6 +1,9 @@
 export type TSkill = {
     _id: string,
     user: TUser,
+    title: string,
+    description: string,
+    category: string,
     canTeach: string[],
     wantsToLearn: string[]
 }

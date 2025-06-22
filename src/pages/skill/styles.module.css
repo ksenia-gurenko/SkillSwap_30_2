@@ -1,46 +1,10 @@
-/* Переменные цветов и размеров */
-
-:root {
-  --color-primary: #253017;
-  --color-secondary: #4a6b2d;
-  --color-gray: #666666;
-  --color-light-gray: #eeeeee;
-  --color-light-bg: #f9faf7;
-  --color-white: #ffffff;
-  --color-error: #ff0000;
-  --border-radius: 12px;
-  --border-radius-small: 4px;
-  --shadow: 0 2px 8px rgb(0 0 0 / 10%);
-}
-
-/* Базовые стили */
-
-body {
-  margin: 0;
-  padding: 0;
-  background-color: var(--color-light-bg);
-}
-
-.page {
+.containerMain {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: 32px;
   min-height: 100vh;
-  color: var(--color-primary);
-  font-family: 'Roboto', sans-serif;
-  background-color: var(--color-light-bg);
 }
-
-/* Шапка */
-
-header {
-  position: relative;
-  z-index: 10;
-  width: 100%;
-  background-color: var(--color-white);
-  box-shadow: var(--shadow);
-}
-
-/* Основной контент */
 
 .contentWrapper {
   width: 100%;
@@ -58,7 +22,6 @@ header {
   padding: 0 36px;
 }
 
-/* Карточка информации о пользователе */
 
 .userInfoCard {
   flex-shrink: 0;
@@ -207,7 +170,8 @@ header {
   height: 40px;
   background: rgb(255 255 255 / 90%);
   border: none;
-  border-radius: 50%; /* Круглая форма */
+  border-radius: 50%;
+  /* Круглая форма */
   box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
   cursor: pointer;
   transform: translateY(-50%);
@@ -278,7 +242,8 @@ header {
 
 .relatedSkillsHeader {
   margin-bottom: 16px;
-  text-align: left; /* Заголовок выровнен по левому краю */
+  text-align: left;
+  /* Заголовок выровнен по левому краю */
 }
 
 .relatedSkillsHeader h2 {
@@ -292,7 +257,8 @@ header {
 
 .relatedSkillsGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Всегда 4 карточки в ряд */
+  grid-template-columns: repeat(4, 1fr);
+  /* Всегда 4 карточки в ряд */
   gap: 24px;
   padding: 16px 0;
 }
@@ -300,7 +266,8 @@ header {
 /* Стили для карточки */
 
 .relatedSkillCard {
-  width: 100%; /* Занимает всю ширину ячейки */
+  width: 100%;
+  /* Занимает всю ширину ячейки */
   background-color: var(--color-white);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
@@ -308,35 +275,38 @@ header {
 
 /* Адаптивность */
 
-@media (width <= 1200px) {
+@media (width <=1200px) {
   .relatedSkillsGrid {
-    grid-template-columns: repeat(3, 1fr); /* 3 карточки в ряд */
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 карточки в ряд */
   }
 }
 
-@media (width <= 900px) {
+@media (width <=900px) {
   .relatedSkillsGrid {
-    grid-template-columns: repeat(2, 1fr); /* 2 карточки в ряд */
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 карточки в ряд */
   }
 }
 
-@media (width <= 768px) {
+@media (width <=768px) {
   .relatedSkillsContainer {
     padding: 0 24px;
   }
-  
+
   .relatedSkillsGrid {
     gap: 16px;
   }
 }
 
-@media (width <= 480px) {
+@media (width <=480px) {
   .relatedSkillsGrid {
-    grid-template-columns: 1fr; /* 1 карточка в ряд */
+    grid-template-columns: 1fr;
+    /* 1 карточка в ряд */
   }
 }
 
-@media (width <= 768px) {
+@media (width <=768px) {
   .contentWrapper {
     padding-top: 24px;
   }

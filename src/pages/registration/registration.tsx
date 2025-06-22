@@ -65,6 +65,9 @@ export const RegistrationPage = () => {
         const skill: TSkill = {
             _id: uuidv4().toString(),
             user: user,
+            title: formData.skillName,
+            description: formData.skillDescription,
+            category: formData.skillCategory,
             canTeach: [formData.skillName],
             wantsToLearn: [formData.learnCategory]
         }

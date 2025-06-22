@@ -1,20 +1,18 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { AppHeaderUI } from '../../shared/ui/app-header';
-import { FooterUI } from '../../shared/ui/footer';
 import { Button } from '../../shared/ui/button';
 import { IconButtonUI } from '../../shared/ui/icon';
 import { UserInfoUI } from '../../shared/ui/user-info';
 import { OverflowTags } from '../../widgets/overflow-tags';
 import { RelatedSkills } from './related-skills';
-import { fetchSkillById, fetchRelatedSkills } from '../../entities/skill/api';
-import type { Skill } from '../../entities/skill/model';
 import { ICON_TYPE } from '../../shared/lib/constants';
 import styles from './styles.module.css';
+import type { TSkill } from '../../entities/types';
+import { useAppState } from '../../entities/app-state-context/useAppState';
+import { useParams } from 'react-router-dom';
 
 type SkillPageProps = {
-  mockSkill?: Skill | null;
-  mockRelatedSkills?: Skill[];
+  mockSkill?: TSkill | null;
+  mockRelatedSkills?: TSkill[];
   mockLoading?: boolean;
   mockError?: string;
 };
@@ -26,8 +24,9 @@ export const SkillPage = ({
   mockError
 }: SkillPageProps) => {
   const { id } = useParams<{ id: string }>();
-  const [skill, setSkill] = useState<Skill | null>(mockSkill || null);
-  const [relatedSkills, setRelatedSkills] = useState<Skill[]>(
+  const { state, dispatch } = useAppState();
+  const [skill, setSkill] = useState<TSkill | null>(mockSkill || null);
+  const [relatedSkills, setRelatedSkills] = useState<TSkill[]>(
     mockRelatedSkills || []
   );
   const [isLoading, setIsLoading] = useState(mockLoading ?? true);
@@ -70,11 +69,13 @@ export const SkillPage = ({
       try {
         if (!id) throw new Error('ID не указан');
 
-        const skillData = await fetchSkillById(id);
+        const skillData = state.allSkillCards.find(skill => skill._id === id);
         if (!skillData) throw new Error('Навык не найден');
 
         setSkill(skillData);
-        const related = await fetchRelatedSkills(skillData.category, id);
+        const related = state.allSkillCards
+          .filter(skill => skill._id !== id && skill.category === skillData.category);
+
         setRelatedSkills(related.slice(0, 4));
         setError(null);
       } catch (err) {
@@ -119,8 +120,7 @@ export const SkillPage = ({
   const user = getSafeUserData();
 
   return (
-    <div className={styles.page}>
-      <AppHeaderUI isAuth={false} />
+    <div className={styles.containerMain}>
       <div className={styles.contentWrapper}>
         <main className={styles.content}>
           <div className={styles.userInfoCard}>
@@ -180,7 +180,6 @@ export const SkillPage = ({
                     width={284}
                     fill
                     onClick={handleExchangeRequest}
-                    disabled={!skill.isAvailable}
                   >
                     Предложить обмен
                   </Button>
@@ -228,11 +227,10 @@ export const SkillPage = ({
                   {drumPhotos.slice(0, 3).map((photo, index) => (
                     <div
                       key={index}
-                      className={`${styles.thumbnail} ${
-                        index === currentPhotoIndex
-                          ? styles.activeThumbnail
-                          : ''
-                      }`}
+                      className={`${styles.thumbnail} ${index === currentPhotoIndex
+                        ? styles.activeThumbnail
+                        : ''
+                        }`}
                       onClick={() => handleThumbnailClick(index)}
                     >
                       <img
@@ -254,19 +252,17 @@ export const SkillPage = ({
       </div>
 
       {relatedSkills.length > 0 && (
-  <div className={styles.relatedSkillsWrapper}>
-    <div className={styles.relatedSkillsContainer}>
-      <div className={styles.relatedSkillsHeader}>
-        <h2>Похожие предложения</h2>
-      </div>
-      <div className={styles.relatedSkillsGrid}>
-        <RelatedSkills skills={relatedSkills} />
-      </div>
-    </div>
-  </div>
-)}
-
-      <FooterUI />
+        <div className={styles.relatedSkillsWrapper}>
+          <div className={styles.relatedSkillsContainer}>
+            <div className={styles.relatedSkillsHeader}>
+              <h2>Похожие предложения</h2>
+            </div>
+            <div className={styles.relatedSkillsGrid}>
+              <RelatedSkills skills={relatedSkills} />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
