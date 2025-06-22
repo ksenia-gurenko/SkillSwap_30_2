@@ -7,31 +7,32 @@
 
 .label {
   margin-bottom: 4px;
+  color: #253017;
   font-size: 16px;
   line-height: 24px;
-  color: #253017;
 }
 
 .inputWrapper {
   position: relative;
   display: flex;
   align-items: center;
-  border: 1px solid #69735d;
-  border-radius: 12px;
+  gap: 10px;
+  height: 48px;
   padding: 12px 20px;
   background-color: white;
-  gap: 10px;
+  border: 1px solid #69735d;
+  border-radius: 12px;
 }
 
 .input {
   flex: 1;
-  border: none;
-  outline: none;
-  color: #253017;
-  background-color: transparent;
   padding: 0;
+  color: #253017;
   font-size: 16px;
   line-height: 24px;
+  background-color: transparent;
+  border: none;
+  outline: none;
   caret-color: #508826;
 }
 
@@ -49,18 +50,18 @@
 }
 
 .eyeButton {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
   display: flex;
   align-items: center;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .hintText {
   margin-top: 4px;
-  font-size: 12px;
   color: #253017;
+  font-size: 12px;
 }
 
 .error {
@@ -68,8 +69,8 @@
 }
 
 .errorText {
+  margin-top: 4px;
+  color: #bf3920;
   font-size: 12px;
   line-height: 16px;
-  color: #bf3920;
-  margin-top: 4px;
 }

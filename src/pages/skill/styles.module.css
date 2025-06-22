@@ -1,0 +1,393 @@
+/* Переменные цветов и размеров */
+
+:root {
+  --color-primary: #253017;
+  --color-secondary: #4a6b2d;
+  --color-gray: #666666;
+  --color-light-gray: #eeeeee;
+  --color-light-bg: #f9faf7;
+  --color-white: #ffffff;
+  --color-error: #ff0000;
+  --border-radius: 12px;
+  --border-radius-small: 4px;
+  --shadow: 0 2px 8px rgb(0 0 0 / 10%);
+}
+
+/* Базовые стили */
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-light-bg);
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  color: var(--color-primary);
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--color-light-bg);
+}
+
+/* Шапка */
+
+header {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  background-color: var(--color-white);
+  box-shadow: var(--shadow);
+}
+
+/* Основной контент */
+
+.contentWrapper {
+  width: 100%;
+  padding-top: 32px;
+  background-color: var(--color-light-bg);
+}
+
+.content {
+  display: flex;
+  gap: 24px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 36px;
+}
+
+/* Карточка информации о пользователе */
+
+.userInfoCard {
+  flex-shrink: 0;
+  width: 324px;
+  padding: 32px;
+  background-color: var(--color-white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+}
+
+.userInfoCard .customSkillCard {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+}
+
+.userInfoCard .cardHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.userInfoCard .cardSkills {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.userInfoCard .skillSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.userInfoCard .sectionTitle {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.userInfoCard .skillTags {
+  width: 100%;
+}
+
+/* Скрываем ненужные элементы */
+
+.userInfoCard .buttonWrapper,
+.userInfoCard .iconButton {
+  display: none;
+}
+
+/* Карточка информации о навыке */
+
+.skillInfoCard {
+  position: relative;
+  flex: 1;
+  min-height: 444px;
+  padding: 32px;
+  background-color: var(--color-white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+}
+
+.skillInfoCard .likeButtonContainer {
+  position: absolute;
+  top: 32px;
+  right: 32px;
+  z-index: 10;
+}
+
+.skillInfoCard .cardContent {
+  display: flex;
+  gap: 77px;
+  margin-top: 44px;
+}
+
+/* Текстовая информация */
+
+.textContent {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.skillTitle {
+  margin: 0 0 4px;
+  font-weight: 500;
+  font-size: 32px;
+  font-family: 'Jost', sans-serif;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.skillCategory {
+  margin: 0 0 20px;
+  color: var(--color-gray);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.skillDescription {
+  margin: 0 0 28px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+.exchangeButton {
+  margin-top: auto;
+}
+
+/* Галерея фотографий */
+
+.photoSection {
+  display: flex;
+  flex: 1;
+  gap: 24px;
+}
+
+.mainPhotoContainer {
+  position: relative;
+  width: 324px;
+  height: 324px;
+  overflow: hidden;
+  background-color: var(--color-light-gray);
+  border-radius: var(--border-radius);
+}
+
+.mainPhoto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photonavbutton {
+  position: absolute;
+  top: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background: rgb(255 255 255 / 90%);
+  border: none;
+  border-radius: 50%; /* Круглая форма */
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: background-color 0.2s ease;
+}
+
+.photoNavButton:hover {
+  background: rgb(255 255 255 / 100%);
+}
+
+.photoNavButton svg {
+  width: 6px;
+  height: 12px;
+}
+
+.photoNavButton.prevButton {
+  left: 16px;
+}
+
+.photoNavButton.nextButton {
+  right: 16px;
+}
+
+/* Миниатюры */
+
+.thumbnails {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 92px;
+}
+
+.thumbnail {
+  position: relative;
+  width: 92px;
+  height: 92px;
+  overflow: hidden;
+  border-radius: var(--border-radius-small);
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.thumbnailImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumbnail.activeThumbnail {
+  border: 2px solid var(--color-secondary);
+}
+
+/* Блок похожих навыков */
+
+.relatedSkillsWrapper {
+  width: 100%;
+  padding: 60px 0 40px;
+  background-color: var(--color-light-bg);
+}
+
+.relatedSkillsContainer {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 36px;
+}
+
+.relatedSkillsHeader {
+  margin-bottom: 16px;
+  text-align: left; /* Заголовок выровнен по левому краю */
+}
+
+.relatedSkillsHeader h2 {
+  margin: 0;
+  font-weight: 500;
+  font-size: 24px;
+  font-family: 'Jost', sans-serif;
+  line-height: 1.16;
+  letter-spacing: -0.01em;
+}
+
+.relatedSkillsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Всегда 4 карточки в ряд */
+  gap: 24px;
+  padding: 16px 0;
+}
+
+/* Стили для карточки */
+
+.relatedSkillCard {
+  width: 100%; /* Занимает всю ширину ячейки */
+  background-color: var(--color-white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+}
+
+/* Адаптивность */
+
+@media (width <= 1200px) {
+  .relatedSkillsGrid {
+    grid-template-columns: repeat(3, 1fr); /* 3 карточки в ряд */
+  }
+}
+
+@media (width <= 900px) {
+  .relatedSkillsGrid {
+    grid-template-columns: repeat(2, 1fr); /* 2 карточки в ряд */
+  }
+}
+
+@media (width <= 768px) {
+  .relatedSkillsContainer {
+    padding: 0 24px;
+  }
+  
+  .relatedSkillsGrid {
+    gap: 16px;
+  }
+}
+
+@media (width <= 480px) {
+  .relatedSkillsGrid {
+    grid-template-columns: 1fr; /* 1 карточка в ряд */
+  }
+}
+
+@media (width <= 768px) {
+  .contentWrapper {
+    padding-top: 24px;
+  }
+
+  .content {
+    flex-direction: column;
+    gap: 24px;
+    padding: 0 24px;
+  }
+
+  .userInfoCard {
+    width: 100%;
+  }
+
+  .skillInfoCard {
+    min-height: auto;
+    padding: 24px;
+  }
+
+  .skillInfoCard .cardContent {
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 32px;
+  }
+
+  .photoSection {
+    flex-direction: column;
+  }
+
+  .mainPhotoContainer {
+    width: 100%;
+  }
+
+  .thumbnails {
+    flex-direction: row;
+    width: 100%;
+  }
+
+}
+
+/* Состояния загрузки и ошибки */
+
+.loading {
+  padding: 20px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.error {
+  padding: 20px;
+  color: var(--color-error);
+  font-size: 18px;
+  text-align: center;
+}
