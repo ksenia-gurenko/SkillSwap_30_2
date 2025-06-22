@@ -47,7 +47,7 @@ export const FavoritesPage: FC = () => {
                                     wantsToLearn={skill.wantsToLearn}
                                     onLikeToggle={() => handleLikeToggle(skill)}
                                     isLiked
-                                    onDetailsClick={() => { }}
+                                    onDetailsClick={() => { navigate(`/skill/${skill._id}`) }}
                                 />
                             ))}
                         </div>

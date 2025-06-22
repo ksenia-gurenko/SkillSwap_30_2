@@ -1,9 +1,12 @@
-import type { Skill } from '../../entities/skill/model';
-import { SkillCard } from '../../widgets/skill-card'; 
-import type { TSkillCardProps } from '../../widgets/skill-card/type'; 
+import { useNavigate } from 'react-router-dom';
+import type { TSkill } from '../../entities/types';
+import { SkillCard } from '../../widgets/skill-card';
+import type { TSkillCardProps } from '../../widgets/skill-card/type';
 
-export const RelatedSkills = ({ skills }: { skills: Skill[] }) => {
-  const convertToCardProps = (skill: Skill): TSkillCardProps & { compact?: boolean } => ({
+export const RelatedSkills = ({ skills }: { skills: TSkill[] }) => {
+  const navigate = useNavigate();
+
+  const convertToCardProps = (skill: TSkill): TSkillCardProps & { compact?: boolean } => ({
     user: {
       avatar: skill.user.avatar,
       name: skill.user.name,
@@ -12,16 +15,19 @@ export const RelatedSkills = ({ skills }: { skills: Skill[] }) => {
     },
     canTeach: skill.canTeach || [],
     wantsToLearn: skill.wantsToLearn || [],
-    onLikeToggle: () => {},
+    onLikeToggle: () => { },
     isLiked: false,
-    onDetailsClick: () => {},
+    onDetailsClick: () => { },
     compact: true
   });
 
   return (
     <>
       {skills.map((skill) => (
-        <SkillCard key={skill._id} {...convertToCardProps(skill)} />
+        <SkillCard
+          key={skill._id} {...convertToCardProps(skill)}
+          onDetailsClick={() => { navigate(`/skill/${skill._id}`) }}
+        />
       ))}
     </>
   );

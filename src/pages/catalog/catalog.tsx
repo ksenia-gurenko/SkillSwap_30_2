@@ -51,7 +51,7 @@ export const CatalogPage: FC = () => {
                   wantsToLearn={skill.wantsToLearn}
                   onLikeToggle={() => handleLikeToggle(skill)}
                   isLiked={state.favorites.some(fav => fav._id === skill._id)}
-                  onDetailsClick={() => { }}
+                  onDetailsClick={() => { navigate(`/skill/${skill._id}`) }}
                 />
               ))}
             </div>
