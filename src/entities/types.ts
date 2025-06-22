@@ -4,6 +4,7 @@ export type TSkill = {
     title: string,
     description: string,
     category: string,
+    subcategory: string,
     canTeach: string[],
     wantsToLearn: string[]
 }
