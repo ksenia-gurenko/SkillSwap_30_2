@@ -11,7 +11,8 @@ export const SkillCard: FC<TSkillCardProps> = ({
   wantsToLearn,
   onLikeToggle,
   isLiked,
-  onDetailsClick
+  onDetailsClick,
+  isCompact = false
 }) => {
   const contentWidth = 284;
 
@@ -25,11 +26,12 @@ export const SkillCard: FC<TSkillCardProps> = ({
             city={user.city}
             age={user.age}
           />
-          <IconButtonUI
+          {isCompact === false ? <IconButtonUI
             type={ICON_TYPE.LIKE}
             isActive={isLiked}
             onClick={onLikeToggle}
-          />
+          /> : undefined}
+
         </div>
 
         <div className={styles.skills}>
@@ -55,11 +57,11 @@ export const SkillCard: FC<TSkillCardProps> = ({
           </div>
         </div>
 
-        <div className={styles.buttonWrapper}>
+        {isCompact === false ? <div className={styles.buttonWrapper}>
           <Button width={contentWidth} fill onClick={onDetailsClick}>
             Подробнее
           </Button>
-        </div>
+        </div> : undefined}
       </div>
     </div>
   );

@@ -7,7 +7,8 @@ export type TSkillCardProps = {
   };
   canTeach: string[];
   wantsToLearn: string[];
-  onLikeToggle: () => void;
-  isLiked: boolean;
-  onDetailsClick: () => void;
+  onLikeToggle?: () => void;
+  isLiked?: boolean;
+  onDetailsClick?: () => void;
+  isCompact?: boolean;
 };

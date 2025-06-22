@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Button } from '../../shared/ui/button';
 import { IconButtonUI } from '../../shared/ui/icon';
-import { UserInfoUI } from '../../shared/ui/user-info';
-import { OverflowTags } from '../../widgets/overflow-tags';
 import { RelatedSkills } from './related-skills';
 import { ICON_TYPE } from '../../shared/lib/constants';
 import styles from './styles.module.css';
 import type { TSkill } from '../../entities/types';
 import { useAppState } from '../../entities/app-state-context/useAppState';
 import { useParams } from 'react-router-dom';
+import { SkillCard } from '../../widgets';
 
 type SkillPageProps = {
   mockSkill?: TSkill | null;
@@ -124,41 +123,12 @@ export const SkillPage = ({
       <div className={styles.contentWrapper}>
         <main className={styles.content}>
           <div className={styles.userInfoCard}>
-            <div className={styles.skillCardContainer}>
-              <div className={styles.customSkillCard}>
-                <div className={styles.cardHeader}>
-                  <UserInfoUI
-                    src={user.avatar}
-                    name={user.name}
-                    city={user.city}
-                    age={user.age}
-                  />
-                </div>
-
-                <div className={styles.cardSkills}>
-                  <div className={styles.skillSection}>
-                    <div className={styles.sectionTitle}>Может научить:</div>
-                    <div className={styles.skillTags}>
-                      <OverflowTags
-                        items={skill.canTeach}
-                        containerWidth={284}
-                        gap={8}
-                      />
-                    </div>
-                  </div>
-                  <div className={styles.skillSection}>
-                    <div className={styles.sectionTitle}>Хочет научиться:</div>
-                    <div className={styles.skillTags}>
-                      <OverflowTags
-                        items={skill.wantsToLearn || []}
-                        containerWidth={284}
-                        gap={8}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <SkillCard
+              user={skill.user}
+              canTeach={skill.canTeach}
+              wantsToLearn={skill.wantsToLearn}
+              isCompact={true}
+            />
           </div>
 
           <div className={styles.skillInfoCard}>
