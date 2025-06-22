@@ -2,10 +2,11 @@ import { type FC } from 'react';
 import styles from './catalog.module.css';
 import type { TSkill } from '../../entities/types';
 import { SkillCard } from '../../widgets';
-import { SectionHeader, Button } from '../../shared/ui';
+import { SectionHeader, Button, CheckboxDropdown, RadioButtonUI } from '../../shared/ui';
 import { useNavigate } from 'react-router-dom';
 import { useAppState } from '../../entities/app-state-context/useAppState';
 import { ACTION_TYPE } from '../../shared/lib/constants';
+import { GENDER } from '../../shared/ui/checkbox-dropdown/constants';
 
 export const CatalogPage: FC = () => {
   const navigate = useNavigate();
@@ -25,15 +26,18 @@ export const CatalogPage: FC = () => {
   }
 
   const sections = [
-    { title: 'Популярное', items: state.allSkillCards?.slice(0, 3) || [] },
-    { title: 'Новое', items: state.allSkillCards?.slice(3, 6) || [] },
-    { title: 'Рекомендуем', items: state.allSkillCards?.slice(6, 9) || [] }
+    { title: 'Популярное', items: state.allSkillCards || [] },
   ];
 
   return (
     <main className={styles.containerMain}>
       <aside className={styles.filters}>
         <SectionHeader text='Фильтры' level='h3' />
+        <div className={styles.filterSection}>
+          <SectionHeader text='Пол автора' level='h4' />
+          
+        </div>
+
       </aside>
       <div className={styles.catalogContent}>
         {sections.map(section => (
