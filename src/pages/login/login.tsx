@@ -1,13 +1,9 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from './login.module.css';
 import { AuthButton, Button, Input, SectionHeader, WelcomeCard } from "../../shared/ui";
 
 export const LoginPage = () => {
     const navigate = useNavigate();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
     return (
         <main className={styles.containerMain}>
             <SectionHeader text="Вход" level="h3" />

@@ -14,7 +14,7 @@ export type TUser = {
     name: string,
     city: string,
     age: number,
-    gender: string,
+    gender: string
 }
 
 export type TAppState = {

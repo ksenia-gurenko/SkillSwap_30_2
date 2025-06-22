@@ -1,7 +1,7 @@
-import type { Skill } from '../../entities/skill/model';
+import type { TSkill } from '../../entities/types';
 import styles from './styles.module.css';
 
-export const SkillInfo = ({ skill }: { skill: Skill }) => (
+export const SkillInfo = ({ skill }: { skill: TSkill }) => (
   <div className={styles.info}>
     <h2>{skill.title}</h2>
     <div className={styles.details}>

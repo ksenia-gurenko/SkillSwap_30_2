@@ -23,7 +23,7 @@ export const SkillPage = ({
   mockError
 }: SkillPageProps) => {
   const { id } = useParams<{ id: string }>();
-  const { state, dispatch } = useAppState();
+  const { state } = useAppState();
   const [skill, setSkill] = useState<TSkill | null>(mockSkill || null);
   const [relatedSkills, setRelatedSkills] = useState<TSkill[]>(
     mockRelatedSkills || []
@@ -39,26 +39,6 @@ export const SkillPage = ({
     '/assets/drums(2).png',
     '/assets/drums+3.png'
   ];
-
-  const getSafeUserData = () => {
-    if (!skill)
-      return {
-        avatar: '/default-avatar.jpg',
-        name: 'Неизвестный пользователь',
-        city: 'Город не указан',
-        age: 0
-      };
-
-    return {
-      avatar: skill.user?.avatar || '/default-avatar.jpg',
-      name: skill.user?.name || 'Неизвестный пользователь',
-      city: skill.user?.city || 'Город не указан',
-      age:
-        typeof skill.user?.age === 'string'
-          ? parseInt(skill.user.age) || 0
-          : skill.user?.age || 0
-    };
-  };
 
   useEffect(() => {
     if (mockSkill || mockLoading !== undefined || mockError) return;
@@ -115,8 +95,6 @@ export const SkillPage = ({
   if (isLoading) return <div className={styles.loading}>Загрузка...</div>;
   if (error) return <div className={styles.error}>{error}</div>;
   if (!skill) return <div className={styles.error}>Навык не найден</div>;
-
-  const user = getSafeUserData();
 
   return (
     <div className={styles.containerMain}>

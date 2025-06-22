@@ -8,7 +8,7 @@ import { SkillPage } from '../pages/skill';
 function App() {
   const location = useLocation();
   const background = location.state && location.state.background;
-  const { state, dispatch } = useAppState();
+  const { state } = useAppState();
 
   return (
     <div className={styles.app}>

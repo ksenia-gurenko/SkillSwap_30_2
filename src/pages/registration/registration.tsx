@@ -18,7 +18,7 @@ import { calculateAge } from "../../shared/lib/utils";
 
 export const RegistrationPage = () => {
     const navigate = useNavigate();
-    const { state, dispatch } = useAppState();
+    const { dispatch } = useAppState();
     const [step, setStep] = useState(1);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [formData, setFormData] = useState<RegistrationData>({

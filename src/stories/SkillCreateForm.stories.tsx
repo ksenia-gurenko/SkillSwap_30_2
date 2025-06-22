@@ -1,4 +1,3 @@
-import React from 'react';
 import { SkillCreateForm } from '../shared/ui/skill-create-form';
 import { BrowserRouter } from 'react-router-dom';
 import { SkillProposalModal } from '../shared/ui/skill-proposal-modal/skill-proposal-modal';
