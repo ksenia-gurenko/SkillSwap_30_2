@@ -1,0 +1,1 @@
+export { SkillProposalModal } from './skill-proposal-modal';

@@ -5,12 +5,16 @@
   font-weight: 400;
   font-family: system-ui, 'Avenir', 'Helvetica', 'Arial', sans-serif;
   line-height: 1.5;
-  background-color: #242424;
+  background-color: #F9FAF7;
   color-scheme: light dark;
   font-synthesis: none;
   text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
 }
 
 a {
@@ -24,11 +28,13 @@ a:hover {
 }
 
 body {
-  display: flex;
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
+  padding: 0;
   place-items: center;
+  overflow-x: hidden;
+  background-color: #f9faf7;
 }
 
 h1 {
@@ -61,4 +67,9 @@ button {
   button {
     background-color: #f9f9f9;
   }
+}
+
+main {
+  min-width: 100vw;
+  flex: 1;
 }

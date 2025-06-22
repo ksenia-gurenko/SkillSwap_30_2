@@ -84,6 +84,21 @@ export const IconButtonUI: FC<TIconButtonUIProps> = ({
             />
           </svg>
         );
+      case ICON_TYPE.CHEVRON_UP:
+        return (
+          <svg
+            width='16'
+            height='8'
+            viewBox='0 0 16 8'
+            fill='none'
+            xmlns='http://www.w3.org/2000/svg'
+          >
+            <path
+              fill='#253017'
+              d='M15.31 7.933a.685.685 0 0 1-.49-.203L8.804 1.712a1.136 1.136 0 0 0-1.606 0L1.179 7.73a.696.696 0 0 1-.978 0 .696.696 0 0 1 0-.978L6.219.734a2.53 2.53 0 0 1 3.562 0L15.8 6.752a.696.696 0 0 1 0 .978.725.725 0 0 1-.489.203Z'
+            />
+          </svg>
+        );
       case ICON_TYPE.SEARCH:
         return (
           <svg
