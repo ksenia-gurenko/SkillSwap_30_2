@@ -16,6 +16,7 @@ export enum ICON_TYPE {
 export enum ACTION_TYPE {
   SET_USER,
   SET_AUTH,
+  ADD_SKILL_CARD,
   ADD_FAVORITE,
   REMOVE_FAVORITE,
   RESET

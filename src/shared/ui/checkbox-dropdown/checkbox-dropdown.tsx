@@ -76,7 +76,7 @@ export const CheckboxDropdown = ({
     if (multiselect) {
       return `Выбрано: ${selected.length}`;
     } else {
-      const selectedOption = options.find(option => option.value === selected[0]);
+      const selectedOption = options?.find(option => option.value === selected[0]);
       return selectedOption ? selectedOption.label : '';
     }
   };

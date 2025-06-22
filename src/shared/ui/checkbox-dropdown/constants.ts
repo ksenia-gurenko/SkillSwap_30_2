@@ -7,6 +7,7 @@ export const CITIES: Option[] = [
 ]
 
 export const GENDER: Option[] = [
+  { label: 'Не указан', value: 'none' },
   { label: 'Мужской', value: 'male' },
   { label: 'Женский', value: 'female' }
 ]

@@ -1,7 +1,6 @@
-import { useEffect, useState, type FC } from 'react';
+import { type FC } from 'react';
 import styles from './catalog.module.css';
 import type { TSkill } from '../../entities/types';
-import skillsData from '../../../public/db/skills.json';
 import { SkillCard } from '../../widgets';
 import { SectionHeader, Button } from '../../shared/ui';
 import { useNavigate } from 'react-router-dom';
@@ -11,11 +10,6 @@ import { ACTION_TYPE } from '../../shared/lib/constants';
 export const CatalogPage: FC = () => {
   const navigate = useNavigate();
   const { state, dispatch } = useAppState();
-  const [skills, setSkills] = useState<TSkill[]>([]);
-
-  useEffect(() => {
-    setSkills(skillsData as unknown as TSkill[]);
-  }, []);
 
   const handleLikeToggle = (skill: TSkill) => {
     if (!state.isAuth) {
@@ -31,9 +25,9 @@ export const CatalogPage: FC = () => {
   }
 
   const sections = [
-    { title: 'Популярное', items: skills.slice(0, 3) },
-    { title: 'Новое', items: skills.slice(3, 6) },
-    { title: 'Рекомендуем', items: skills.slice(6, 9) }
+    { title: 'Популярное', items: state.allSkillCards?.slice(0, 3) || [] },
+    { title: 'Новое', items: state.allSkillCards?.slice(3, 6) || [] },
+    { title: 'Рекомендуем', items: state.allSkillCards?.slice(6, 9) || [] }
   ];
 
   return (

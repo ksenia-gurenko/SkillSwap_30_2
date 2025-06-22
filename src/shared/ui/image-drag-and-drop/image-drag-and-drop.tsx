@@ -2,8 +2,11 @@ import { useEffect, useRef, useState, type FC } from "react";
 import styles from './image-drag-and-drop.module.css';
 import galleryAddIcon from './gallery-add.svg';
 import crossIcon from '../button/cross.svg';
+import type { TImageDragAndDropProps } from "./type";
 
-export const ImageDragAndDropUI: FC = () => {
+export const ImageDragAndDropUI: FC<TImageDragAndDropProps> = ({
+    onChange
+}) => {
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
     const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
     const [images, setImages] = useState<File[]>([]);
@@ -48,6 +51,7 @@ export const ImageDragAndDropUI: FC = () => {
         if (files.length) {
             setImages((prev) => {
                 const merged = [...prev, ...files].slice(0, 10);
+                onChange(merged);
                 return merged;
             });
             setTouched((t) => ({ ...t, image: true }));

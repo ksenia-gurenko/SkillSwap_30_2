@@ -1,7 +1,7 @@
 import { useState, type ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from './registration.module.css';
-import { AuthButton, Button, CheckboxDropdown, DropDownDateBirthday, ImageDragAndDropUI, Input, StepperUI, WelcomeCard } from "../../shared/ui";
+import { AuthButton, Button, CheckboxDropdown, DropDownDateBirthday, ImageDragAndDropUI, Input, SkillProposalModal, StepperUI, WelcomeCard } from "../../shared/ui";
 import type { RegistrationData } from "./type";
 import {
     CITIES,
@@ -10,10 +10,17 @@ import {
     SKILL_SUBCATEGORIES,
 } from '../../shared/ui/checkbox-dropdown/constants';
 import iconAdd from './icon-add.svg';
+import { useAppState } from "../../entities/app-state-context/useAppState";
+import { v4 as uuidv4 } from 'uuid';
+import { ACTION_TYPE } from "../../shared/lib/constants";
+import type { TSkill, TUser } from "../../entities/types";
+import { calculateAge } from "../../shared/lib/utils";
 
 export const RegistrationPage = () => {
     const navigate = useNavigate();
+    const { state, dispatch } = useAppState();
     const [step, setStep] = useState(1);
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const [formData, setFormData] = useState<RegistrationData>({
         email: '',
         password: '',
@@ -23,25 +30,47 @@ export const RegistrationPage = () => {
         city: '',
         learnCategory: '',
         learnSubcategory: '',
-        about: '',
         skillName: '',
         skillCategory: '',
         skillSubcategory: '',
         skillDescription: '',
+        skillImages: null
     });
 
-    const handleChange = (field: keyof RegistrationData, value: string | string[] | Date | null) => {
+    const handleChange = (
+        field: keyof RegistrationData,
+        value: string | string[] | File[] | Date | null) => {
         setFormData(prev => ({ ...prev, [field]: value }));
     };
 
     const nextStep = () => {
         if (step < 3) setStep(step + 1);
         else {
-            // submit data
-            console.log('Registration data:', formData);
-            navigate('/');
+            setIsModalOpen(true);
         }
     };
+
+    const onSubmit = () => {
+        const user: TUser = {
+            _id: uuidv4().toString(),
+            avatar: '',
+            name: formData.name,
+            city: formData.city,
+            age: calculateAge(formData.birthDate),
+            gender: formData.gender
+        }
+        dispatch({ type: ACTION_TYPE.SET_USER, payload: user });
+        dispatch({ type: ACTION_TYPE.SET_AUTH, payload: true });
+
+        const skill: TSkill = {
+            _id: uuidv4().toString(),
+            user: user,
+            canTeach: [formData.skillName],
+            wantsToLearn: [formData.learnCategory]
+        }
+        dispatch({ type: ACTION_TYPE.ADD_SKILL_CARD, payload: skill });
+        navigate('/');
+    }
 
     const prevStep = () => {
         if (step > 1) setStep(step - 1);
@@ -124,7 +153,26 @@ export const RegistrationPage = () => {
                     }}
                     multiselect={false}
                 />
-
+                <CheckboxDropdown
+                    label='Категория навыка, которому хотите научиться'
+                    placeholder='Выберите категорию'
+                    options={SKILL_CATEGORIES}
+                    selected={[formData.learnCategory]}
+                    onChange={(val) => {
+                        handleChange('learnCategory', val[0]);
+                    }}
+                    multiselect={false}
+                />
+                <CheckboxDropdown
+                    label='Подкатегория навыка, которому хотите научиться'
+                    placeholder='Выберите категорию'
+                    options={SKILL_SUBCATEGORIES[formData.learnCategory]}
+                    selected={[formData.learnSubcategory]}
+                    onChange={(val) => {
+                        handleChange('learnSubcategory', val[0]);
+                    }}
+                    multiselect={false}
+                />
             </div>
             <div className={styles.buttons}>
                 <Button width={208} onClick={prevStep}>Назад</Button>
@@ -143,7 +191,6 @@ export const RegistrationPage = () => {
                         handleChange('skillName', val.target.value)
                     }}
                 />
-
                 <CheckboxDropdown
                     label='Категория навыка'
                     placeholder='Выберите категорию навыка'
@@ -167,15 +214,20 @@ export const RegistrationPage = () => {
                 <Input
                     label="Описание"
                     placeholder="Коротко опишите, чему можете научить"
+                    onChange={(val) => {
+                        handleChange('skillDescription', val.target.value)
+                    }}
                 />
-
-                <ImageDragAndDropUI />
+                <ImageDragAndDropUI
+                    onChange={(val) => {
+                        handleChange('skillImages', val)
+                    }}
+                />
             </div>
             <div className={styles.buttons}>
                 <Button width={208} onClick={prevStep}>Назад</Button>
                 <Button width={208} fill onClick={nextStep}>Продолжить</Button>
             </div>
-
         </>
     );
 
@@ -194,18 +246,27 @@ export const RegistrationPage = () => {
                 currentStep={step}
                 totalSteps={3}
             />
-
             <div className={styles.sections}>
                 <div className={styles.section}>
                     <div className={styles.registrationForm}>
                         {renderCurrentStep()}
                     </div>
                 </div>
-
                 <div className={styles.section}>
                     <WelcomeCard step={step.toString()} />
                 </div>
             </div>
+            {isModalOpen === true ?
+                <SkillProposalModal
+                    title={formData.skillName}
+                    subcategories={[formData.skillCategory, formData.skillSubcategory]}
+                    description={formData.skillDescription}
+                    images={[]}
+                    onEdit={() => { prevStep(); setIsModalOpen(false); }}
+                    onConfirm={() => { onSubmit() }}
+                    onClose={() => { navigate('/') }}
+                /> : null
+            }
         </main>
     );
 }

@@ -1,12 +1,14 @@
 import { createContext, useEffect, useReducer } from "react";
-import type { TAppState } from "../types";
+import type { TAppState, TSkill } from "../types";
 import { LOCAL_STORAGE_KEY, type Action } from "./type";
 import { ACTION_TYPE } from "../../shared/lib/constants";
+import skillsData from '../../../public/db/skills.json';
 
 const initialState: TAppState = {
     currentUser: null,
     isAuth: false,
     favorites: [],
+    allSkillCards: skillsData as unknown as TSkill[]
 };
 
 export const AppStateContext = createContext<{
@@ -25,6 +27,11 @@ const reducer = (state: TAppState, action: Action): TAppState => {
                 return state;
             }
             return { ...state, favorites: [...state.favorites, action.payload] };
+        case ACTION_TYPE.ADD_SKILL_CARD:
+            if (state.allSkillCards.some(card => card._id === action.payload._id)) {
+                return state;
+            }
+            return { ...state, allSkillCards: [...state.allSkillCards, action.payload] };
         case ACTION_TYPE.REMOVE_FAVORITE:
             return {
                 ...state,

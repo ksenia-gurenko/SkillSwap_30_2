@@ -7,9 +7,9 @@ export type RegistrationData = {
   city: string;
   learnCategory: string;
   learnSubcategory: string;
-  about: string;
   skillName: string;
   skillCategory: '';
   skillSubcategory: '';
   skillDescription: string;
+  skillImages: File[] | null
 };
