@@ -4,10 +4,4 @@ import LikeIcon from './like.svg';
 import IdeaIcon from './idea.svg';
 import UserIcon from './user.svg';
 
-export {
-  RequestIcon,
-  MessageTextIcon,
-  LikeIcon,
-  IdeaIcon,
-  UserIcon
-};
+export { RequestIcon, MessageTextIcon, LikeIcon, IdeaIcon, UserIcon };

@@ -28,24 +28,19 @@ export interface MenuItemProps {
  */
 export const MenuItem = ({ type, active = false, onClick }: MenuItemProps) => {
   // Определяем иконку и текст в зависимости от типа
-  const getIconAndText = () => {
-    const icons = {
-      requests: { icon: RequestIcon, text: 'Заявки' },
-      exchanges: { icon: MessageTextIcon, text: 'Мои обмены' },
-      favorites: { icon: LikeIcon, text: 'Избранное' },
-      skills: { icon: IdeaIcon, text: 'Мои навыки' },
-      profile: { icon: UserIcon, text: 'Личные данные' }
-    };
-
-    return icons[type] || { icon: null, text: '' };
-  };
-
-  const { icon, text } = getIconAndText();
+  const { icon, text } = {
+    requests: { icon: RequestIcon, text: 'Заявки' },
+    exchanges: { icon: MessageTextIcon, text: 'Мои обмены' },
+    favorites: { icon: LikeIcon, text: 'Избранное' },
+    skills: { icon: IdeaIcon, text: 'Мои навыки' },
+    profile: { icon: UserIcon, text: 'Личные данные' }
+  }[type];
 
   return (
     <button
       className={`${styles.menuItem} ${active ? styles.active : ''}`}
       onClick={onClick}
+      type='button'
     >
       <div className={styles.icon}>
         <img src={icon} alt={text} />

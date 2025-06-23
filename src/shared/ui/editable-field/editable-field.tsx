@@ -8,16 +8,27 @@ type EditableFieldProps = {
   initialValue: string;
   onSave?: (value: string) => void;
   multiline?: boolean;
+  readOnly?: boolean;
 } & (
   | InputHTMLAttributes<HTMLInputElement>
   | TextareaHTMLAttributes<HTMLTextAreaElement>
 );
 
+/**
+ * Универсальный компонент редактируемого поля
+ * @param label - заголовок поля
+ * @param initialValue - начальное значение
+ * @param onSave - callback при сохранении
+ * @param multiline - многострочный режим (textarea)
+ * @param readOnly - режим только для чтения
+ * @param rest - стандартные HTML атрибуты input/textarea
+ */
 export const EditableField: FC<EditableFieldProps> = ({
   label,
   initialValue,
   onSave,
   multiline = false,
+  readOnly = false,
   ...rest
 }) => {
   const [value, setValue] = useState(initialValue);
@@ -31,7 +42,9 @@ export const EditableField: FC<EditableFieldProps> = ({
   }, [isEditing]);
 
   const handleEditClick = () => {
-    setIsEditing(true);
+    if (!readOnly) {
+      setIsEditing(true);
+    }
   };
 
   const handleSave = () => {
@@ -71,11 +84,12 @@ export const EditableField: FC<EditableFieldProps> = ({
           </div>
         )}
 
-        {!isEditing && (
+        {!isEditing && !readOnly && (
           <button
             className={styles.editButton}
             onClick={handleEditClick}
             aria-label={`Редактировать ${label}`}
+            type='button'
           >
             <img src={editIcon} alt='Редактировать' />
           </button>

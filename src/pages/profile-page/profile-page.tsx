@@ -9,7 +9,6 @@ import { CheckboxDropdown } from '../../shared/ui/checkbox-dropdown';
 import { Button } from '../../shared/ui/button';
 import { UserAvatarUI } from '../../shared/ui/user-avatar';
 import { USER_AVATAR_SIZE } from '../../shared/lib/constants';
-import { ImageDragAndDropUI } from '../../shared/ui/image-drag-and-drop';
 import { CITIES, GENDER } from '../../shared/ui/checkbox-dropdown/constants';
 
 type MenuItemType =
@@ -34,7 +33,7 @@ export const ProfilePage = () => {
     gender: 'Женский',
     city: 'Москва',
     about:
-      'Люблю учиться новому, особенно если это можно делать за чаем и в пижаме. Всегда готова пообщаться и обменяться чем‑то интересным!'
+      'Люблю учиться новому, особенно если это можно делать за чаем и в пижаме.\nВсегда готова пообщаться и обменяться чем‑то интересным!'
   });
 
   // Обработчик изменения данных
@@ -89,79 +88,87 @@ export const ProfilePage = () => {
           </div>
 
           {/* Основное содержимое - форма профиля */}
-          <div className={styles.mainContent}>
-            <form className={styles.profileForm}>
-              <div className={styles.formFields}>
-                <EditableField
-                  label='Почта'
-                  initialValue={userData.email}
-                  onSave={(value) => handleChange('email', value)}
-                  readOnly
-                />
+          <div className={styles.profileContent}>
+            <div className={styles.mainContent}>
+              <form className={styles.profileForm}>
+                <div className={styles.formFields}>
+                  <EditableField
+                    label='Почта'
+                    initialValue={userData.email}
+                    onSave={(value) => handleChange('email', value)}
+                  />
 
-                <EditableField
-                  label='Имя'
-                  initialValue={userData.name}
-                  onSave={(value) => handleChange('name', value)}
-                />
+                  <EditableField
+                    label='Имя'
+                    initialValue={userData.name}
+                    onSave={(value) => handleChange('name', value)}
+                  />
 
-                <div className={styles.rowFields}>
-                  <div className={styles.dateField}>
-                    <DropDownDateBirthday
-                      value={userData.birthDate}
-                      onChange={(date) =>
-                        date && handleChange('birthDate', date)
-                      }
-                    />
+                  <div className={styles.rowFields}>
+                    <div className={styles.dateField}>
+                      <DropDownDateBirthday
+                        value={userData.birthDate}
+                        onChange={(date) =>
+                          date && handleChange('birthDate', date)
+                        }
+                      />
+                    </div>
+
+                    <div className={styles.genderField}>
+                      <CheckboxDropdown
+                        label='Пол'
+                        options={GENDER}
+                        selected={[userData.gender]}
+                        onChange={(values) => handleChange('gender', values)}
+                        multiselect={false}
+                        placeholder={userData.gender}
+                        className={styles.customDropdown}
+                        inputClassName={styles.dropdownInput}
+                      />
+                    </div>
                   </div>
 
-                  <div className={styles.genderField}>
-                    <CheckboxDropdown
-                      label='Пол'
-                      options={GENDER}
-                      selected={[userData.gender]}
-                      onChange={(values) => handleChange('gender', values)}
-                      multiselect={false}
-                    />
-                  </div>
+                  <CheckboxDropdown
+                    label='Город'
+                    options={CITIES}
+                    selected={userData.city ? [userData.city] : []}
+                    onChange={(values) => handleChange('city', values[0] || '')}
+                    multiselect={false}
+                    placeholder={userData.city}
+                    className={styles.customDropdown}
+                    inputClassName={styles.dropdownInput}
+                  />
+
+                  <EditableField
+                    label='О себе'
+                    initialValue={userData.about}
+                    onSave={(value) => handleChange('about', value)}
+                    multiline
+                    rows={4}
+                  />
                 </div>
 
-                <CheckboxDropdown
-                  label='Город'
-                  options={CITIES}
-                  selected={userData.city ? [userData.city] : []}
-                  onChange={(values) => handleChange('city', values[0] || '')}
-                  multiselect={false}
-                />
+                <Button className={styles.saveButton} fill disabled>
+                  Сохранить
+                </Button>
+              </form>
+            </div>
 
-                <EditableField
-                  label='О себе'
-                  initialValue={userData.about}
-                  onSave={(value) => handleChange('about', value)}
-                  multiline
+            {/* Блок с аватаром */}
+            <div className={styles.avatarSection}>
+              <div className={styles.avatarContainer}>
+                <UserAvatarUI
+                  src='/src/stories/assets/avatar_maria.png'
+                  size={USER_AVATAR_SIZE.LARGE}
                 />
-              </div>
-
-              <Button className={styles.saveButton} fill disabled>
-                Сохранить
-              </Button>
-            </form>
-          </div>
-
-          {/* Блок с аватаром */}
-          <div className={styles.avatarSection}>
-            <div className={styles.avatarContainer}>
-              <UserAvatarUI
-                src='/src/stories/assets/avatar_maria.png'
-                size={USER_AVATAR_SIZE.LARGE}
-              />
-              <div className={styles.avatarEditButton}>
-                {' '}
-                <img
-                  src='/src/pages/profile-page/gallery-edit.svg'
-                  alt='Редактировать аватар'
-                  className={styles.editIcon}
-                />
+                <div className={styles.avatarEditButton}>
+                  {' '}
+                  <img
+                    src='/src/pages/profile-page/gallery-edit.svg'
+                    alt='Редактировать аватар'
+                    className={styles.editIcon}
+                  />
+                </div>
               </div>
             </div>
           </div>
