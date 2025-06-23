@@ -21,3 +21,6 @@ export * from './tag-catalog';
 export * from './user-avatar';
 export * from './user-info';
 export * from './welcome-card';
+export * from './editable-field';
+export * from './menu-item';
+

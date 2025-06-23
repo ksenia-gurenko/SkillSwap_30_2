@@ -20,12 +20,13 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({
 
   const goBack = () => {
     navigate(-1);
-  }
+  };
 
   if (
     isCompact ||
     location.pathname.startsWith('/login') ||
-    location.pathname.startsWith('/registration')) {
+    location.pathname.startsWith('/registration')
+  ) {
     return (
       <header
         className={styles.header}
@@ -92,7 +93,11 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({
                 />
               </Link>
             </div>
-            <div className={styles.userInfo}>
+            <div
+              className={styles.userInfo}
+              onClick={() => navigate('/profile')}
+              style={{ cursor: 'pointer' }}
+            >
               <span className={styles.userName}>{userName}</span>
               <UserAvatarUI
                 src={userAvatarUrl ?? ''}
@@ -114,9 +119,7 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({
                 <Button width={208} fill>
                   Зарегистрироваться
                 </Button>
-
               </Link>
-
             </div>
           </>
         )}
