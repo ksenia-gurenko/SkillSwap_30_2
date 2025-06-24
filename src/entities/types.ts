@@ -21,7 +21,6 @@ export type TUser = {
 export type TAppState = {
     currentUser: TUser | null;
     isAuth: boolean;
-    users: TUser[],
     favorites: TSkill[];
     allSkillCards: TSkill[];
 }
