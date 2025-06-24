@@ -68,6 +68,7 @@ export const RegistrationPage = () => {
             title: formData.skillName,
             description: formData.skillDescription,
             category: formData.skillCategory,
+            subcategory: formData.skillSubcategory,
             canTeach: [formData.skillName],
             wantsToLearn: [formData.learnCategory]
         }

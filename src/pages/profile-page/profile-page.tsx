@@ -44,12 +44,6 @@ export const ProfilePage = () => {
     }));
   };
 
-  // Обработчик загрузки аватара
-  const handleAvatarUpload = (files: File[]) => {
-    console.log('Загружен новый аватар:', files[0]);
-    // логика загрузки на сервер
-  };
-
   return (
     <div className={styles.pageContainer}>
       {/* <AppHeaderUI isAuth={false} /> */}
