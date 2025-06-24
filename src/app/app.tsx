@@ -4,6 +4,8 @@ import { useAppState } from '../entities/app-state-context/useAppState';
 import { AppHeaderUI, FooterUI } from '../shared/ui';
 import { CatalogPage, FavoritesPage, LoginPage, RegistrationPage } from '../pages';
 import { SkillPage } from '../pages/skill';
+import { ProfilePage } from '../pages/profile-page';
+
 
 function App() {
   const location = useLocation();
@@ -23,6 +25,7 @@ function App() {
         <Route path='/login' element={<LoginPage />} />
         <Route path='/registration' element={<RegistrationPage />} />
         <Route path="/skill/:id" element={<SkillPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
       <FooterUI />
     </div>

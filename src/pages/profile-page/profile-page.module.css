@@ -1,0 +1,115 @@
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.contentWrapper {
+  flex: 1;
+  padding: 0 40px;
+}
+
+.content {
+  display: flex;
+  gap: 24px;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+/* Стили для бокового меню */
+
+.sidebar {
+  flex-shrink: 0;
+  width: 324px;
+  padding: 24px;
+  background-color: #ffffff;
+  border-radius: 16px;
+}
+
+.profileContent {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  background-color: #ffffff;
+  border-radius: 16px;
+}
+
+.mainContent {
+  flex: 1;
+  padding: 60px;
+}
+
+.profileForm {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 460px;
+}
+
+.formFields {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.rowFields {
+  display: flex;
+  gap: 24px;
+}
+
+.dateField {
+  flex: 1;
+}
+
+.genderField {
+  flex: 1;
+}
+
+.saveButton {
+  margin-top: 16px;
+}
+
+.avatarSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 324px;
+  padding: 60px;
+}
+
+.avatarContainer {
+  position: relative;
+  width: 244px;
+  height: 244px;
+  margin-top: 20px;
+}
+
+.avatarEditButton {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 56px;
+  height: 56px;
+  background: #deebc5;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+}
+
+.avatarEditButton:hover {
+  background: #c8d9ac;
+}
+
+.dropdownInput {
+  color: #253017 !important;
+}
+
+.dropdownInput::placeholder {
+  color: #69735d !important;
+  opacity: 1 !important;
+}

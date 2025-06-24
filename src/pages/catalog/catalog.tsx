@@ -2,7 +2,7 @@ import { useState, type FC } from 'react';
 import styles from './catalog.module.css';
 import type { TSkill } from '../../entities/types';
 import { SkillCard } from '../../widgets';
-import { SectionHeader, Button, CheckboxDropdown, RadioButtonUI, Checkbox } from '../../shared/ui';
+import { SectionHeader, Button, CheckboxDropdown } from '../../shared/ui';
 import { useNavigate } from 'react-router-dom';
 import { useAppState } from '../../entities/app-state-context/useAppState';
 import { ACTION_TYPE } from '../../shared/lib/constants';
