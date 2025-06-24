@@ -98,11 +98,13 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({
               onClick={() => navigate('/profile')}
               style={{ cursor: 'pointer' }}
             >
-              <span className={styles.userName}>{userName}</span>
-              <UserAvatarUI
-                src={userAvatarUrl ?? ''}
-                size={USER_AVATAR_SIZE.SMALL}
-              />
+              <Link to='/profile'>
+                <span className={styles.userName}>{userName}</span>
+                <UserAvatarUI
+                  src={userAvatarUrl ?? ''}
+                  size={USER_AVATAR_SIZE.SMALL}
+                />
+              </Link>
             </div>
           </>
         ) : (
